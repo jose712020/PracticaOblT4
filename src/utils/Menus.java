@@ -1,6 +1,7 @@
 package utils;
 
 import models.Cliente;
+import models.Productos;
 import models.Tienda;
 import models.Trabajador;
 
@@ -9,6 +10,7 @@ import java.util.Scanner;
 public class Menus {
     public static final Scanner S = new Scanner(System.in);
 
+    //Menu del administrador
     public static String menuAdministrador(Tienda tienda) {
         String salida = "";
         salida += "FERNANSHOP\n";
@@ -24,6 +26,7 @@ public class Menus {
         return salida;
     }
 
+    // Menu del cliente
     public static String menuCliente(Cliente cliente){
         String salida = "";
         salida += "FERNANSHOP" + "\n";
@@ -38,6 +41,7 @@ public class Menus {
         return salida;
     }
 
+    //Menu del trabajador
     public static String menuTrabajador(Trabajador trabajador){
         String salida = "";
         salida += "FERNANSHOP" + "\n";
@@ -53,6 +57,7 @@ public class Menus {
         return salida;
     }
 
+    //Menu de registro del programa principal
     public static void menuRegistro(Tienda tienda) {
         String correoTeclado, contraTeclado, nombreTeclado, direccionTeclado, localidadTeclado, provinciaTeclado;
         int telefonoTeclado;
@@ -78,4 +83,26 @@ public class Menus {
                 "Se ha registrado correctamente" : "No se ha podido registrar"));
     }
 
+    //Menu del trabajador que modifica un producto del catalogo
+    public static void modificaCatalogo(Tienda tienda) {
+        Productos temp = null;
+
+        String nombreTeclado;
+        int productoTeclado, cantidadTeclado;
+        double precioTeclado;
+
+        System.out.println(tienda.pintaCatalogo());
+        System.out.print("Introduce el número del producto ha modificar: ");
+        productoTeclado = Integer.parseInt(S.nextLine());
+        temp = tienda.aniadeProducto(productoTeclado);
+        if (temp != null) {
+            System.out.print("Introduzca un nombre nuevo (introduce 'no' para dejar el anterior): ");
+            nombreTeclado = S.nextLine();
+            System.out.print("Introduzca un precio nuevo (introduce '-1' para dejar el anterior): ");
+            precioTeclado = Double.parseDouble(S.nextLine());
+            System.out.print("Introduzca una nueva cantidad (introduce '-1' para dejar el anterior): ");
+            cantidadTeclado = Integer.parseInt(S.nextLine());
+            tienda.modificaProducto(nombreTeclado, precioTeclado, cantidadTeclado, temp);
+        } else System.out.println("Producto no encontrado...");
+    }
 }

@@ -148,15 +148,12 @@ public class Cliente {
     }
 
     //Metodo que realiza un pedido del cliente
-   /* public boolean realizaPedido(Productos producto, String direccion){
+/*    public boolean realizaPedido(Productos producto, String direccion){
         if (pedido1 == null){
             pedido1 = new Pedidos(producto, direccion);
             return true;
         }
-        *//*if (pedido2 == null){
-            pedido2 = new Pedidos(producto, direccion);
-            return true;
-        }*//*
+
         return false;
     }*/
 

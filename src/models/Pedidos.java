@@ -1,7 +1,7 @@
 package models;
 
 public class Pedidos {
-    private String id;
+    private int id;
     private String comentario;
     private String estado;
     private String direccionEntrega;
@@ -10,22 +10,20 @@ public class Pedidos {
     private Productos producto3;
 
     //Constructor
-    public Pedidos(String id, String comentario, String estado, String direccionEntrega) {
-        this.id = id;
-        this.comentario = comentario;
-        this.estado = estado;
+    public Pedidos(Productos producto1, Productos producto2, Productos producto3, String direccionEntrega) {
+        id = generaId();
         this.direccionEntrega = direccionEntrega;
-        this.producto1 = null;
-        this.producto2 = null;
-        this.producto3 = null;
+        this.producto1 = producto1;
+        this.producto2 = producto2;
+        this.producto3 = producto3;
     }
 
     //Getter y Setter
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -78,7 +76,9 @@ public class Pedidos {
     }
 
     //Otros metodos
-
+    private int generaId() {
+        return id = (int) (Math.random() * 100001);
+    }
     //Metodo que inserta un producto
  /*   public boolean insertaProducto(Productos producto, String direccionEntrega) {
 

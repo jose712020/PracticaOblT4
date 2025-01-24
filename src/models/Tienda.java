@@ -177,11 +177,11 @@ public class Tienda {
     public String pintaCatalogo() {
         String salida = "";
         salida += "=== CATÁLOGO DE PRODUCTOS ===\n";
-        salida += prod1.pintaDatos();
-        salida += prod2.pintaDatos();
-        salida += prod3.pintaDatos();
-        salida += prod4.pintaDatos();
-        salida += prod5.pintaDatos();
+        salida += "\nProducto 1: \n" + prod1.pintaDatos();
+        salida += "\nProducto 2: \n" + prod2.pintaDatos();
+        salida += "\nProducto 3: \n" + prod3.pintaDatos();
+        salida += "\nProducto 4: \n" + prod4.pintaDatos();
+        salida += "\nProducto 5: \n" + prod5.pintaDatos();
         return salida;
     }
 
@@ -249,13 +249,12 @@ public class Tienda {
         return null;
     }
 
-
-
     //Metodo que nos dice si no hay hueco para crear un trabajador
     public boolean todoLlenoTrabajadores() {
         return t1 != null && t2 != null && t3 != null;
     }
 
+    //Metodo que hace que el administrador pueda dar de alta a un trabajador
     public boolean darAltaTrabajador(String nombreTeclado, String contraTeclado, String correoTeclado, int telefonoTeclado) {
         if (t1 == null) {
             t1 = new Trabajador(nombreTeclado, contraTeclado, correoTeclado, telefonoTeclado);
@@ -272,4 +271,12 @@ public class Tienda {
         return false;
     }
 
+    public void modificaProducto(String nombreTeclado, double precioTeclado, int cantidadTeclado, Productos producto) {
+        if (nombreTeclado.equalsIgnoreCase("no")) nombreTeclado = producto.getNombre();
+        else producto.setNombre(nombreTeclado);
+        if (precioTeclado == -1) precioTeclado = producto.getPrecio();
+        else producto.setPrecio(precioTeclado);
+        if (cantidadTeclado == -1) cantidadTeclado = producto.getCantidad();
+        else producto.setCantidad(cantidadTeclado);
+    }
 }

@@ -19,7 +19,8 @@ public class mainPractica {
 
         String op, correoTeclado, contraTeclado, nombreTeclado, claveTeclado, direccionTeclado, localidadTeclado,
                 provinciaTeclado;
-        int telefonoTeclado, productoTeclado;
+        int telefonoTeclado, productoTeclado, cantidadTeclado;
+        double precioTeclado;
 
         do {
             System.out.print("""
@@ -80,13 +81,13 @@ public class mainPractica {
                         case "2"://Realizar un pedido en clientes
                             if (!clienteTemp.hayHuecoPedidos()) System.out.println("No se pueden realizar más pedidos");
                             else {
-                                Productos temp = null;
+                                Productos productotemp = null;
                                 Pedidos pedido = null;
                                 System.out.println(tienda.pintaCatalogo());
                                 System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
                                 productoTeclado = Integer.parseInt(s.nextLine());
-                                temp = tienda.aniadeProducto(productoTeclado);
-                                if (temp != null) {
+                                productotemp = tienda.aniadeProducto(productoTeclado);
+                                if (productotemp != null) {
                                     //pedido = tienda.sumaPedido(clienteTemp, temp);
                                     System.out.println("Producto agregado a la cesta...");
                                 }
@@ -160,6 +161,7 @@ public class mainPractica {
                             Utils.limpiarpantalla();
                             break;
                         case "4": //Modificar un producto del catálogo
+                            Menus.modificaCatalogo(tienda);
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();
                             break;
