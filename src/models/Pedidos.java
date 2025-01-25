@@ -9,8 +9,23 @@ public class Pedidos {
     private Productos producto2;
     private Productos producto3;
 
-    //Constructor
+    //Constructor con un pedido
     public Pedidos(Productos producto1, String direccionEntrega) {
+        id = generaId();
+        this.direccionEntrega = direccionEntrega;
+        this.producto1 = producto1;
+    }
+
+    //Constructor con dos pedidos
+    public Pedidos(Productos producto1, Productos producto2, String direccionEntrega) {
+        id = generaId();
+        this.direccionEntrega = direccionEntrega;
+        this.producto1 = producto1;
+        this.producto2 = producto2;
+    }
+
+    //Constructor con tres pedidos
+    public Pedidos(Productos producto1, Productos producto2, Productos producto3, String direccionEntrega) {
         id = generaId();
         this.direccionEntrega = direccionEntrega;
         this.producto1 = producto1;

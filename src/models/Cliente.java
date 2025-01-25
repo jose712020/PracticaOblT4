@@ -132,7 +132,7 @@ public class Cliente {
 
     //Metodo que comprueba si tenemos huecos para hacer pedidos
     public boolean hayHuecoPedidos() {
-        return pedido1 == null && pedido2 == null;
+        return pedido1 == null || pedido2 == null;
     }
 
     //Metodo que modifica los datos del cliente, si introduce -1 no se modifican y se dejan los que tenia
@@ -159,5 +159,11 @@ public class Cliente {
         return false;
     }*/
 
-
+    public String pintaPedido(){
+        String resultado = "";
+        resultado += "==== Pedido1 ====\n";
+        resultado += "Productos: " + pedido1.getProducto1().getNombre() + "\n";
+        resultado += "Dirección de entrega: " + pedido1.getDireccionEntrega();
+        return resultado;
+    }
 }

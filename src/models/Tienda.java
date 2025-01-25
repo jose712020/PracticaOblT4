@@ -281,22 +281,32 @@ public class Tienda {
         else producto.setCantidad(cantidadTeclado);
     }
 
-   /* public Pedidos agregaCesta(Productos productotemp, Cliente clienteTemp) {
+    public Pedidos agregaCesta(Productos productotemp, Cliente clientetemp) {
         Productos p1 = null, p2 = null, p3 = null;
-        if (p1 == null) p1 = productotemp;
-        if (p2 == null) p2 = productotemp;
-        if (p3 == null) p3 = productotemp;
+        if (p1 == null){
+            p1 = productotemp;
+            return new Pedidos(p1, clientetemp.getDireccion());
+        }
+        if (p2 == null){
+            p2 = productotemp;
+            return new Pedidos(p1, p2, clientetemp.getDireccion());
+        }
+        if (p3 == null){
+            p3 = productotemp;
+            return new Pedidos(p1, p2, p3, clientetemp.getDireccion());
+        }
+        return null;
     }
 
-    public boolean realizaPedido(Productos producto1, Productos producto2, Productos producto3, Cliente clientetemp) {
-        if (producto2 == null && producto3 == null) {
-            clientetemp.realizaPedido(producto1, producto2, producto3, clientetemp.getDireccion());
+    public boolean realizaPedido(Pedidos pedido, Cliente clientetemp) {
+        if (clientetemp.getPedido1() == null){
+            clientetemp.setPedido1(pedido);
             return true;
         }
-        if (producto3 == null) {
-            clientetemp.realizaPedido(producto1, producto2, producto3, clientetemp.getDireccion());
+        if (clientetemp.getPedido2() == null){
+            clientetemp.setPedido2(pedido);
             return true;
         }
         return false;
-    }*/
+    }
 }
