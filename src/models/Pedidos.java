@@ -18,6 +18,8 @@ public class Pedidos {
         id = generaId();
         fechaPedido = LocalDate.now();
         fechaEstimada = calculaFecha();
+        estado = "Recibido";
+        comentario = null;
         this.direccionEntrega = direccionEntrega;
         this.producto1 = producto1;
         this.producto2 = producto2;
@@ -111,6 +113,14 @@ public class Pedidos {
     private LocalDate calculaFecha() {
         fechaEstimada = fechaPedido;
         return fechaEstimada.plusDays(5);
+    }
+
+    public double sumarPrecioProductos() {
+        double precioTotal = 0;
+        if (producto1 != null) precioTotal += producto1.getPrecio();
+        if (producto2 != null) precioTotal += producto2.getPrecio();
+        if (producto3 != null) precioTotal += producto3.getPrecio();
+        return precioTotal;
     }
 
 }

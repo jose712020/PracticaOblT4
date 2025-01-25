@@ -196,7 +196,7 @@ public class mainPractica {
                             Utils.limpiarpantalla();
                             break;
                         case "2": //Modificar el estado de un pedido
-
+                            Menus.modificaEstadoPedido(tienda);
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();
                             break;

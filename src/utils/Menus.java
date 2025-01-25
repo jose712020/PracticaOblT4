@@ -154,4 +154,19 @@ public class Menus {
     }
 
 
+    //Metodo que modifica el estado de un pedido el administrador
+    public static void modificaEstadoPedido(Tienda tienda) {
+        Pedidos pedido = null;
+        int id;
+
+        System.out.println("============ Modificación de pedidos ============");
+        if (tienda.existeCliente(tienda.getC1())) System.out.println(tienda.pintaPedidosModificar(tienda.getC1()));
+        if (tienda.existeCliente(tienda.getC2())) System.out.println(tienda.pintaPedidosModificar(tienda.getC2()));
+        System.out.print("Introduce la ID del pedido a modificar (-1 en caso de que no haya pedidos): ");
+        id = Integer.parseInt(S.nextLine());
+        pedido = tienda.encuentraId(id, tienda.getC1());
+        System.out.println(pedido.getId());
+
+    }
+
 }

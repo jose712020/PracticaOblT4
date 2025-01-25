@@ -295,6 +295,7 @@ public class Tienda {
         return false;
     }
 
+    // Metodo que realiza un nuevo pedido para el cliente
     public Pedidos agregaCesta(Productos productoTemp1, Productos productoTemp2, Productos productoTemp3, Cliente clienteTemp) {
         Productos p1 = null, p2 = null, p3 = null;
         p1 = productoTemp1;
@@ -317,6 +318,7 @@ public class Tienda {
         String salida = "";
         salida += "\n\n";
         salida += "==========\tPedido " + pedido.getId() + "\t===========\n";
+        salida += "Estado: " + pedido.getEstado() + "\n";
         salida += "Cliente: " + clienteTemp.getNombre() + "\n";
         salida += "Dirección: " + pedido.getDireccionEntrega() + "\n";
         salida += "Localidad: " + clienteTemp.getLocalidad() + "\n";
@@ -325,10 +327,12 @@ public class Tienda {
         salida += "Correo: " + clienteTemp.getCorreo() + "\n";
         salida += "Fecha del pedido: " + pedido.getFechaPedido() + "\n";
         salida += "Fecha de entrega estimada: " + pedido.getFechaEstimada() + "\n";
+        salida += "Comentario del pedido: " + (pedido.getComentario() == null ? "No hay comentarios asignados" : pedido.getComentario()) + "\n";
         salida += "Detalles del pedido:\n";
-        salida += (pedido.getProducto1() == null ? "" : pedido.pintarProducto(pedido.getProducto1())) + "\n";
-        salida += (pedido.getProducto2() == null ? "" : pedido.pintarProducto(pedido.getProducto2())) + "\n";
-        salida += (pedido.getProducto3() == null ? "" : pedido.pintarProducto(pedido.getProducto3())) + "\n";
+        salida += (pedido.getProducto1() == null ? "" : "\t" + pedido.pintarProducto(pedido.getProducto1()) + "\n");
+        salida += (pedido.getProducto2() == null ? "" : "\t" + pedido.pintarProducto(pedido.getProducto2()) + "\n");
+        salida += (pedido.getProducto3() == null ? "" : "\t" + pedido.pintarProducto(pedido.getProducto3()) + "\n");
+        salida += "Total pedido: " + pedido.sumarPrecioProductos() + "€\n";
         salida += "\n\n";
         return salida;
     }
@@ -342,7 +346,32 @@ public class Tienda {
         if (c2 != null) {
             if (c2.getPedido1() != null) salida += pintaPedido(c2.getPedido1(), c2);
         }
-        if (salida.equals(""))  salida += "No se ha realizado ningún pedido...";
+        if (salida.equals("")) salida += "No se ha realizado ningún pedido...";
         return salida;
     }
+
+
+    // Pinta las ID de los pedidos que tiene un cliente
+    public String pintaPedidosModificar(Cliente cliente) {
+        String salida = "";
+        if (cliente.getPedido1() == null && cliente.getPedido2() == null)
+            salida += "El cliente " + cliente.getNombre() + " no tiene pedidos en curso...\n";
+        if (cliente.getPedido1() != null)
+            salida += "ID del Pedido: " + cliente.getPedido1().getId() + " de " + cliente.getNombre() + "\n";
+        if (cliente.getPedido2() != null)
+            salida += "ID del Pedido: " + cliente.getPedido2().getId() + " de " + cliente.getNombre() + "\n";
+        return salida;
+    }
+
+    // Metodo que nos dice si existe un cliente
+    public boolean existeCliente(Cliente cliente) {
+        return cliente != null;
+    }
+
+    public Pedidos encuentraId(int id, Cliente cliente) {
+        if (id == cliente.getPedido1().getId()) return cliente.getPedido1();
+        if (id == cliente.getPedido2().getId()) return cliente.getPedido2();
+        return null;
+    }
+
 }
