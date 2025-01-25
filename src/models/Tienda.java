@@ -134,7 +134,8 @@ public class Tienda {
 
     //Comparamos si los datos que ha metido el usuario coincide con los del administrador
     public Administrador inicioSesionAdmin(String nombreTeclado, String claveTeclado) {
-        if (admin != null && admin.getNombre().equals(nombreTeclado) && admin.getClave().equals(claveTeclado)) return admin;
+        if (admin != null && admin.getNombre().equals(nombreTeclado) && admin.getClave().equals(claveTeclado))
+            return admin;
         return null;
     }
 
@@ -149,7 +150,7 @@ public class Tienda {
     }
 
     //Comparamos si los datos que ha metido el usuario coincide con los del cliente que introduzcamos
-    public Cliente inicioSesionCliente(String nombreTeclado, String contraTeclado){
+    public Cliente inicioSesionCliente(String nombreTeclado, String contraTeclado) {
         if (c1 != null && c1.getCorreo().equals(nombreTeclado) && c1.getPass().equals(contraTeclado)) return c1;
         if (c2 != null && c2.getCorreo().equals(nombreTeclado) && c2.getPass().equals(contraTeclado)) return c2;
         return null;
@@ -166,7 +167,7 @@ public class Tienda {
     }
 
     //Comparamos si los datos que ha metido el usuario coincide con los del cliente que introduzcamos
-    public Trabajador inicioSesionTrabajador(String nombreTeclado, String contraTeclado){
+    public Trabajador inicioSesionTrabajador(String nombreTeclado, String contraTeclado) {
         if (t1 != null && t1.getNombre().equals(nombreTeclado) && t1.getClave().equals(contraTeclado)) return t1;
         if (t2 != null && t2.getNombre().equals(nombreTeclado) && t2.getClave().equals(contraTeclado)) return t2;
         if (t3 != null && t3.getNombre().equals(nombreTeclado) && t3.getClave().equals(contraTeclado)) return t3;
@@ -240,7 +241,7 @@ public class Tienda {
     }
 
     //Metodo que elige uno de los 5 productos al realizar un pedido
-    public Productos aniadeProducto(int i) {
+    public Productos eligeProducto(int i) {
         if (i == 1) return prod1;
         if (i == 2) return prod2;
         if (i == 3) return prod3;
@@ -281,32 +282,67 @@ public class Tienda {
         else producto.setCantidad(cantidadTeclado);
     }
 
-    public Pedidos agregaCesta(Productos productotemp, Cliente clientetemp) {
-        Productos p1 = null, p2 = null, p3 = null;
-        if (p1 == null){
-            p1 = productotemp;
-            return new Pedidos(p1, clientetemp.getDireccion());
-        }
-        if (p2 == null){
-            p2 = productotemp;
-            return new Pedidos(p1, p2, clientetemp.getDireccion());
-        }
-        if (p3 == null){
-            p3 = productotemp;
-            return new Pedidos(p1, p2, p3, clientetemp.getDireccion());
-        }
-        return null;
-    }
-
-    public boolean realizaPedido(Pedidos pedido, Cliente clientetemp) {
-        if (clientetemp.getPedido1() == null){
-            clientetemp.setPedido1(pedido);
+    //Metodo que setea el pedido 1 o el pedido 2 de un cliente
+    public boolean realizaPedido(Pedidos pedido, Cliente clienteTemp) {
+        if (clienteTemp.getPedido1() == null) {
+            clienteTemp.setPedido1(pedido);
             return true;
         }
-        if (clientetemp.getPedido2() == null){
-            clientetemp.setPedido2(pedido);
+        if (clienteTemp.getPedido2() == null) {
+            clienteTemp.setPedido2(pedido);
             return true;
         }
         return false;
+    }
+
+    public Pedidos agregaCesta(Productos productoTemp1, Productos productoTemp2, Productos productoTemp3, Cliente clienteTemp) {
+        Productos p1 = null, p2 = null, p3 = null;
+        p1 = productoTemp1;
+        p2 = productoTemp2;
+        p3 = productoTemp3;
+        return new Pedidos(p1, p2, p3, clienteTemp.getDireccion());
+    }
+
+    //Metodo que pinta los pedidos en total del cliente
+    public String pintaPedidos(Cliente clienteTemp) {
+        String salida = "";
+        if (clienteTemp.getPedido1() == null && clienteTemp.getPedido2() == null) return "No hay pedidos realizados";
+        if (clienteTemp.getPedido1() != null) salida += pintaPedido(clienteTemp.getPedido1(), clienteTemp);
+        if (clienteTemp.getPedido2() != null) salida += pintaPedido(clienteTemp.getPedido2(), clienteTemp);
+        return salida;
+    }
+
+    // Metodo que pinta los datos de un solo pedido
+    private String pintaPedido(Pedidos pedido, Cliente clienteTemp) {
+        String salida = "";
+        salida += "\n\n";
+        salida += "==========\tPedido " + pedido.getId() + "\t===========\n";
+        salida += "Cliente: " + clienteTemp.getNombre() + "\n";
+        salida += "Dirección: " + pedido.getDireccionEntrega() + "\n";
+        salida += "Localidad: " + clienteTemp.getLocalidad() + "\n";
+        salida += "Provincia: " + clienteTemp.getProvincia() + "\n";
+        salida += "Teléfono: " + clienteTemp.getTelefono() + "\n";
+        salida += "Correo: " + clienteTemp.getCorreo() + "\n";
+        salida += "Fecha del pedido: " + pedido.getFechaPedido() + "\n";
+        salida += "Fecha de entrega estimada: " + pedido.getFechaEstimada() + "\n";
+        salida += "Detalles del pedido:\n";
+        salida += (pedido.getProducto1() == null ? "" : pedido.pintarProducto(pedido.getProducto1())) + "\n";
+        salida += (pedido.getProducto2() == null ? "" : pedido.pintarProducto(pedido.getProducto2())) + "\n";
+        salida += (pedido.getProducto3() == null ? "" : pedido.pintarProducto(pedido.getProducto3())) + "\n";
+        salida += "\n\n";
+        return salida;
+    }
+
+    //Metodo que pinta los pedidos de todos los clientes para el administrador
+    public String pintaPedidosAdmin() {
+        String salida = "";
+        if (c1 != null) {
+            if (c1.getPedido1() != null) salida += pintaPedido(c1.getPedido1(), c1);
+        }
+        if (c2 != null) {
+            if (c2.getPedido1() != null) salida += pintaPedido(c2.getPedido1(), c2);
+        }
+        if (salida.equals(""))  salida += "No se ha realizado ningún pedido...";
+        return salida;
     }
 }

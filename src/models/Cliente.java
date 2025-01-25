@@ -109,10 +109,12 @@ public class Cliente {
     }
 
     //Otros metodos
+    //En este metodo ponemos el boolean inicioCorrecto a true del cliente
     public void inicioCorrectoEncendido() {
         setInicioCorrecto(true);
     }
 
+    //En este metodo ponemos el boolean inicioCorrecto a false del cliente
     public void apagadoInicioCorrecto() {
         setInicioCorrecto(false);
     }
@@ -148,22 +150,10 @@ public class Cliente {
     }
 
 
-
-    //Metodo que realiza un pedido del cliente
-/*    public boolean realizaPedido(Productos producto1, Productos producto2, Productos producto3, String direccion){
-        if (pedido1 == null){
-            pedido1 = new Pedidos(producto1, producto2, producto3, direccion);
-            return true;
-        }
-
-        return false;
-    }*/
-
-    public String pintaPedido(){
-        String resultado = "";
-        resultado += "==== Pedido1 ====\n";
-        resultado += "Productos: " + pedido1.getProducto1().getNombre() + "\n";
-        resultado += "Dirección de entrega: " + pedido1.getDireccionEntrega();
-        return resultado;
+    //Metodo que nos dice si el cliente no tiene ningun pedido realizado
+    public boolean pedidoNoRealizado() {
+        return pedido1 == null && pedido2 == null;
     }
+
+
 }

@@ -15,11 +15,9 @@ public class mainPractica {
         Cliente clienteTemp = null;
         Trabajador trabajadorTemp = null;
         Administrador adminTemp = null;
-        Pedidos pedidoTemp = null;
 
         String op, correoTeclado, contraTeclado, nombreTeclado, claveTeclado, direccionTeclado, localidadTeclado, provinciaTeclado;
-        int telefonoTeclado, productoTeclado, cont;
-        boolean continuar = false;
+        int telefonoTeclado, cont;
 
         do {
             System.out.print("""
@@ -79,27 +77,12 @@ public class mainPractica {
                             break;
                         case "2"://Realizar un pedido en clientes
                             if (!clienteTemp.hayHuecoPedidos()) System.out.println("No se pueden realizar más pedidos");
-                            else {
-                                cont = 0;
-                                Productos productoTemp = null;
-                                Pedidos pedido = null;
-                                System.out.println(tienda.pintaCatalogo());
-                                System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
-                                productoTeclado = Integer.parseInt(s.nextLine());
-                                productoTemp = tienda.aniadeProducto(productoTeclado);
-                                if (productoTemp != null) {
-                                    System.out.println("Producto agregado a la cesta...");
-                                    cont++;
-                                    System.out.println("¿Deseas continuar llevas " + cont + " productos? (S/N): ");
-                                    op = s.nextLine();
-                                    //if (op.equalsIgnoreCase("n")) pedido = tienda.realizaPedido(producto1, producto2, producto3, clienteTemp);
-                                }
-                            }
+                            else Menus.realizaPedido(tienda, clienteTemp);
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();
                             break;
                         case "3"://Ver pedidos realizados de clientes
-
+                            System.out.println(tienda.pintaPedidos(clienteTemp));
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();
                             break;
@@ -140,7 +123,8 @@ public class mainPractica {
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();
                     }
-                } while (!op.equals("6"));
+                }
+                while (!op.equals("6"));
             } // Fin del menú del cliente
 
             if (trabajadorTemp != null && trabajadorTemp.isInicioCorrecto()) { // Menú Trabajadores
@@ -201,7 +185,7 @@ public class mainPractica {
                 } while (!op.equals("7"));
             } // Fin del menú Trabajadores
 
-            if (tienda.getAdmin().isInicioCorrecto()) { // Menú del administrador
+            if (adminTemp != null && adminTemp.isInicioCorrecto()) { // Menú del administrador
                 do {
                     System.out.print(Menus.menuAdministrador(tienda));
                     op = s.nextLine();
@@ -236,7 +220,7 @@ public class mainPractica {
                             Utils.limpiarpantalla();
                             break;
                         case "4": //Ver todos los pedidos
-
+                            System.out.println(tienda.pintaPedidosAdmin());
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();
                             break;
@@ -251,7 +235,7 @@ public class mainPractica {
                             Utils.limpiarpantalla();
                             break;
                         case "7": //Cerrar sesión
-                            tienda.apagadoInicioSesionAdmin();
+                            adminTemp.apagadoInicioCorrecto();
                             Utils.animacionFinSesion();
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();

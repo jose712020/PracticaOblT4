@@ -59,10 +59,12 @@ public class Trabajador {
     }
 
     //Otros metodos
+    //En este metodo ponemos el boolean inicioCorrecto a true del trabajador
     public void inicioCorrectoEncendido() {
         setInicioCorrecto(true);
     }
 
+    //En este metodo ponemos el boolean inicioCorrecto a false del trabajador
     public void apagadoInicioCorrecto() {
         setInicioCorrecto(false);
     }

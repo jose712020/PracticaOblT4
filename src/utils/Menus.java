@@ -1,9 +1,6 @@
 package utils;
 
-import models.Cliente;
-import models.Productos;
-import models.Tienda;
-import models.Trabajador;
+import models.*;
 
 import java.util.Scanner;
 
@@ -27,7 +24,7 @@ public class Menus {
     }
 
     // Menu del cliente
-    public static String menuCliente(Cliente cliente){
+    public static String menuCliente(Cliente cliente) {
         String salida = "";
         salida += "FERNANSHOP" + "\n";
         salida += "Bienvenido " + cliente.getNombre() + "\n";
@@ -42,7 +39,7 @@ public class Menus {
     }
 
     //Menu del trabajador
-    public static String menuTrabajador(Trabajador trabajador){
+    public static String menuTrabajador(Trabajador trabajador) {
         String salida = "";
         salida += "FERNANSHOP" + "\n";
         salida += "Bienvenido " + trabajador.getNombre() + ". Tienes 0 pedidos que gestionar\n";
@@ -63,8 +60,8 @@ public class Menus {
         int telefonoTeclado;
 
         System.out.print("""
-                            REGISTRO:
-                            Introduce un nombre para su cuenta:\s""");
+                REGISTRO:
+                Introduce un nombre para su cuenta:\s""");
         nombreTeclado = S.nextLine();
         System.out.print("Introduce la contraseña de tu cuenta: ");
         contraTeclado = S.nextLine();
@@ -94,7 +91,7 @@ public class Menus {
         System.out.println(tienda.pintaCatalogo());
         System.out.print("Introduce el número del producto ha modificar: ");
         productoTeclado = Integer.parseInt(S.nextLine());
-        temp = tienda.aniadeProducto(productoTeclado);
+        temp = tienda.eligeProducto(productoTeclado);
         if (temp != null) {
             System.out.print("Introduzca un nombre nuevo (introduce 'no' para dejar el anterior): ");
             nombreTeclado = S.nextLine();
@@ -105,4 +102,56 @@ public class Menus {
             tienda.modificaProducto(nombreTeclado, precioTeclado, cantidadTeclado, temp);
         } else System.out.println("Producto no encontrado...");
     }
+
+    // Realiza Pedido de un cliente
+    public static void realizaPedido(Tienda tienda, Cliente clienteTemp) {
+        String op;
+        int productoTeclado, cont;
+        boolean finalizado = false;
+
+        cont = 0;
+        Productos producto1 = null, producto2 = null, producto3 = null;
+        Pedidos pedido = null;
+
+        System.out.println(tienda.pintaCatalogo());
+        System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
+        productoTeclado = Integer.parseInt(S.nextLine());
+        producto1 = tienda.eligeProducto(productoTeclado);
+        if (producto1 != null) {
+            System.out.println("Producto agregado a la cesta...");
+            cont++;
+            System.out.println("¿Deseas continuar llevas " + cont + " productos? (S/N): ");
+            op = S.nextLine();
+            if (op.equalsIgnoreCase("n")) finalizado = true;
+            else {
+                System.out.println(tienda.pintaCatalogo());
+                System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
+                productoTeclado = Integer.parseInt(S.nextLine());
+                producto2 = tienda.eligeProducto(productoTeclado);
+                if (producto2 != null) {
+                    System.out.println("Producto agregado a la cesta...");
+                    cont++;
+                    System.out.println("¿Deseas continuar llevas " + cont + " productos? (S/N): ");
+                    op = S.nextLine();
+                    if (op.equalsIgnoreCase("n")) finalizado = true;
+                    else {
+                        System.out.println(tienda.pintaCatalogo());
+                        System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
+                        productoTeclado = Integer.parseInt(S.nextLine());
+                        producto3 = tienda.eligeProducto(productoTeclado);
+                        if (producto3 != null) {
+                            System.out.println("Producto agregado a la cesta...");
+                            finalizado = true;
+                        }
+                    }
+                }
+            }
+        }
+        if (finalizado) {
+            pedido = tienda.agregaCesta(producto1, producto2, producto3, clienteTemp);
+            System.out.println((tienda.realizaPedido(pedido, clienteTemp) ? "Compra finalizada con exito..." : "Ha ocurrido un error"));
+        }
+    }
+
+
 }

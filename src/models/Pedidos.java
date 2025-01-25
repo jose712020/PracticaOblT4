@@ -1,7 +1,11 @@
 package models;
 
+import java.time.LocalDate;
+
 public class Pedidos {
     private int id;
+    private LocalDate fechaPedido;
+    private LocalDate fechaEstimada;
     private String comentario;
     private String estado;
     private String direccionEntrega;
@@ -9,24 +13,11 @@ public class Pedidos {
     private Productos producto2;
     private Productos producto3;
 
-    //Constructor con un pedido
-    public Pedidos(Productos producto1, String direccionEntrega) {
-        id = generaId();
-        this.direccionEntrega = direccionEntrega;
-        this.producto1 = producto1;
-    }
-
-    //Constructor con dos pedidos
-    public Pedidos(Productos producto1, Productos producto2, String direccionEntrega) {
-        id = generaId();
-        this.direccionEntrega = direccionEntrega;
-        this.producto1 = producto1;
-        this.producto2 = producto2;
-    }
-
-    //Constructor con tres pedidos
+    //Constructor con los tres pedidos
     public Pedidos(Productos producto1, Productos producto2, Productos producto3, String direccionEntrega) {
         id = generaId();
+        fechaPedido = LocalDate.now();
+        fechaEstimada = calculaFecha();
         this.direccionEntrega = direccionEntrega;
         this.producto1 = producto1;
         this.producto2 = producto2;
@@ -34,6 +25,22 @@ public class Pedidos {
     }
 
     //Getter y Setter
+    public LocalDate getFechaPedido() {
+        return fechaPedido;
+    }
+
+    public void setFechaPedido(LocalDate fechaPedido) {
+        this.fechaPedido = fechaPedido;
+    }
+
+    public LocalDate getFechaEstimada() {
+        return fechaEstimada;
+    }
+
+    public void setFechaEstimada(LocalDate fechaEstimada) {
+        this.fechaEstimada = fechaEstimada;
+    }
+
     public int getId() {
         return id;
     }
@@ -94,8 +101,16 @@ public class Pedidos {
     private int generaId() {
         return id = (int) (Math.random() * 100001);
     }
-    //Metodo que inserta un producto
- /*   public boolean insertaProducto(Productos producto, String direccionEntrega) {
 
-    }*/
+    //Metodo que pinta un producto del pedido
+    public String pintarProducto(Productos producto) {
+        return "- " + producto.getNombre() + " (" + producto.getPrecio() + "€)";
+    }
+
+    //Metodo que calcula la fecha estimada de llegada
+    private LocalDate calculaFecha() {
+        fechaEstimada = fechaPedido;
+        return fechaEstimada.plusDays(5);
+    }
+
 }

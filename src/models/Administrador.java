@@ -79,10 +79,12 @@ public class Administrador {
     }
 
     //Otros metodos
+    //En este metodo ponemos el boolean inicioCorrecto a true del admin
     public void inicioCorrectoEncendido() {
         setInicioCorrecto(true);
     }
 
+    //En este metodo ponemos el boolean inicioCorrecto a false del admin
     public void apagadoInicioCorrecto() {
         setInicioCorrecto(false);
     }
