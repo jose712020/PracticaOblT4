@@ -10,7 +10,7 @@ public class Pedidos {
     private Productos producto3;
 
     //Constructor
-    public Pedidos(Productos producto1, Productos producto2, Productos producto3, String direccionEntrega) {
+    public Pedidos(Productos producto1, String direccionEntrega) {
         id = generaId();
         this.direccionEntrega = direccionEntrega;
         this.producto1 = producto1;

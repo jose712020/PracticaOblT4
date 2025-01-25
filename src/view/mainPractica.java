@@ -17,10 +17,9 @@ public class mainPractica {
         Administrador adminTemp = null;
         Pedidos pedidoTemp = null;
 
-        String op, correoTeclado, contraTeclado, nombreTeclado, claveTeclado, direccionTeclado, localidadTeclado,
-                provinciaTeclado;
-        int telefonoTeclado, productoTeclado, cantidadTeclado;
-        double precioTeclado;
+        String op, correoTeclado, contraTeclado, nombreTeclado, claveTeclado, direccionTeclado, localidadTeclado, provinciaTeclado;
+        int telefonoTeclado, productoTeclado, cont;
+        boolean continuar = false;
 
         do {
             System.out.print("""
@@ -81,15 +80,19 @@ public class mainPractica {
                         case "2"://Realizar un pedido en clientes
                             if (!clienteTemp.hayHuecoPedidos()) System.out.println("No se pueden realizar más pedidos");
                             else {
-                                Productos productotemp = null;
+                                cont = 0;
+                                Productos productoTemp = null;
                                 Pedidos pedido = null;
                                 System.out.println(tienda.pintaCatalogo());
                                 System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
                                 productoTeclado = Integer.parseInt(s.nextLine());
-                                productotemp = tienda.aniadeProducto(productoTeclado);
-                                if (productotemp != null) {
-                                    //pedido = tienda.sumaPedido(clienteTemp, temp);
+                                productoTemp = tienda.aniadeProducto(productoTeclado);
+                                if (productoTemp != null) {
                                     System.out.println("Producto agregado a la cesta...");
+                                    cont++;
+                                    System.out.println("¿Deseas continuar llevas " + cont + " productos? (S/N): ");
+                                    op = s.nextLine();
+                                    //if (op.equalsIgnoreCase("n")) pedido = tienda.realizaPedido(producto1, producto2, producto3, clienteTemp);
                                 }
                             }
                             Utils.pulsaContinuar();
@@ -214,7 +217,8 @@ public class mainPractica {
                             Utils.limpiarpantalla();
                             break;
                         case "3": //Dar de alta un trabajador
-                            if (tienda.todoLlenoTrabajadores()) System.out.println("No se pueden dar de alta más trabajadores.");
+                            if (tienda.todoLlenoTrabajadores())
+                                System.out.println("No se pueden dar de alta más trabajadores.");
                             else {
                                 System.out.print("Introduce el nombre del trabajador: ");
                                 nombreTeclado = s.nextLine();

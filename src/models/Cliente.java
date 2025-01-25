@@ -147,14 +147,17 @@ public class Cliente {
         if (!nombreTeclado.equals("-1")) nombre = nombreTeclado;
     }
 
+
+
     //Metodo que realiza un pedido del cliente
-/*    public boolean realizaPedido(Productos producto, String direccion){
+/*    public boolean realizaPedido(Productos producto1, Productos producto2, Productos producto3, String direccion){
         if (pedido1 == null){
-            pedido1 = new Pedidos(producto, direccion);
+            pedido1 = new Pedidos(producto1, producto2, producto3, direccion);
             return true;
         }
 
         return false;
     }*/
+
 
 }

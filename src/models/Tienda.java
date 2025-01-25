@@ -271,6 +271,7 @@ public class Tienda {
         return false;
     }
 
+    // Metodo que modifica un producto del catalogo
     public void modificaProducto(String nombreTeclado, double precioTeclado, int cantidadTeclado, Productos producto) {
         if (nombreTeclado.equalsIgnoreCase("no")) nombreTeclado = producto.getNombre();
         else producto.setNombre(nombreTeclado);
@@ -279,4 +280,23 @@ public class Tienda {
         if (cantidadTeclado == -1) cantidadTeclado = producto.getCantidad();
         else producto.setCantidad(cantidadTeclado);
     }
+
+   /* public Pedidos agregaCesta(Productos productotemp, Cliente clienteTemp) {
+        Productos p1 = null, p2 = null, p3 = null;
+        if (p1 == null) p1 = productotemp;
+        if (p2 == null) p2 = productotemp;
+        if (p3 == null) p3 = productotemp;
+    }
+
+    public boolean realizaPedido(Productos producto1, Productos producto2, Productos producto3, Cliente clientetemp) {
+        if (producto2 == null && producto3 == null) {
+            clientetemp.realizaPedido(producto1, producto2, producto3, clientetemp.getDireccion());
+            return true;
+        }
+        if (producto3 == null) {
+            clientetemp.realizaPedido(producto1, producto2, producto3, clientetemp.getDireccion());
+            return true;
+        }
+        return false;
+    }*/
 }
