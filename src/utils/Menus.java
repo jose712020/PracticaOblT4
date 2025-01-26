@@ -240,16 +240,14 @@ public class Menus {
             System.out.println("\n==== Asignación del pedido " + pedido.getId() + " ====");
             System.out.println(tienda.pintaAsignacionPedidoTrabajadores());
             if (!tienda.eleccionAsignacionPedido()) {
-                trabajador = tienda.aniadePedidoTrabajadorAutomatico(pedido);
-                if (trabajador != null) System.out.println(tienda.aniadePedidoTrabajador(trabajador, pedido)
-                        ? "Operación realiza correctamente, pedido asignado a " + trabajador.getNombre() : "Ha ocurrido un error...");
+                trabajador = tienda.aniadePedidoTrabajadorAutomatico();
             } else {
                 System.out.print("Seleccione el trabajador: ");
                 op = Integer.parseInt(S.nextLine());
                 trabajador = tienda.eligeTrabajador(op);
-                if (trabajador != null) System.out.println(tienda.aniadePedidoTrabajador(trabajador, pedido)
-                        ? "Operación realiza correctamente, pedido asignado a " + trabajador.getNombre() : "Ha ocurrido un error...");
             }
+            if (trabajador != null) System.out.println(tienda.aniadePedidoTrabajador(trabajador, pedido)
+                    ? "Operación realiza correctamente, pedido asignado a " + trabajador.getNombre() : "Ha ocurrido un error...");
 
         } else System.out.println("Pedido no encontrado...");
 

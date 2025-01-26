@@ -520,7 +520,7 @@ public class Tienda {
 
     // Metodo que nos dice en la asignacion de los pedidos del administrador si los elige el admin y la eleccion es automatica
     public boolean eleccionAsignacionPedido() {
-        if (t1 != null && t2 == null && t3 == null) return true;
+        if (t1 != null && t2 == null && t3 == null) return false;
         if (t2 != null && t3 == null) {
             if (t1.numPedidosAsignados() == t2.numPedidosAsignados()) return true;
         }
@@ -528,11 +528,13 @@ public class Tienda {
             if (t1.numPedidosAsignados() == t2.numPedidosAsignados()
                     && t1.numPedidosAsignados() == t3.numPedidosAsignados()
                     && t2.numPedidosAsignados() == t3.numPedidosAsignados()) return true;
+            if (t1.numPedidosAsignados() == t3.numPedidosAsignados() && t1.numPedidosAsignados() != t2.numPedidosAsignados()) return false;
         }
         return false;
     }
 
-    public Trabajador aniadePedidoTrabajadorAutomatico(Pedidos pedido) {
+    //Metodo que añade un pedido automaticamente a un trabajador
+    public Trabajador aniadePedidoTrabajadorAutomatico() {
         if (t1 != null && t2 == null && t3 == null) return t1;
         if (t2 != null && t3 == null) {
             if (t1.numPedidosAsignados() < t2.numPedidosAsignados()) return t1;
