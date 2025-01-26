@@ -155,8 +155,10 @@ public class Cliente {
         return pedido1 == null && pedido2 == null;
     }
 
-
-
-
-
+    // Metodo que pintaa el pedido en la asignacion de pedidos del administrador
+    public String pintaAsignacionPedido(Pedidos pedido) {
+        String salida = "";
+        salida += pedido.getId() + " - " + nombre + " (" + localidad + ")" + " - " + pedido.contadorProductos() + " productos - " + pedido.sumarPrecioProductos() + "€\n";
+        return salida;
+    }
 }

@@ -379,4 +379,35 @@ public class Tienda {
         return null;
     }
 
+    // Metodo que cuenta los pedidos realizados de todos los clientes
+    public int contadorPedidos() {
+        int cont = 0;
+        if (c1 != null) {
+            if (c1.getPedido1() != null) cont++;
+            if (c1.getPedido2() != null) cont++;
+        }
+        if (c2 != null) {
+            if (c2.getPedido1() != null) cont++;
+            if (c2.getPedido2() != null) cont++;
+        }
+        return cont;
+    }
+
+    // Metodo que pinta el pedido en la asignacion de pedidos
+    public String pintaAsignacionPedido(Cliente cliente) {
+        String salida = "";
+        int cont = 0;
+        if (cliente != null) {
+            if (cliente.getPedido1() != null) {
+                cont++;
+                salida += cont + ". " + cliente.pintaAsignacionPedido(cliente.getPedido1());
+            }
+            if (cliente.getPedido2() != null) {
+                cont++;
+                salida += cont + ". " + cliente.pintaAsignacionPedido(cliente.getPedido2());
+            }
+        }
+        if (salida.equals("")) salida += "No hay pedidos para asignar...";
+        return salida;
+    }
 }

@@ -13,7 +13,8 @@ public class Menus {
     public static String menuAdministrador(Tienda tienda) {
         String salida = "";
         salida += "FERNANSHOP\n";
-        salida += "Bienvenido " + tienda.getAdmin().getNombre() + ". Tienes pedidos por asignar." + "\n";
+        salida += "Bienvenido " + tienda.getAdmin().getNombre() + ". Tienes " + tienda.contadorPedidos() +
+                (tienda.contadorPedidos() == 1 ? " pedido" : " pedidos") + " por asignar." + "\n";
         salida += "1.- Asignar un pedido a un trabajador" + "\n";
         salida += "2.- Modificar el estado de un pedido" + "\n";
         salida += "3.- Dar de alta un trabajador" + "\n";
@@ -212,5 +213,24 @@ public class Menus {
 
     }
 
+    // Logo del menú principal
+    public static void portada() {
+        System.out.println("""
+                
+                ███████╗███████╗██████╗ ███╗   ██╗ █████╗ ███╗   ██╗███████╗██╗  ██╗ ██████╗ ██████╗\s
+                ██╔════╝██╔════╝██╔══██╗████╗  ██║██╔══██╗████╗  ██║██╔════╝██║  ██║██╔═══██╗██╔══██╗
+                █████╗  █████╗  ██████╔╝██╔██╗ ██║███████║██╔██╗ ██║███████╗███████║██║   ██║██████╔╝
+                ██╔══╝  ██╔══╝  ██╔══██╗██║╚██╗██║██╔══██║██║╚██╗██║╚════██║██╔══██║██║   ██║██╔═══╝\s
+                ██║     ███████╗██║  ██║██║ ╚████║██║  ██║██║ ╚████║███████║██║  ██║╚██████╔╝██║    \s
+                ╚═╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝    \s
+                                                                                                    \s
+                """);
+    }
 
+    public static void asignarPedidos(Tienda tienda) {
+        System.out.println("============ Asignación de trabajadores a pedidos ============");
+        if (tienda.getC1() != null) System.out.println(tienda.pintaAsignacionPedido(tienda.getC1()));
+        if (tienda.getC2() != null) System.out.println(tienda.pintaAsignacionPedido(tienda.getC2()));
+        System.out.println("Seleccione el pedido a asignar (-1 si no hay pedidos): ");
+    }
 }

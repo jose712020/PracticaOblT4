@@ -166,4 +166,13 @@ public class Pedidos {
     public void modificaComentario(String comentarioTeclado) {
         comentario = comentarioTeclado;
     }
+
+    // Metodo que cuenta los productos de un pedido
+    public int contadorProductos() {
+        int cont = 0;
+        if (producto1 != null) cont++;
+        if (producto2 != null) cont++;
+        if (producto3 != null) cont++;
+        return cont;
+    }
 }

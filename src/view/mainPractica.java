@@ -17,21 +17,22 @@ public class mainPractica {
         Administrador adminTemp = null;
 
         String op, correoTeclado, contraTeclado, nombreTeclado, claveTeclado, direccionTeclado, localidadTeclado, provinciaTeclado;
-        int telefonoTeclado, cont;
+        int telefonoTeclado;
 
         do {
+            Menus.portada();
             System.out.print("""
                     BIENVENIDO.
                     1. Iniciar sesión
                     2. Registrarse
-                    ELIGA UNA OPCIÓN:\s""");
+                    ELIGE UNA OPCIÓN:\s""");
             op = s.nextLine();
 
             switch (op) { //Switch del programa principal
                 case "1": //Iniciar sesión
                     System.out.print("""
                             INICIO DE SESIÓN:
-                            Introduzca correo electrónico (Cliente) o nombre (Trabajador o Admininistrador):\s""");
+                            Introduzca correo electrónico (Cliente) o nombre (Trabajador o Administrador):\s""");
                     correoTeclado = s.nextLine();
                     System.out.print("Introduce tu contraseña: ");
                     claveTeclado = s.nextLine();
@@ -94,13 +95,13 @@ public class mainPractica {
                         case "5"://Modificar datos personales clientes
                             System.out.print(""" 
                                     MODIFICACIÓN DE DATOS:
-                                    Introduzca nuevo correo electrónico:\s""");
+                                    Introduzca un nuevo correo electrónico:\s""");
                             correoTeclado = s.nextLine();
-                            System.out.print("Introduce la nueva contraseña de tu cuenta: ");
+                            System.out.print("Introduce una nueva contraseña para tu cuenta: ");
                             contraTeclado = s.nextLine();
-                            System.out.print("Introduce un nuevo nombre para su cuenta (-1 para dejar mismos datos): ");
+                            System.out.print("Introduce un nuevo nombre para tu cuenta (-1 para dejar mismos datos): ");
                             nombreTeclado = s.nextLine();
-                            System.out.print("Introduce tu nueva direccion (-1 para dejar mismos datos): ");
+                            System.out.print("Introduce tu nueva dirección (-1 para dejar mismos datos): ");
                             direccionTeclado = s.nextLine();
                             System.out.print("Introduce su nueva localidad (-1 para dejar mismos datos): ");
                             localidadTeclado = s.nextLine();
@@ -191,7 +192,7 @@ public class mainPractica {
                     op = s.nextLine();
                     switch (op) {
                         case "1": //Asignar un pedido a un trabajador
-                            
+                            Menus.asignarPedidos(tienda);
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();
                             break;
