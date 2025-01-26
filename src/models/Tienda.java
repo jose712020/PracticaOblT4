@@ -517,4 +517,32 @@ public class Tienda {
         if (salida.equals("")) salida += "No tienes pedidos asignados";
         return salida;
     }
+
+    // Metodo que nos dice en la asignacion de los pedidos del administrador si los elige el admin y la eleccion es automatica
+    public boolean eleccionAsignacionPedido() {
+        if (t1 != null && t2 == null && t3 == null) return true;
+        if (t2 != null && t3 == null) {
+            if (t1.numPedidosAsignados() == t2.numPedidosAsignados()) return true;
+        }
+        if (t3 != null) {
+            if (t1.numPedidosAsignados() == t2.numPedidosAsignados()
+                    && t1.numPedidosAsignados() == t3.numPedidosAsignados()
+                    && t2.numPedidosAsignados() == t3.numPedidosAsignados()) return true;
+        }
+        return false;
+    }
+
+    public Trabajador aniadePedidoTrabajadorAutomatico(Pedidos pedido) {
+        if (t1 != null && t2 == null && t3 == null) return t1;
+        if (t2 != null && t3 == null) {
+            if (t1.numPedidosAsignados() < t2.numPedidosAsignados()) return t1;
+            if (t1.numPedidosAsignados() > t2.numPedidosAsignados()) return t2;
+        }
+        if (t3 != null) {
+            if (t1.numPedidosAsignados() < t2.numPedidosAsignados() && t1.numPedidosAsignados() < t3.numPedidosAsignados()) return t1;
+            if (t2.numPedidosAsignados() < t1.numPedidosAsignados() && t2.numPedidosAsignados() < t3.numPedidosAsignados()) return t2;
+            if (t3.numPedidosAsignados() < t1.numPedidosAsignados() && t3.numPedidosAsignados() < t2.numPedidosAsignados()) return t3;
+        }
+        return null;
+    }
 }

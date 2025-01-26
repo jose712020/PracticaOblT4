@@ -125,7 +125,7 @@ public class Menus {
             System.out.println("¿Deseas continuar llevas " + cont + " producto? (S/N): ");
             op = S.nextLine();
             if (op.equalsIgnoreCase("n")) finalizado = true;
-            else {
+            else if (op.equalsIgnoreCase("s")) {
                 System.out.println(tienda.pintaCatalogo());
                 System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
                 productoTeclado = Integer.parseInt(S.nextLine());
@@ -136,7 +136,7 @@ public class Menus {
                     System.out.println("¿Deseas continuar llevas " + cont + " productos? (S/N): ");
                     op = S.nextLine();
                     if (op.equalsIgnoreCase("n")) finalizado = true;
-                    else {
+                    else if (op.equalsIgnoreCase("s")) {
                         System.out.println(tienda.pintaCatalogo());
                         System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
                         productoTeclado = Integer.parseInt(S.nextLine());
@@ -144,11 +144,11 @@ public class Menus {
                         if (producto3 != null) {
                             System.out.println("Producto agregado a la cesta...");
                             finalizado = true;
-                        }
-                    }
-                }
-            }
-        }
+                        } else System.out.println("Producto no encontrado...");
+                    } else System.out.println("Ha ocurrido un error...");
+                } else System.out.println("Producto no encontrado...");
+            } else System.out.println("Ha ocurrido un error...");
+        } else System.out.println("Producto no encontrado...");
         if (finalizado) {
             pedido = tienda.agregaCesta(producto1, producto2, producto3, clienteTemp);
             System.out.println((tienda.realizaPedido(pedido, clienteTemp) ? "Compra finalizada con exito..." : "Ha ocurrido un error"));
@@ -239,11 +239,18 @@ public class Menus {
         if (pedido != null) {
             System.out.println("\n==== Asignación del pedido " + pedido.getId() + " ====");
             System.out.println(tienda.pintaAsignacionPedidoTrabajadores());
-            System.out.print("Seleccione el trabajador: ");
-            op = Integer.parseInt(S.nextLine());
-            trabajador = tienda.eligeTrabajador(op);
-            System.out.println(tienda.aniadePedidoTrabajador(trabajador, pedido)
-                    ? "Operación realiza correctamente, pedido asignado a " + trabajador.getNombre() : "Ha ocurrido un error...");
+            if (!tienda.eleccionAsignacionPedido()) {
+                trabajador = tienda.aniadePedidoTrabajadorAutomatico(pedido);
+                if (trabajador != null) System.out.println(tienda.aniadePedidoTrabajador(trabajador, pedido)
+                        ? "Operación realiza correctamente, pedido asignado a " + trabajador.getNombre() : "Ha ocurrido un error...");
+            } else {
+                System.out.print("Seleccione el trabajador: ");
+                op = Integer.parseInt(S.nextLine());
+                trabajador = tienda.eligeTrabajador(op);
+                if (trabajador != null) System.out.println(tienda.aniadePedidoTrabajador(trabajador, pedido)
+                        ? "Operación realiza correctamente, pedido asignado a " + trabajador.getNombre() : "Ha ocurrido un error...");
+            }
+
         } else System.out.println("Pedido no encontrado...");
 
     }
