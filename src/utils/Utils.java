@@ -1,7 +1,5 @@
 package utils;
 
-import models.*;
-
 import java.util.Scanner;
 
 public class Utils {
@@ -29,6 +27,4 @@ public class Utils {
         System.out.println("Pulsa para continuar...");
         s.nextLine();
     }
-
-
 }

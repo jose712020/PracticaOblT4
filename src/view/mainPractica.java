@@ -138,7 +138,7 @@ public class mainPractica {
                             Utils.limpiarpantalla();
                             break;
                         case "2": //Modificar el estado de un pedido
-
+                            Menus.modificaEstadoPedido(tienda);
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();
                             break;
@@ -191,7 +191,7 @@ public class mainPractica {
                     op = s.nextLine();
                     switch (op) {
                         case "1": //Asignar un pedido a un trabajador
-
+                            
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();
                             break;

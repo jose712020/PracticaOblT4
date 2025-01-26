@@ -1,14 +1,16 @@
 package models;
 
 public class Productos {
+    //Atributos
     private String nombre;
     private double precio;
-    private static int cantProductos = 1;
+    private int cantidad;
 
     //Constructor
-    public Productos(String nombre, double precio) {
+    public Productos(String nombre, double precio, int cantidad) {
         this.nombre = nombre;
         this.precio = precio;
+        this.cantidad = cantidad;
     }
 
     //Getters y Setters
@@ -16,19 +18,34 @@ public class Productos {
         return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public double getPrecio() {
         return precio;
     }
 
-    //Métodos
-    public String pintaCatalogo(){
-        String salida = "";
-        if (cantProductos > 8) cantProductos = 1;
-        salida += "= PRODUCTO " + cantProductos++ + " =\n";
-        salida += nombre + " - " + precio + "\n";
-        salida += "=============================\n";
-        return salida;
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    //Métodos
+    public String pintaDatos() {
+        String salida = "";
+        salida += "**************************************************\n";
+        salida += "Nombre: " + nombre + "\n";
+        salida += "Precio: " + precio + "\n";
+        salida += "Cantidad: " + cantidad + "\n\n";
+        return salida;
+    }
 
 }
