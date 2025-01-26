@@ -158,7 +158,8 @@ public class Cliente {
     // Metodo que pintaa el pedido en la asignacion de pedidos del administrador
     public String pintaAsignacionPedido(Pedidos pedido) {
         String salida = "";
-        salida += pedido.getId() + " - " + nombre + " (" + localidad + ")" + " - " + pedido.contadorProductos() + " productos - " + pedido.sumarPrecioProductos() + "€\n";
+        salida += pedido.getId() + " - " + nombre + " (" + localidad + ")" + " - " + pedido.contadorProductos() +
+                (pedido.contadorProductos() == 1 ? " producto - " : " productos - ") + pedido.sumarPrecioProductos() + "€\n";
         return salida;
     }
 }

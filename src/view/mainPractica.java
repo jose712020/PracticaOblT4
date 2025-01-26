@@ -134,7 +134,7 @@ public class mainPractica {
                     op = s.nextLine();
                     switch (op) {
                         case "1": //Consultar los pedidos que tengo asignados
-
+                            Menus.consultarPedidosAsignados(tienda, trabajadorTemp);
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();
                             break;

@@ -459,17 +459,59 @@ public class Tienda {
 
         if (t1 != null) {
             cont++;
-            salida += cont + ". " + t1.getNombre() + " - " + t1.pedidosAsignados() + " pedidos en proceso\n";
+            salida += cont + ". " + t1.getNombre() + " - " + t1.numPedidosAsignados() +
+                    (t1.numPedidosAsignados() == 1 ? " pedido" : " pedidos") + " en proceso\n";
         }
         if (t2 != null) {
             cont++;
-            salida += cont + ". " + t2.getNombre() + " - " + t2.pedidosAsignados() + " pedidos en proceso\n";
+            salida += cont + ". " + t2.getNombre() + " - " + t2.numPedidosAsignados() +
+                    (t2.numPedidosAsignados() == 1 ? " pedido" : " pedidos") + " en proceso\n";
         }
         if (t3 != null) {
             cont++;
-            salida += cont + ". " + t3.getNombre() + " - " + t3.pedidosAsignados() + " pedidos en proceso\n";
+            salida += cont + ". " + t3.getNombre() + " - " + t3.numPedidosAsignados() +
+                    (t3.numPedidosAsignados() == 1 ? " pedido" : " pedidos") + " en proceso\n";
         }
+        return salida;
+    }
 
+    // Metodo que elige el trabajador al que le vamos a asignar el pedido
+    public Trabajador eligeTrabajador(int op) {
+        int cont = 0;
+
+        if (t1 != null) {
+            cont++;
+            if (cont == 1 && op == 1) return t1;
+        }
+        if (t2 != null) {
+            cont++;
+            if (cont == 2 && op == 2) return t2;
+        }
+        if (t3 != null) {
+            cont++;
+            if (cont == 3 && op == 3) return t3;
+        }
+        return null;
+    }
+
+    // Metodo que setea un pedido en el trabajador, el pedido lo recibira de parte del administrador
+    public boolean aniadePedidoTrabajador(Trabajador trabajador, Pedidos pedido) {
+        if (trabajador.getPedidoAsignado1() == null) {
+            trabajador.setPedidoAsignado1(pedido);
+            return true;
+        }
+        if (trabajador.getPedidoAsignado2() == null) {
+            trabajador.setPedidoAsignado2(pedido);
+            return true;
+        }
+        return false;
+    }
+
+    public String pintaPedidosTrabajador(Trabajador trabajadorTemp) {
+        String salida = "";
+        if (trabajadorTemp.pedidoAsignado1 != null) salida += "1. ID del pedido: " + trabajadorTemp.pedidoAsignado1.getId() + "\n";
+        if (trabajadorTemp.pedidoAsignado2 != null) salida += "2. ID del pedido: " + trabajadorTemp.pedidoAsignado2.getId() + "\n";
+        if (salida.equals("")) salida += "No tienes pedidos asignados";
         return salida;
     }
 }

@@ -2,8 +2,6 @@ package utils;
 
 import models.*;
 
-import java.time.DateTimeException;
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Menus {
@@ -45,7 +43,8 @@ public class Menus {
     public static String menuTrabajador(Trabajador trabajador) {
         String salida = "";
         salida += "FERNANSHOP" + "\n";
-        salida += "Bienvenido " + trabajador.getNombre() + ". Tienes 0 pedidos que gestionar\n";
+        salida += "Bienvenido " + trabajador.getNombre() + ". Tienes " + trabajador.numPedidosAsignados() +
+                (trabajador.numPedidosAsignados() == 1 ? " pedido" : " pedidos") + " que gestionar\n";
         salida += "1.- Consultar los pedidos que tengo asignados" + "\n";
         salida += "2.- Modificar el estado de un pedido" + "\n";
         salida += "3.- Consultar el catálogo de productos" + "\n";
@@ -123,7 +122,7 @@ public class Menus {
         if (producto1 != null) {
             System.out.println("Producto agregado a la cesta...");
             cont++;
-            System.out.println("¿Deseas continuar llevas " + cont + " productos? (S/N): ");
+            System.out.println("¿Deseas continuar llevas " + cont + " producto? (S/N): ");
             op = S.nextLine();
             if (op.equalsIgnoreCase("n")) finalizado = true;
             else {
@@ -227,8 +226,10 @@ public class Menus {
                 """);
     }
 
+    // Metodo por parte del administrador que le asigna un pedido a un trabajador
     public static void asignarPedidos(Tienda tienda) {
         Pedidos pedido;
+        Trabajador trabajador;
         int op;
         System.out.println("============ Asignación de trabajadores a pedidos ============");
         System.out.println(tienda.pintaAsignacionPedido());
@@ -240,7 +241,15 @@ public class Menus {
             System.out.println(tienda.pintaAsignacionPedidoTrabajadores());
             System.out.print("Seleccione el trabajador: ");
             op = Integer.parseInt(S.nextLine());
+            trabajador = tienda.eligeTrabajador(op);
+            System.out.println(tienda.aniadePedidoTrabajador(trabajador, pedido)
+                    ? "Operación realiza correctamente, pedido asignado a " + trabajador.getNombre() : "Ha ocurrido un error...");
         } else System.out.println("Pedido no encontrado...");
 
+    }
+
+    public static void consultarPedidosAsignados(Tienda tienda, Trabajador trabajadorTemp) {
+        System.out.println("==== Pedidos asignados ====");
+        System.out.println(tienda.pintaPedidosTrabajador(trabajadorTemp));
     }
 }

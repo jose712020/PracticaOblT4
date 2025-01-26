@@ -7,7 +7,8 @@ public class Trabajador {
     private String correo;
     private int telefono;
     private boolean inicioCorrecto;
-    private int contadorPedidosAsignados = 0;
+    Pedidos pedidoAsignado1;
+    Pedidos pedidoAsignado2;
 
     //Constructor
     public Trabajador(String nombre, String clave, String correo, int telefono) {
@@ -19,12 +20,20 @@ public class Trabajador {
     }
 
     //Getter y Setter
-    public int getContadorPedidosAsignados() {
-        return contadorPedidosAsignados;
+    public Pedidos getPedidoAsignado1() {
+        return pedidoAsignado1;
     }
 
-    public void setContadorPedidosAsignados(int contadorPedidosAsignados) {
-        this.contadorPedidosAsignados = contadorPedidosAsignados;
+    public void setPedidoAsignado1(Pedidos pedidoAsignado1) {
+        this.pedidoAsignado1 = pedidoAsignado1;
+    }
+
+    public Pedidos getPedidoAsignado2() {
+        return pedidoAsignado2;
+    }
+
+    public void setPedidoAsignado2(Pedidos pedidoAsignado2) {
+        this.pedidoAsignado2 = pedidoAsignado2;
     }
 
     public String getNombre() {
@@ -94,7 +103,12 @@ public class Trabajador {
         if (telefonoTeclado != -1) telefono = telefonoTeclado;
     }
 
-    public int pedidosAsignados() {
-        return 0;
+
+    public int numPedidosAsignados() {
+        int cont = 0;
+        if (pedidoAsignado1 != null) cont++;
+        if (pedidoAsignado2 != null) cont++;
+        return cont;
     }
+
 }
