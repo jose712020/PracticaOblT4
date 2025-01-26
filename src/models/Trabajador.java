@@ -87,6 +87,7 @@ public class Trabajador {
         setInicioCorrecto(false);
     }
 
+    // Metodo que pinta los datos de un trabajador
     public String pintaDatosTrabajador() {
         String salida = "";
         salida += "\n******************\n";
@@ -103,7 +104,7 @@ public class Trabajador {
         if (telefonoTeclado != -1) telefono = telefonoTeclado;
     }
 
-
+    // Metodo que cuenta los pedidos que tiene asignado un trabajador
     public int numPedidosAsignados() {
         int cont = 0;
         if (pedidoAsignado1 != null) cont++;

@@ -248,6 +248,7 @@ public class Menus {
 
     }
 
+    // Metodo que pinta los pedidos que tiene asignado un trabajador
     public static void consultarPedidosAsignados(Tienda tienda, Trabajador trabajadorTemp) {
         System.out.println("==== Pedidos asignados ====");
         System.out.println(tienda.pintaPedidosTrabajador(trabajadorTemp));

@@ -501,12 +501,15 @@ public class Tienda {
             return true;
         }
         if (trabajador.getPedidoAsignado2() == null) {
-            trabajador.setPedidoAsignado2(pedido);
-            return true;
+            if (pedido != trabajador.pedidoAsignado1) {
+                trabajador.setPedidoAsignado2(pedido);
+                return true;
+            }
         }
         return false;
     }
 
+    // Metodo que pinta los pedidos asignados que tiene un trabajador
     public String pintaPedidosTrabajador(Trabajador trabajadorTemp) {
         String salida = "";
         if (trabajadorTemp.pedidoAsignado1 != null) salida += "1. ID del pedido: " + trabajadorTemp.pedidoAsignado1.getId() + "\n";
