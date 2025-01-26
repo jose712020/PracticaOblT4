@@ -228,9 +228,19 @@ public class Menus {
     }
 
     public static void asignarPedidos(Tienda tienda) {
+        Pedidos pedido;
+        int op;
         System.out.println("============ Asignación de trabajadores a pedidos ============");
-        if (tienda.getC1() != null) System.out.println(tienda.pintaAsignacionPedido(tienda.getC1()));
-        if (tienda.getC2() != null) System.out.println(tienda.pintaAsignacionPedido(tienda.getC2()));
+        System.out.println(tienda.pintaAsignacionPedido());
         System.out.println("Seleccione el pedido a asignar (-1 si no hay pedidos): ");
+        op = Integer.parseInt(S.nextLine());
+        pedido = tienda.asignacionPedido(op);
+        if (pedido != null) {
+            System.out.println("\n==== Asignación del pedido " + pedido.getId() + " ====");
+            System.out.println(tienda.pintaAsignacionPedidoTrabajadores());
+            System.out.print("Seleccione el trabajador: ");
+            op = Integer.parseInt(S.nextLine());
+        } else System.out.println("Pedido no encontrado...");
+
     }
 }

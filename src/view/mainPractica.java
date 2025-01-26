@@ -209,9 +209,9 @@ public class mainPractica {
                                 nombreTeclado = s.nextLine();
                                 System.out.print("Introduce la clave del trabajador: ");
                                 contraTeclado = s.nextLine();
-                                System.out.println("Introduce el correo del trabajador: ");
+                                System.out.print("Introduce el correo del trabajador: ");
                                 correoTeclado = s.nextLine();
-                                System.out.println("Introduce el teléfono del trabajador: ");
+                                System.out.print("Introduce el teléfono del trabajador: ");
                                 telefonoTeclado = Integer.parseInt(s.nextLine());
                                 System.out.println(
                                         ((tienda.darAltaTrabajador(nombreTeclado, contraTeclado, correoTeclado, telefonoTeclado)

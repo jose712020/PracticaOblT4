@@ -7,6 +7,7 @@ public class Trabajador {
     private String correo;
     private int telefono;
     private boolean inicioCorrecto;
+    private int contadorPedidosAsignados = 0;
 
     //Constructor
     public Trabajador(String nombre, String clave, String correo, int telefono) {
@@ -18,6 +19,14 @@ public class Trabajador {
     }
 
     //Getter y Setter
+    public int getContadorPedidosAsignados() {
+        return contadorPedidosAsignados;
+    }
+
+    public void setContadorPedidosAsignados(int contadorPedidosAsignados) {
+        this.contadorPedidosAsignados = contadorPedidosAsignados;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -83,5 +92,9 @@ public class Trabajador {
         nombre = nombreTeclado;
         clave = contraTeclado;
         if (telefonoTeclado != -1) telefono = telefonoTeclado;
+    }
+
+    public int pedidosAsignados() {
+        return 0;
     }
 }

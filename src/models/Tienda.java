@@ -393,21 +393,83 @@ public class Tienda {
         return cont;
     }
 
-    // Metodo que pinta el pedido en la asignacion de pedidos
-    public String pintaAsignacionPedido(Cliente cliente) {
+    // Metodo que pinta el pedido en la asignacion de pedidos de cada cliente
+    public String pintaAsignacionPedido() {
         String salida = "";
         int cont = 0;
-        if (cliente != null) {
-            if (cliente.getPedido1() != null) {
+        if (c1 != null) {
+            if (c1.getPedido1() != null) {
                 cont++;
-                salida += cont + ". " + cliente.pintaAsignacionPedido(cliente.getPedido1());
+                salida += cont + ". " + c1.pintaAsignacionPedido(c1.getPedido1());
             }
-            if (cliente.getPedido2() != null) {
+            if (c1.getPedido2() != null) {
                 cont++;
-                salida += cont + ". " + cliente.pintaAsignacionPedido(cliente.getPedido2());
+                salida += cont + ". " + c1.pintaAsignacionPedido(c1.getPedido2());
+            }
+        }
+        if (c2 != null) {
+            if (c2.getPedido1() != null) {
+                cont++;
+                salida += cont + ". " + c2.pintaAsignacionPedido(c2.getPedido1());
+            }
+            if (c2.getPedido2() != null) {
+                cont++;
+                salida += cont + ". " + c2.pintaAsignacionPedido(c2.getPedido2());
             }
         }
         if (salida.equals("")) salida += "No hay pedidos para asignar...";
+        return salida;
+    }
+
+    // Metodo del administrador que elige el pedido que quiere asignar al trabajador
+    public Pedidos asignacionPedido(int op) {
+        int cont = 0;
+        if (c1 != null) {
+            if (c1.getPedido1() != null) {
+                cont++;
+                if (cont == 1 && op == 1) return c1.getPedido1();
+            }
+            if (c1.getPedido2() != null) {
+                cont++;
+                if (cont == 2 && op == 2) return c1.getPedido2();
+            }
+        }
+        if (c2 != null) {
+            if (c2.getPedido1() != null) {
+                cont++;
+                if (cont == 1 && op == 1) return c2.getPedido1();
+                if (cont == 2 && op == 2) return c2.getPedido1();
+                if (cont == 3 && op == 3) return c2.getPedido1();
+            }
+            if (c2.getPedido2() != null) {
+                cont++;
+                if (cont == 1 && op == 1) return c2.getPedido2();
+                if (cont == 2 && op == 2) return c2.getPedido2();
+                if (cont == 3 && op == 3) return c2.getPedido2();
+                if (cont == 4 && op == 4) return c2.getPedido2();
+            }
+        }
+        return null;
+    }
+
+    // Metodo que pinta los pedidos asignados que tiene un trabajador
+    public String pintaAsignacionPedidoTrabajadores() {
+        String salida = "";
+        int cont = 0;
+
+        if (t1 != null) {
+            cont++;
+            salida += cont + ". " + t1.getNombre() + " - " + t1.pedidosAsignados() + " pedidos en proceso\n";
+        }
+        if (t2 != null) {
+            cont++;
+            salida += cont + ". " + t2.getNombre() + " - " + t2.pedidosAsignados() + " pedidos en proceso\n";
+        }
+        if (t3 != null) {
+            cont++;
+            salida += cont + ". " + t3.getNombre() + " - " + t3.pedidosAsignados() + " pedidos en proceso\n";
+        }
+
         return salida;
     }
 }
