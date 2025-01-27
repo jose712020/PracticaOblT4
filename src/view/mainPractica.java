@@ -1,5 +1,6 @@
 package view;
 
+import jdk.jshell.execution.Util;
 import models.*;
 import utils.Menus;
 import utils.Utils;
@@ -17,10 +18,11 @@ public class mainPractica {
         Administrador adminTemp = null;
 
         String op, correoTeclado, contraTeclado, nombreTeclado, claveTeclado, direccionTeclado, localidadTeclado, provinciaTeclado;
-        int telefonoTeclado;
+        int telefonoTeclado = -2;
 
         do {
             Menus.portada();
+            pintaMenu();
             System.out.print("""
                     BIENVENIDO.
                     1. Iniciar sesión
@@ -107,8 +109,16 @@ public class mainPractica {
                             localidadTeclado = s.nextLine();
                             System.out.print("Introduce su nueva provincia (-1 para dejar mismos datos): ");
                             provinciaTeclado = s.nextLine();
-                            System.out.print("Introduzca su nuevo teléfono (-1 para dejar mismos datos): ");
-                            telefonoTeclado = Integer.parseInt(s.nextLine());
+                            do {
+                                System.out.print("Introduzca su nuevo teléfono (-1 para dejar mismos datos): ");
+                                try{
+                                    telefonoTeclado = Integer.parseInt(s.nextLine());
+                                }catch (NumberFormatException e){
+                                    System.out.println("Introduzca un valor numérico...");
+                                    Utils.pulsaContinuar();
+                                    Utils.limpiarpantalla();
+                                }
+                            } while(telefonoTeclado == -2);
                             clienteTemp.modificarDatosCliente(correoTeclado, contraTeclado, direccionTeclado, localidadTeclado, provinciaTeclado, telefonoTeclado, nombreTeclado);
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();
@@ -165,8 +175,16 @@ public class mainPractica {
                             nombreTeclado = s.nextLine();
                             System.out.print("Introduce la nueva clave del trabajador: ");
                             contraTeclado = s.nextLine();
-                            System.out.print("Introduzca su nuevo teléfono (-1 para dejar mismos datos): ");
-                            telefonoTeclado = Integer.parseInt(s.nextLine());
+                            do {
+                                System.out.print("Introduzca su nuevo teléfono (-1 para dejar mismos datos): ");
+                                try {
+                                    telefonoTeclado = Integer.parseInt(s.nextLine());
+                                }catch (NumberFormatException e){
+                                    System.out.println("Introduzca un valor numérico...");
+                                    Utils.pulsaContinuar();
+                                    Utils.limpiarpantalla();
+                                }
+                            } while (telefonoTeclado == -2);
                             trabajadorTemp.modificarDatosTrabajador(nombreTeclado, contraTeclado, telefonoTeclado);
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();
@@ -211,8 +229,16 @@ public class mainPractica {
                                 contraTeclado = s.nextLine();
                                 System.out.print("Introduce el correo del trabajador: ");
                                 correoTeclado = s.nextLine();
-                                System.out.print("Introduce el teléfono del trabajador: ");
-                                telefonoTeclado = Integer.parseInt(s.nextLine());
+                                do{
+                                    System.out.print("Introduce el teléfono del trabajador: ");
+                                    try{
+                                        telefonoTeclado = Integer.parseInt(s.nextLine());
+                                    }catch (NumberFormatException e){
+                                        System.out.println("Introduce un valor numérico...");
+                                        Utils.pulsaContinuar();
+                                        Utils.limpiarpantalla();
+                                    }
+                                } while (telefonoTeclado == -2);
                                 System.out.println(
                                         ((tienda.darAltaTrabajador(nombreTeclado, contraTeclado, correoTeclado, telefonoTeclado)
                                                 ? "Se ha registrado perfectamente" : "Ha ocurrido un error")));
@@ -250,5 +276,9 @@ public class mainPractica {
                 } while (!op.equals("7"));
             } // Fin del menú del administrador
         } while (true); // Menú del programa principal
+    }
+
+    private static void pintaMenu() {
+
     }
 }

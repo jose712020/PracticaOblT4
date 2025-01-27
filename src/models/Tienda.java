@@ -339,7 +339,7 @@ public class Tienda {
         String salida = "";
         if (c1 != null) {
             if (c1.getPedido1() != null) salida += pintaPedido(c1.getPedido1(), c1);
-            if (c1.getPedido2() != null) salida += pintaPedido(c2.getPedido1(), c1);
+            if (c1.getPedido2() != null) salida += pintaPedido(c1.getPedido2(), c1);
         }
         if (c2 != null) {
             if (c2.getPedido1() != null) salida += pintaPedido(c2.getPedido1(), c2);

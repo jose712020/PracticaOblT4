@@ -59,7 +59,7 @@ public class Menus {
     //Menu de registro del programa principal
     public static void menuRegistro(Tienda tienda) {
         String correoTeclado, contraTeclado, nombreTeclado, direccionTeclado, localidadTeclado, provinciaTeclado;
-        int telefonoTeclado;
+        int telefonoTeclado = -1;
 
         System.out.print("""
                 REGISTRO:
@@ -75,8 +75,16 @@ public class Menus {
         localidadTeclado = S.nextLine();
         System.out.print("Introduce su provincia: ");
         provinciaTeclado = S.nextLine();
-        System.out.print("Introduzca su teléfono: ");
-        telefonoTeclado = Integer.parseInt(S.nextLine());
+        do {
+            System.out.print("Introduzca su teléfono: ");
+            try{
+                telefonoTeclado = Integer.parseInt(S.nextLine());
+            }catch (NumberFormatException e){
+                System.out.println("Introduzca un valor numérico...");
+                Utils.pulsaContinuar();
+                Utils.limpiarpantalla();
+            }
+        } while(telefonoTeclado == -1);
         System.out.println((tienda.registro(correoTeclado, contraTeclado, nombreTeclado, direccionTeclado,
                 localidadTeclado, provinciaTeclado, telefonoTeclado) ?
                 "Se ha registrado correctamente" : "No se ha podido registrar"));
@@ -87,20 +95,44 @@ public class Menus {
         Productos temp = null;
 
         String nombreTeclado;
-        int productoTeclado, cantidadTeclado;
-        double precioTeclado;
+        int productoTeclado = -1, cantidadTeclado = -2;
+        double precioTeclado = -2;
 
         System.out.println(tienda.pintaCatalogo());
-        System.out.print("Introduce el número del producto ha modificar: ");
-        productoTeclado = Integer.parseInt(S.nextLine());
+        do {
+            System.out.print("Introduce el número del producto ha modificar: ");
+            try{
+                productoTeclado = Integer.parseInt(S.nextLine());
+            }catch (NumberFormatException e){
+                System.out.println("Introduzca un valor numérico...");
+                Utils.pulsaContinuar();
+                Utils.limpiarpantalla();
+            }
+        } while (productoTeclado == -1);
         temp = tienda.eligeProducto(productoTeclado);
         if (temp != null) {
             System.out.print("Introduzca un nombre nuevo (introduce 'no' para dejar el anterior): ");
             nombreTeclado = S.nextLine();
-            System.out.print("Introduzca un precio nuevo (introduce '-1' para dejar el anterior): ");
-            precioTeclado = Double.parseDouble(S.nextLine());
-            System.out.print("Introduzca una nueva cantidad (introduce '-1' para dejar el anterior): ");
-            cantidadTeclado = Integer.parseInt(S.nextLine());
+            do {
+                System.out.print("Introduzca un precio nuevo (introduce '-1' para dejar el anterior): ");
+                try{
+                    precioTeclado = Double.parseDouble(S.nextLine());
+                }catch (NumberFormatException e){
+                    System.out.println("Introduzca un valor numérico...");
+                    Utils.pulsaContinuar();
+                    Utils.limpiarpantalla();
+                }
+            } while (precioTeclado == -2);
+            do {
+                System.out.print("Introduzca una nueva cantidad (introduce '-1' para dejar el anterior): ");
+                try{
+                    cantidadTeclado = Integer.parseInt(S.nextLine());
+                }catch (NumberFormatException e){
+                    System.out.println("Introduzca un valor numérico...");
+                    Utils.pulsaContinuar();
+                    Utils.limpiarpantalla();
+                }
+            } while (cantidadTeclado == -2);
             tienda.modificaProducto(nombreTeclado, precioTeclado, cantidadTeclado, temp);
         } else System.out.println("Producto no encontrado...");
     }
@@ -108,7 +140,7 @@ public class Menus {
     // Realiza Pedido de un cliente
     public static void realizaPedido(Tienda tienda, Cliente clienteTemp) {
         String op;
-        int productoTeclado, cont;
+        int productoTeclado = -1, cont;
         boolean finalizado = false;
 
         cont = 0;
@@ -116,8 +148,18 @@ public class Menus {
         Pedidos pedido = null;
 
         System.out.println(tienda.pintaCatalogo());
-        System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
-        productoTeclado = Integer.parseInt(S.nextLine());
+
+        do{
+            System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
+            try{
+                productoTeclado = Integer.parseInt(S.nextLine());
+            }catch (NumberFormatException e){
+                System.out.println("Introduce un valor numérico");
+                Utils.pulsaContinuar();
+                Utils.limpiarpantalla();
+            }
+        } while (productoTeclado == -1);
+
         producto1 = tienda.eligeProducto(productoTeclado);
         if (producto1 != null) {
             System.out.println("Producto agregado a la cesta...");
@@ -127,8 +169,16 @@ public class Menus {
             if (op.equalsIgnoreCase("n")) finalizado = true;
             else if (op.equalsIgnoreCase("s")) {
                 System.out.println(tienda.pintaCatalogo());
-                System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
-                productoTeclado = Integer.parseInt(S.nextLine());
+                do{
+                    System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
+                    try{
+                        productoTeclado = Integer.parseInt(S.nextLine());
+                    }catch (NumberFormatException e){
+                        System.out.println("Introduce un valor numérico");
+                        Utils.pulsaContinuar();
+                        Utils.limpiarpantalla();
+                    }
+                } while (productoTeclado == -1);
                 producto2 = tienda.eligeProducto(productoTeclado);
                 if (producto2 != null) {
                     System.out.println("Producto agregado a la cesta...");
@@ -138,8 +188,16 @@ public class Menus {
                     if (op.equalsIgnoreCase("n")) finalizado = true;
                     else if (op.equalsIgnoreCase("s")) {
                         System.out.println(tienda.pintaCatalogo());
-                        System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
-                        productoTeclado = Integer.parseInt(S.nextLine());
+                        do{
+                            System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
+                            try{
+                                productoTeclado = Integer.parseInt(S.nextLine());
+                            }catch (NumberFormatException e){
+                                System.out.println("Introduce un valor numérico");
+                                Utils.pulsaContinuar();
+                                Utils.limpiarpantalla();
+                            }
+                        } while (productoTeclado == -1);
                         producto3 = tienda.eligeProducto(productoTeclado);
                         if (producto3 != null) {
                             System.out.println("Producto agregado a la cesta...");
@@ -160,19 +218,28 @@ public class Menus {
     public static void modificaEstadoPedido(Tienda tienda) {
         Pedidos pedido = null;
         String comentarioTeclado = "", fechaTeclado = "", respuestaTeclado = "";
-        int id, estadoTeclado = -1, dia = -1, mes = -1, anio = -1;
+        int id = -1, estadoTeclado = -1, dia = -1, mes = -1, anio = -1;
 
         System.out.println("============ Modificación de pedidos ============");
-        if (tienda.existeCliente(tienda.getC1())) System.out.println(tienda.pintaPedidosModificar(tienda.getC1()));
-        if (tienda.existeCliente(tienda.getC2())) System.out.println(tienda.pintaPedidosModificar(tienda.getC2()));
-        System.out.print("Introduce la ID del pedido a modificar (-1 en caso de que no haya pedidos): ");
-        id = Integer.parseInt(S.nextLine());
+        do {
+            if (tienda.existeCliente(tienda.getC1())) System.out.println(tienda.pintaPedidosModificar(tienda.getC1()));
+            if (tienda.existeCliente(tienda.getC2())) System.out.println(tienda.pintaPedidosModificar(tienda.getC2()));
+            System.out.print("Introduce la ID del pedido a modificar (-1 en caso de que no haya pedidos): ");
+            try{
+                id = Integer.parseInt(S.nextLine());
+            }catch (NumberFormatException e){
+                System.out.println("Introduzca un valor numérico...");
+                Utils.pulsaContinuar();
+                Utils.limpiarpantalla();
+            }
+        } while (id == -1);
         pedido = tienda.encuentraId(id);
         if (pedido == null) System.out.println("Pedido no encontrado...");
         else {
-            System.out.println("==== Actualización del pedido " + pedido.getId() + " ====");
-            System.out.println("Estado del pedido: " + pedido.getEstado());
-            System.out.print("""
+            do {
+                System.out.println("==== Actualización del pedido " + pedido.getId() + " ====");
+                System.out.println("Estado del pedido: " + pedido.getEstado());
+                System.out.print("""
                     Nuevo estado:
                         1. Recibido
                         2. En preparación
@@ -180,7 +247,14 @@ public class Menus {
                         4. Cancelado
                         5. Enviado
                     Seleccione el nuevo estado:\s""");
-            estadoTeclado = Integer.parseInt(S.nextLine());
+                try{
+                    estadoTeclado = Integer.parseInt(S.nextLine());
+                }catch (NumberFormatException e){
+                    System.out.println("Introduce un valor numérico...");
+                    Utils.pulsaContinuar();
+                    Utils.limpiarpantalla();
+                }
+            } while (estadoTeclado == -1);
             if (!pedido.modificaEstado(estadoTeclado)) System.out.println("Ha ocurrido un error...");
             else {
                 System.out.println("Estado actualizado correctamente.\n");
@@ -189,12 +263,39 @@ public class Menus {
                 respuestaTeclado = S.nextLine();
 
                 if (respuestaTeclado.equalsIgnoreCase("s")) {
-                    System.out.print("Introduce el día de la nueva fecha: ");
-                    dia = Integer.parseInt(S.nextLine());
-                    System.out.print("Introduce el mes de la nueva fecha: ");
-                    mes = Integer.parseInt(S.nextLine());
-                    System.out.print("Introduce el año de la nueva fecha: ");
-                    anio = Integer.parseInt(S.nextLine());
+                    do {
+                        System.out.print("Introduce el día de la nueva fecha: ");
+                        try{
+                            dia = Integer.parseInt(S.nextLine());
+                        }catch (NumberFormatException e){
+                            System.out.println("Introduzca un valor numérico...");
+                            Utils.pulsaContinuar();
+                            Utils.limpiarpantalla();
+                        }
+                    } while (dia == -1);
+
+                    do {
+                        System.out.print("Introduce el mes de la nueva fecha: ");
+                        try{
+                            mes = Integer.parseInt(S.nextLine());
+                        }catch (NumberFormatException e){
+                            System.out.println("Introduzca un valor numérico...");
+                            Utils.pulsaContinuar();
+                            Utils.limpiarpantalla();
+                        }
+                    } while (mes == -1);
+
+                    do {
+                        System.out.print("Introduce el año de la nueva fecha: ");
+                        try{
+                            anio = Integer.parseInt(S.nextLine());
+                        }catch (NumberFormatException e){
+                            System.out.println("Introduzca un valor numérico...");
+                            Utils.pulsaContinuar();
+                            Utils.limpiarpantalla();
+                        }
+                    } while (anio == -1);
+
                     System.out.println(pedido.modificaFecha(anio, mes, dia)
                             ? "Fecha actualizada correctamente" : "Ha ocurrido un error...");
                 }
@@ -230,20 +331,38 @@ public class Menus {
     public static void asignarPedidos(Tienda tienda) {
         Pedidos pedido;
         Trabajador trabajador;
-        int op;
+        int op = -2;
         System.out.println("============ Asignación de trabajadores a pedidos ============");
-        System.out.println(tienda.pintaAsignacionPedido());
-        System.out.println("Seleccione el pedido a asignar (-1 si no hay pedidos): ");
-        op = Integer.parseInt(S.nextLine());
+        do {
+            System.out.println(tienda.pintaAsignacionPedido());
+            System.out.println("Seleccione el pedido a asignar (-1 si no hay pedidos): ");
+            try{
+                op = Integer.parseInt(S.nextLine());
+            }catch (NumberFormatException e){
+                System.out.println("Introduzca un valor numérico...");
+                Utils.pulsaContinuar();
+                Utils.limpiarpantalla();
+            }
+        } while(op == -2);
         pedido = tienda.asignacionPedido(op);
+
         if (pedido != null) {
             System.out.println("\n==== Asignación del pedido " + pedido.getId() + " ====");
             System.out.println(tienda.pintaAsignacionPedidoTrabajadores());
             if (!tienda.eleccionAsignacionPedido()) {
                 trabajador = tienda.aniadePedidoTrabajadorAutomatico();
             } else {
-                System.out.print("Seleccione el trabajador: ");
-                op = Integer.parseInt(S.nextLine());
+                do {
+                    System.out.println(tienda.pintaAsignacionPedidoTrabajadores());
+                    System.out.print("Seleccione el trabajador: ");
+                    try{
+                        op = Integer.parseInt(S.nextLine());
+                    }catch (NumberFormatException e){
+                        System.out.println("Introduzca un valor numérico...");
+                        Utils.pulsaContinuar();
+                        Utils.limpiarpantalla();
+                    }
+                } while(op == -2);
                 trabajador = tienda.eligeTrabajador(op);
             }
             if (trabajador != null) System.out.println(tienda.aniadePedidoTrabajador(trabajador, pedido)
