@@ -1,6 +1,5 @@
 package view;
 
-import jdk.jshell.execution.Util;
 import models.*;
 import utils.Menus;
 import utils.Utils;
@@ -8,8 +7,8 @@ import utils.Utils;
 import java.util.Scanner;
 
 public class mainPractica {
+    public static final Scanner S = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
 
         Tienda tienda = new Tienda();
         tienda.mock();
@@ -22,22 +21,16 @@ public class mainPractica {
 
         do {
             Menus.portada();
-            pintaMenu();
-            System.out.print("""
-                    BIENVENIDO.
-                    1. Iniciar sesión
-                    2. Registrarse
-                    ELIGE UNA OPCIÓN:\s""");
-            op = s.nextLine();
+            op = pintaMenu();
 
             switch (op) { //Switch del programa principal
                 case "1": //Iniciar sesión
                     System.out.print("""
                             INICIO DE SESIÓN:
                             Introduzca correo electrónico (Cliente) o nombre (Trabajador o Administrador):\s""");
-                    correoTeclado = s.nextLine();
+                    correoTeclado = S.nextLine();
                     System.out.print("Introduce tu contraseña: ");
-                    claveTeclado = s.nextLine();
+                    claveTeclado = S.nextLine();
                     //En caso de los clientes
                     clienteTemp = tienda.inicioSesionCliente(correoTeclado, claveTeclado);
                     if (clienteTemp != null) clienteTemp.inicioCorrectoEncendido();
@@ -71,7 +64,7 @@ public class mainPractica {
             if (clienteTemp != null && clienteTemp.isInicioCorrecto()) { // Menú del cliente
                 do {
                     System.out.print(Menus.menuCliente(clienteTemp));
-                    op = s.nextLine();
+                    op = S.nextLine();
                     switch (op) {
                         case "1"://Consultar el catálogo de productos
                             System.out.println(tienda.pintaCatalogo());
@@ -98,21 +91,21 @@ public class mainPractica {
                             System.out.print(""" 
                                     MODIFICACIÓN DE DATOS:
                                     Introduzca un nuevo correo electrónico:\s""");
-                            correoTeclado = s.nextLine();
+                            correoTeclado = S.nextLine();
                             System.out.print("Introduce una nueva contraseña para tu cuenta: ");
-                            contraTeclado = s.nextLine();
+                            contraTeclado = S.nextLine();
                             System.out.print("Introduce un nuevo nombre para tu cuenta (-1 para dejar mismos datos): ");
-                            nombreTeclado = s.nextLine();
+                            nombreTeclado = S.nextLine();
                             System.out.print("Introduce tu nueva dirección (-1 para dejar mismos datos): ");
-                            direccionTeclado = s.nextLine();
+                            direccionTeclado = S.nextLine();
                             System.out.print("Introduce su nueva localidad (-1 para dejar mismos datos): ");
-                            localidadTeclado = s.nextLine();
+                            localidadTeclado = S.nextLine();
                             System.out.print("Introduce su nueva provincia (-1 para dejar mismos datos): ");
-                            provinciaTeclado = s.nextLine();
+                            provinciaTeclado = S.nextLine();
                             do {
                                 System.out.print("Introduzca su nuevo teléfono (-1 para dejar mismos datos): ");
                                 try{
-                                    telefonoTeclado = Integer.parseInt(s.nextLine());
+                                    telefonoTeclado = Integer.parseInt(S.nextLine());
                                 }catch (NumberFormatException e){
                                     System.out.println("Introduzca un valor numérico...");
                                     Utils.pulsaContinuar();
@@ -141,7 +134,7 @@ public class mainPractica {
             if (trabajadorTemp != null && trabajadorTemp.isInicioCorrecto()) { // Menú Trabajadores
                 do {
                     System.out.print(Menus.menuTrabajador(trabajadorTemp));
-                    op = s.nextLine();
+                    op = S.nextLine();
                     switch (op) {
                         case "1": //Consultar los pedidos que tengo asignados
                             Menus.consultarPedidosAsignados(tienda, trabajadorTemp);
@@ -172,13 +165,13 @@ public class mainPractica {
                             System.out.print("""
                                     MODIFICACIÓN DE DATOS:
                                     Introduce el nuevo nombre del trabajador:\s""");
-                            nombreTeclado = s.nextLine();
+                            nombreTeclado = S.nextLine();
                             System.out.print("Introduce la nueva clave del trabajador: ");
-                            contraTeclado = s.nextLine();
+                            contraTeclado = S.nextLine();
                             do {
                                 System.out.print("Introduzca su nuevo teléfono (-1 para dejar mismos datos): ");
                                 try {
-                                    telefonoTeclado = Integer.parseInt(s.nextLine());
+                                    telefonoTeclado = Integer.parseInt(S.nextLine());
                                 }catch (NumberFormatException e){
                                     System.out.println("Introduzca un valor numérico...");
                                     Utils.pulsaContinuar();
@@ -207,7 +200,7 @@ public class mainPractica {
             if (adminTemp != null && adminTemp.isInicioCorrecto()) { // Menú del administrador
                 do {
                     System.out.print(Menus.menuAdministrador(tienda));
-                    op = s.nextLine();
+                    op = S.nextLine();
                     switch (op) {
                         case "1": //Asignar un pedido a un trabajador
                             Menus.asignarPedidos(tienda);
@@ -224,15 +217,15 @@ public class mainPractica {
                                 System.out.println("No se pueden dar de alta más trabajadores.");
                             else {
                                 System.out.print("Introduce el nombre del trabajador: ");
-                                nombreTeclado = s.nextLine();
+                                nombreTeclado = S.nextLine();
                                 System.out.print("Introduce la clave del trabajador: ");
-                                contraTeclado = s.nextLine();
+                                contraTeclado = S.nextLine();
                                 System.out.print("Introduce el correo del trabajador: ");
-                                correoTeclado = s.nextLine();
+                                correoTeclado = S.nextLine();
                                 do{
                                     System.out.print("Introduce el teléfono del trabajador: ");
                                     try{
-                                        telefonoTeclado = Integer.parseInt(s.nextLine());
+                                        telefonoTeclado = Integer.parseInt(S.nextLine());
                                     }catch (NumberFormatException e){
                                         System.out.println("Introduce un valor numérico...");
                                         Utils.pulsaContinuar();
@@ -278,7 +271,14 @@ public class mainPractica {
         } while (true); // Menú del programa principal
     }
 
-    private static void pintaMenu() {
-
+    private static String pintaMenu() {
+        String op = "";
+        System.out.print("""
+                    BIENVENIDO.
+                    1. Iniciar sesión
+                    2. Registrarse
+                    ELIGE UNA OPCIÓN:\s""");
+        op = S.nextLine();
+        return op;
     }
 }
