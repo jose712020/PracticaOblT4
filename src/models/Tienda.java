@@ -528,7 +528,12 @@ public class Tienda {
             if (t1.numPedidosAsignados() == t2.numPedidosAsignados()
                     && t1.numPedidosAsignados() == t3.numPedidosAsignados()
                     && t2.numPedidosAsignados() == t3.numPedidosAsignados()) return true;
-            if (t1.numPedidosAsignados() == t3.numPedidosAsignados() && t1.numPedidosAsignados() != t2.numPedidosAsignados()) return false;
+            if (t3.numPedidosAsignados() < t1.numPedidosAsignados() && t3.numPedidosAsignados() < t2.numPedidosAsignados()) return false;
+            if (t2.numPedidosAsignados() < t1.numPedidosAsignados() && t2.numPedidosAsignados() < t3.numPedidosAsignados()) return false;
+            if (t1.numPedidosAsignados() < t2.numPedidosAsignados() && t1.numPedidosAsignados() < t3.numPedidosAsignados()) return false;
+            if (t1.numPedidosAsignados() == t2.numPedidosAsignados()) return true;
+            if (t1.numPedidosAsignados() == t3.numPedidosAsignados()) return true;
+            if (t2.numPedidosAsignados() == t3.numPedidosAsignados()) return true;
         }
         return false;
     }
