@@ -573,4 +573,10 @@ public class Tienda {
         if (c2 != null && !correoTeclado.equals(c2.getCorreo())) return true;
         return false;
     }
+
+    public String generaToken() {
+        String token = "";
+        token = "JM-" + (int) (Math.random() * 99999999);
+        return token;
+    }
 }

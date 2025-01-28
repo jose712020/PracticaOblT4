@@ -73,9 +73,11 @@ public class Menus {
             System.out.print("Introduzca correo electrónico: ");
             correoTeclado = S.nextLine();
             if (tienda.compruebaCorreos(correoTeclado)) correoDistinto = true;
-            else System.out.println("Este correo ya está en uso, introduzca uno nuevo...");
-            Utils.pulsaContinuar();
-            Utils.limpiarpantalla();
+            else {
+                System.out.println("Este correo ya está en uso, introduzca uno nuevo...");
+                Utils.pulsaContinuar();
+                Utils.limpiarpantalla();
+            }
         } while (!correoDistinto);
         System.out.print("Introduce tu direccion: ");
         direccionTeclado = S.nextLine();
@@ -96,6 +98,9 @@ public class Menus {
         System.out.println((tienda.registro(correoTeclado, contraTeclado, nombreTeclado, direccionTeclado,
                 localidadTeclado, provinciaTeclado, telefonoTeclado) ?
                 "Se ha registrado correctamente" : "No se ha podido registrar"));
+        //Generamos el token despues del registro
+        String token = tienda.generaToken();
+
     }
 
     //Menu del trabajador que modifica un producto del catalogo
@@ -176,8 +181,8 @@ public class Menus {
             op = S.nextLine();
             if (op.equalsIgnoreCase("n")) finalizado = true;
             else if (op.equalsIgnoreCase("s")) {
-                System.out.println(tienda.pintaCatalogo());
                 do{
+                    System.out.println(tienda.pintaCatalogo());
                     try{
                         System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
                         productoTeclado = Integer.parseInt(S.nextLine());
@@ -195,8 +200,8 @@ public class Menus {
                     op = S.nextLine();
                     if (op.equalsIgnoreCase("n")) finalizado = true;
                     else if (op.equalsIgnoreCase("s")) {
-                        System.out.println(tienda.pintaCatalogo());
                         do{
+                            System.out.println(tienda.pintaCatalogo());
                             try{
                                 System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
                                 productoTeclado = Integer.parseInt(S.nextLine());

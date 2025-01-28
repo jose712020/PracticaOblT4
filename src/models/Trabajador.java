@@ -9,6 +9,7 @@ public class Trabajador {
     private boolean inicioCorrecto;
     Pedidos pedidoAsignado1;
     Pedidos pedidoAsignado2;
+    private String idTelegram;
 
     //Constructor
     public Trabajador(String nombre, String clave, String correo, int telefono) {
