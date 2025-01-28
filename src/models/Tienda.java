@@ -550,13 +550,11 @@ public class Tienda {
         return null;
     }
 
-    public boolean generaIDiguales(Pedidos pedido) {
-        int id = (int) (Math.random() * 5);
-
-        if (id == c1.getPedido1().getId()) return true;
-        if (id == c1.getPedido2().getId()) return true;
-        if (id == c2.getPedido1().getId()) return true;
-        if (id == c2.getPedido2().getId()) return true;
+    public boolean generaIDiguales(int id) {
+        if (c1.getPedido1() != null && id == c1.getPedido1().getId()) return true;
+        if (c1.getPedido2() != null && id == c1.getPedido2().getId()) return true;
+        if (c2 != null && c2.getPedido1() != null && id == c2.getPedido1().getId()) return true;
+        if (c2 != null && c2.getPedido2() != null && id == c2.getPedido2().getId()) return true;
         return false;
     }
 }

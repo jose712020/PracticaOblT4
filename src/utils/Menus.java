@@ -211,10 +211,12 @@ public class Menus {
             pedido = tienda.agregaCesta(producto1, producto2, producto3, clienteTemp);
             if (tienda.realizaPedido(pedido, clienteTemp)) {
                 boolean continuar = false;
+                int id;
                 do {
-                    if (tienda.generaIDiguales(pedido));
-                } while (continuar);
-
+                    id = (int) (Math.random() * 5);
+                    if (!tienda.generaIDiguales(id)) continuar = true;
+                } while (!continuar);
+                pedido.setId(id);
                 System.out.println("Compra finalizada con exito...");
             } else System.out.println("Ha ocurrido un error");
         }
