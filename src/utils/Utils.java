@@ -27,4 +27,17 @@ public class Utils {
         System.out.println("Pulsa para continuar...");
         s.nextLine();
     }
+
+    public static void animacionEnvioCorreo(){
+        System.out.print("ESPERE PORFAVOR");
+        for (int i = 0; i < 8; i++) {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.print(".");
+        }
+        System.out.println();
+    }
 }

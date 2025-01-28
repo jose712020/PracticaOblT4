@@ -69,7 +69,9 @@ public class mainPractica {
                     switch (op) {
                         case "1"://Consultar el catálogo de productos
                             System.out.println(tienda.pintaCatalogo());
+                            Utils.animacionEnvioCorreo();
                             Comunicaciones.enviaCorreo(clienteTemp.getCorreo(),"Hola, gracias por consultar nuestro productos","BIENVENIDO AL CATÁLOGO");
+
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();
                             break;

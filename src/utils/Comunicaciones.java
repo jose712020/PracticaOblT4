@@ -70,7 +70,7 @@ public class Comunicaciones {
             Transport.send(message);
             resultado = true;
         } catch (Exception e){
-            e.printStackTrace();
+            System.out.println("El correo introducido no es válido");
         }
         return resultado;
     }
