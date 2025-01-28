@@ -509,8 +509,10 @@ public class Tienda {
     // Metodo que pinta los pedidos asignados que tiene un trabajador
     public String pintaPedidosTrabajador(Trabajador trabajadorTemp) {
         String salida = "";
-        if (trabajadorTemp.pedidoAsignado1 != null) salida += "1. ID del pedido: " + trabajadorTemp.pedidoAsignado1.getId() + "\n";
-        if (trabajadorTemp.pedidoAsignado2 != null) salida += "2. ID del pedido: " + trabajadorTemp.pedidoAsignado2.getId() + "\n";
+        if (trabajadorTemp.pedidoAsignado1 != null)
+            salida += "1. ID del pedido: " + trabajadorTemp.pedidoAsignado1.getId() + "\n";
+        if (trabajadorTemp.pedidoAsignado2 != null)
+            salida += "2. ID del pedido: " + trabajadorTemp.pedidoAsignado2.getId() + "\n";
         if (salida.equals("")) salida += "No tienes pedidos asignados";
         return salida;
     }
@@ -525,9 +527,12 @@ public class Tienda {
             if (t1.numPedidosAsignados() == t2.numPedidosAsignados()
                     && t1.numPedidosAsignados() == t3.numPedidosAsignados()
                     && t2.numPedidosAsignados() == t3.numPedidosAsignados()) return true;
-            if (t3.numPedidosAsignados() < t1.numPedidosAsignados() && t3.numPedidosAsignados() < t2.numPedidosAsignados()) return false;
-            if (t2.numPedidosAsignados() < t1.numPedidosAsignados() && t2.numPedidosAsignados() < t3.numPedidosAsignados()) return false;
-            if (t1.numPedidosAsignados() < t2.numPedidosAsignados() && t1.numPedidosAsignados() < t3.numPedidosAsignados()) return false;
+            if (t3.numPedidosAsignados() < t1.numPedidosAsignados() && t3.numPedidosAsignados() < t2.numPedidosAsignados())
+                return false;
+            if (t2.numPedidosAsignados() < t1.numPedidosAsignados() && t2.numPedidosAsignados() < t3.numPedidosAsignados())
+                return false;
+            if (t1.numPedidosAsignados() < t2.numPedidosAsignados() && t1.numPedidosAsignados() < t3.numPedidosAsignados())
+                return false;
             if (t1.numPedidosAsignados() == t2.numPedidosAsignados()) return true;
             if (t1.numPedidosAsignados() == t3.numPedidosAsignados()) return true;
             if (t2.numPedidosAsignados() == t3.numPedidosAsignados()) return true;
@@ -543,18 +548,28 @@ public class Tienda {
             if (t1.numPedidosAsignados() > t2.numPedidosAsignados()) return t2;
         }
         if (t3 != null) {
-            if (t1.numPedidosAsignados() < t2.numPedidosAsignados() && t1.numPedidosAsignados() < t3.numPedidosAsignados()) return t1;
-            if (t2.numPedidosAsignados() < t1.numPedidosAsignados() && t2.numPedidosAsignados() < t3.numPedidosAsignados()) return t2;
-            if (t3.numPedidosAsignados() < t1.numPedidosAsignados() && t3.numPedidosAsignados() < t2.numPedidosAsignados()) return t3;
+            if (t1.numPedidosAsignados() < t2.numPedidosAsignados() && t1.numPedidosAsignados() < t3.numPedidosAsignados())
+                return t1;
+            if (t2.numPedidosAsignados() < t1.numPedidosAsignados() && t2.numPedidosAsignados() < t3.numPedidosAsignados())
+                return t2;
+            if (t3.numPedidosAsignados() < t1.numPedidosAsignados() && t3.numPedidosAsignados() < t2.numPedidosAsignados())
+                return t3;
         }
         return null;
     }
 
+    // Metodo que comprueba que las ID no sean iguales en caso de que se repita devolvera true
     public boolean generaIDiguales(int id) {
         if (c1.getPedido1() != null && id == c1.getPedido1().getId()) return true;
         if (c1.getPedido2() != null && id == c1.getPedido2().getId()) return true;
         if (c2 != null && c2.getPedido1() != null && id == c2.getPedido1().getId()) return true;
         if (c2 != null && c2.getPedido2() != null && id == c2.getPedido2().getId()) return true;
+        return false;
+    }
+
+    public boolean compruebaCorreos(String correoTeclado) {
+        if (c1 != null && !correoTeclado.equals(c1.getCorreo())) return true;
+        if (c2 != null && !correoTeclado.equals(c2.getCorreo())) return true;
         return false;
     }
 }

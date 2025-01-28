@@ -67,8 +67,16 @@ public class Menus {
         nombreTeclado = S.nextLine();
         System.out.print("Introduce la contraseña de tu cuenta: ");
         contraTeclado = S.nextLine();
-        System.out.print("Introduzca correo electrónico: ");
-        correoTeclado = S.nextLine();
+        //Bucle que comprobará que el correo nuevo no se repita con el de otra persona
+        boolean correoDistinto = false;
+        do {
+            System.out.print("Introduzca correo electrónico: ");
+            correoTeclado = S.nextLine();
+            if (tienda.compruebaCorreos(correoTeclado)) correoDistinto = true;
+            else System.out.println("Este correo ya está en uso, introduzca uno nuevo...");
+            Utils.pulsaContinuar();
+            Utils.limpiarpantalla();
+        } while (!correoDistinto);
         System.out.print("Introduce tu direccion: ");
         direccionTeclado = S.nextLine();
         System.out.print("Introduce su localidad: ");
@@ -147,9 +155,9 @@ public class Menus {
         Productos producto1 = null, producto2 = null, producto3 = null;
         Pedidos pedido = null;
 
-        System.out.println(tienda.pintaCatalogo());
 
         do{
+            System.out.println(tienda.pintaCatalogo());
             System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
             try{
                 productoTeclado = Integer.parseInt(S.nextLine());
@@ -170,8 +178,8 @@ public class Menus {
             else if (op.equalsIgnoreCase("s")) {
                 System.out.println(tienda.pintaCatalogo());
                 do{
-                    System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
                     try{
+                        System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
                         productoTeclado = Integer.parseInt(S.nextLine());
                     }catch (NumberFormatException e){
                         System.out.println("Introduce un valor numérico");
@@ -189,8 +197,8 @@ public class Menus {
                     else if (op.equalsIgnoreCase("s")) {
                         System.out.println(tienda.pintaCatalogo());
                         do{
-                            System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
                             try{
+                                System.out.print("Introduce el número del producto mostrado en el catálogo (máx 3 productos): ");
                                 productoTeclado = Integer.parseInt(S.nextLine());
                             }catch (NumberFormatException e){
                                 System.out.println("Introduce un valor numérico");
@@ -212,6 +220,7 @@ public class Menus {
             if (tienda.realizaPedido(pedido, clienteTemp)) {
                 boolean continuar = false;
                 int id;
+                //Bucle que comprueba las ID de todos los pedidos, se saldrá si ninguna ID de otro pedido se repite
                 do {
                     id = (int) (Math.random() * 5);
                     if (!tienda.generaIDiguales(id)) continuar = true;
