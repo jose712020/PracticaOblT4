@@ -567,6 +567,7 @@ public class Tienda {
         return false;
     }
 
+    // Metodo que comprueba que los correos no se repitan
     public boolean compruebaCorreos(String correoTeclado) {
         if (c1 != null && !correoTeclado.equals(c1.getCorreo())) return true;
         if (c2 != null && !correoTeclado.equals(c2.getCorreo())) return true;

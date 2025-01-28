@@ -271,6 +271,7 @@ public class mainPractica {
         } while (true); // Menú del programa principal
     }
 
+    //Funcion que pinta el Menú principal y devuelve la respuesta del cliente
     private static String pintaMenu() {
         String op = "";
         System.out.print("""
