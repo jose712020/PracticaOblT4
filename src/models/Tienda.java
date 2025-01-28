@@ -549,4 +549,14 @@ public class Tienda {
         }
         return null;
     }
+
+    public boolean generaIDiguales(Pedidos pedido) {
+        int id = (int) (Math.random() * 5);
+
+        if (id == c1.getPedido1().getId()) return true;
+        if (id == c1.getPedido2().getId()) return true;
+        if (id == c2.getPedido1().getId()) return true;
+        if (id == c2.getPedido2().getId()) return true;
+        return false;
+    }
 }

@@ -15,7 +15,6 @@ public class Pedidos {
 
     //Constructor con los tres pedidos
     public Pedidos(Productos producto1, Productos producto2, Productos producto3, String direccionEntrega) {
-        id = generaId();
         fechaPedido = LocalDate.now();
         fechaEstimada = calculaFecha();
         estado = "Recibido";
@@ -100,9 +99,9 @@ public class Pedidos {
     }
 
     //Otros metodos
-    private int generaId() {
+ /*   private int generaId() {
         return id = (int) (Math.random() * 100001);
-    }
+    }*/
 
     //Metodo que pinta un producto del pedido
     public String pintarProducto(Productos producto) {

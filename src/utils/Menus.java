@@ -209,7 +209,14 @@ public class Menus {
         } else System.out.println("Producto no encontrado...");
         if (finalizado) {
             pedido = tienda.agregaCesta(producto1, producto2, producto3, clienteTemp);
-            System.out.println((tienda.realizaPedido(pedido, clienteTemp) ? "Compra finalizada con exito..." : "Ha ocurrido un error"));
+            if (tienda.realizaPedido(pedido, clienteTemp)) {
+                boolean continuar = false;
+                do {
+                    if (tienda.generaIDiguales(pedido));
+                } while (continuar);
+
+                System.out.println("Compra finalizada con exito...");
+            } else System.out.println("Ha ocurrido un error");
         }
     }
 
