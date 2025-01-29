@@ -50,8 +50,7 @@ public class mainPractica {
                     break; //Iniciar sesión
                 case "2": //Registrarse
                     Utils.limpiarpantalla();
-                    if (tienda.noHayHuecoClientes()) System.out.println("No hay hueco para registrar más clientes...");
-                    else Menus.menuRegistro(tienda);
+                    registro(tienda);
                     Utils.pulsaContinuar();
                     Utils.limpiarpantalla();
                     break; //Registrarse
@@ -103,16 +102,11 @@ public class mainPractica {
                         case "5"://Modificar datos personales clientes
                             System.out.println("MODIFICACIÓN DE DATOS:");
                             correoTeclado = compruebaCorreo(tienda);
-                            System.out.print("Introduce una nueva contraseña para tu cuenta: ");
-                            contraTeclado = S.nextLine();
-                            System.out.print("Introduce un nuevo nombre para tu cuenta: ");
-                            nombreTeclado = S.nextLine();
-                            System.out.print("Introduce tu nueva dirección (-1 para dejar mismos datos): ");
-                            direccionTeclado = S.nextLine();
-                            System.out.print("Introduce su nueva localidad (-1 para dejar mismos datos): ");
-                            localidadTeclado = S.nextLine();
-                            System.out.print("Introduce su nueva provincia (-1 para dejar mismos datos): ");
-                            provinciaTeclado = S.nextLine();
+                            contraTeclado = peticionDatosContra();
+                            nombreTeclado = peticionDatosNombre();
+                            direccionTeclado = peticionDatosDireccion();
+                            localidadTeclado = peticionDatosLocalidad();
+                            provinciaTeclado = peticionDatosProvincia();
                             do {
                                 System.out.print("Introduzca su nuevo teléfono (-1 para dejar mismos datos): ");
                                 try {
@@ -127,7 +121,7 @@ public class mainPractica {
                             //Generamos el token despues de la modificacion de datos
                             token = tienda.generaToken();
                             Comunicaciones.enviaCorreo(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado +
-                                    " tu token de verificación de la cuenta es " + token, "TU CÓDIGO DE VERIFICACIÓN DE CUENTA");
+                                    " tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token);
 
                             clienteTemp.modificarDatosCliente(correoTeclado, contraTeclado, direccionTeclado, localidadTeclado, provinciaTeclado, telefonoTeclado, nombreTeclado, token);
                             Utils.pulsaContinuar();
@@ -225,7 +219,7 @@ public class mainPractica {
                             token = tienda.generaToken();
                             // Le mandamos el correo con el token
                             Comunicaciones.enviaCorreo(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado +
-                                    " tu token de verificación de la cuenta es " + token, "TU CÓDIGO DE VERIFICACIÓN DE CUENTA");
+                                    " tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token);
 
                             trabajadorTemp.modificarDatosTrabajador(nombreTeclado, contraTeclado, correoTeclado, telefonoTeclado, token);
                             Utils.pulsaContinuar();
@@ -298,7 +292,7 @@ public class mainPractica {
                                 token = tienda.generaToken();
                                 // Le mandamos el correo con el token
                                 Comunicaciones.enviaCorreo(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado + " " +
-                                        "tu token de verificación de la cuenta es " + token, "TU CÓDIGO DE VERIFICACIÓN DE CUENTA");
+                                        "tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token);
 
                                 //Damos de alta al trabajador
                                 System.out.println(((tienda.darAltaTrabajador(nombreTeclado, contraTeclado, correoTeclado, telefonoTeclado, token)
@@ -337,6 +331,36 @@ public class mainPractica {
                 } while (!op.equals("7"));
             } // Fin del menú del administrador
         } while (true); // Menú del programa principal
+    }
+
+    private static String peticionDatosProvincia() {
+        System.out.print("Introduce su nueva provincia (-1 para dejar mismos datos): ");
+        return S.nextLine();
+    }
+
+    private static String peticionDatosLocalidad() {
+        System.out.print("Introduce su nueva localidad (-1 para dejar mismos datos): ");
+        return S.nextLine();
+    }
+
+    private static String peticionDatosDireccion() {
+        System.out.print("Introduce tu nueva dirección (-1 para dejar mismos datos): ");
+        return S.nextLine();
+    }
+
+    private static String peticionDatosNombre() {
+        System.out.print("Introduce un nuevo nombre para tu cuenta: ");
+        return S.nextLine();
+    }
+
+    private static String peticionDatosContra() {
+        System.out.print("Introduce una nueva contraseña para tu cuenta: ");
+        return S.nextLine();
+    }
+
+    private static void registro(Tienda tienda) {
+        if (tienda.noHayHuecoClientes()) System.out.println("No hay hueco para registrar más clientes...");
+        else Menus.menuRegistro(tienda);
     }
 
     //Funcion que comprobara el correo que sea distinto y que contenga @ y acabe en .com o .es

@@ -111,7 +111,7 @@ public class Menus {
                 localidadTeclado, provinciaTeclado, telefonoTeclado, token) ? "Se ha registrado correctamente" : "No se ha podido registrar"));
         // Le mandamos el correo con el token
         Comunicaciones.enviaCorreo(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado + " " +
-                "tu token de verificación de la cuenta es " + token, "TU CÓDIGO DE VERIFICACIÓN DE CUENTA");
+                "tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token);
     }
 
     //Menu del trabajador que modifica un producto del catálogo

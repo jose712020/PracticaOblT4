@@ -16,24 +16,24 @@ import java.util.Properties;
 public class Comunicaciones {
     public static boolean enviaMensajeTelegram(String mensaje) {
         String direccion; // URL de la API de mi bot en mi conversación
-        String fijo="https://api.telegram.org/bot7933251856:AAGX2oHNIFDQKXDq4PmQbst5v1zBQfddpZY/sendMessage?chat_id=1187949150&text=";
+        String fijo = "https://api.telegram.org/bot7933251856:AAGX2oHNIFDQKXDq4PmQbst5v1zBQfddpZY/sendMessage?chat_id=1187949150&text=";
         direccion = fijo + mensaje; //Metemos el mensaje al final
         URL url;
         boolean dev;
-        dev=false;
+        dev = false;
         try {
             url = new URL(direccion);  // Creando un objeto URL con la dirección de la API de mi bot
             URLConnection con = url.openConnection();  // Realizando la petición GET
             // Con esto, copiamos en un la respuesta HTTP, por si lo necesitamos
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            dev=true;  // Ha tenido éxito
+            dev = true;  // Ha tenido éxito
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
         return dev;  // Devuelvo si ha tenido éxito o no
     }
 
-    public static void enviaCorreo(String destino, String mensaje, String asunto){
+    public static void enviaCorreo(String destino, String mensaje, String asunto, String token) {
         //Guardamos la dirección que va a remitir el mensaje
         String emisor = "fernanshopjlmanule@gmail.com";
         String usuario = "fernanshopjlmanule@gmail.com";//Usuario para el logueo en el server de correo
@@ -47,31 +47,68 @@ public class Comunicaciones {
         props.put("mail.smtp.host", host);
         props.put("mail.smtp.port", "587");
         //Obtenemos la sesión en nuestro servidor de correo
-        Session session = Session.getInstance(props, new javax.mail.Authenticator(){
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
             @Override
-            protected javax.mail.PasswordAuthentication getPasswordAuthentication(){
+            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(usuario, clave);
             }
         });
         try {
             // Definir contenido en HTML con CSS
-            String contenidoHTML = "<html>"
-                    + "<head>"
-                    + "<style>"
-                    + "body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }"
-                    + ".container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }"
-                    + "h1 { color: #333366; }"
-                    + "p { color: #666666; font-size: 16px; }"
-                    + "</style>"
-                    + "</head>"
-                    + "<body>"
-                    + "<div class='container'>"
-                    + "<h1>¡Hola!</h1>"
-                    + "<p>" + mensaje + "</p>"
-                    + "<p>Gracias por tu atención.</p>"
-                    + "</div>"
-                    + "</body>"
-                    + "</html>";
+            String contenidoHTML = String.format("""
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+                            <meta charset='utf-8'>
+                            <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+                            <title>CORREOFERNANSHOP</title>
+                            <meta name='viewport' content='width=device-width, initial-scale=1'>
+                            <style>
+                                #container h1{
+                                    border: 2px red solid;
+                                    width: 115px;
+                                    background-color: skyblue;
+                                }
+                    
+                                #container p{
+                                    border: 2px red solid;
+                                    color: white;
+                                    background-color: #242222;
+                                    text-align: center;
+                                    margin: auto;
+                                    width: 550px;
+                                }
+                    
+                                #token{
+                                    font-weight: bold;
+                                    color: white;
+                                    background-color: darkblue;
+                                    text-align: center;
+                                    margin: auto;
+                                    width: 150px;
+                                }
+                    
+                                footer{
+                                    background-color: lightgreen;
+                                    border: 2px black dashed;
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            <div id="container">
+                                <h1>¡HOLA!</h1>
+                                <p>%s</p>
+                                <h2 id="token">%s</h2>
+                            </div>
+                            <hr>
+                            <hr>
+                            <footer>
+                                <h2>GRACIAS POR SU COLABORACIÓN</h2>
+                                <h3>&copy;FERNANSHOP2025</h3>
+                            </footer>
+                        </body>
+                        </html>
+                    """, mensaje, token);
 
             //Creamos un mensaje de correo por defecto
             Message message = new MimeMessage(session);
@@ -86,7 +123,7 @@ public class Comunicaciones {
             message.setContent(contenidoHTML, "text/html; charset=utf-8");
             //Intentamos mandar el mensaje
             Transport.send(message);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("El correo introducido no es válido");
         }
 
