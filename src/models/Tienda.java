@@ -128,6 +128,7 @@ public class Tienda {
         c1.setValid(true);
         //c2 = new Cliente("Wiwi", "jl@hola", "1234", "Avd Lopez", "Martos", "Jaen", 12345678);
         t1 = new Trabajador("Manule", "1111", "manule@hola", 12354221);
+        t1.setValid(true);
     }
 
     //Comparamos si los datos que ha metido el usuario coincide con los del administrador
@@ -256,17 +257,20 @@ public class Tienda {
     }
 
     //Metodo que hace que el administrador pueda dar de alta a un trabajador
-    public boolean darAltaTrabajador(String nombreTeclado, String contraTeclado, String correoTeclado, int telefonoTeclado) {
+    public boolean darAltaTrabajador(String nombreTeclado, String contraTeclado, String correoTeclado, int telefonoTeclado, String token) {
         if (t1 == null) {
             t1 = new Trabajador(nombreTeclado, contraTeclado, correoTeclado, telefonoTeclado);
+            t1.setToken(token);
             return true;
         }
         if (t2 == null) {
             t2 = new Trabajador(nombreTeclado, contraTeclado, correoTeclado, telefonoTeclado);
+            t2.setToken(token);
             return true;
         }
         if (t3 == null) {
             t3 = new Trabajador(nombreTeclado, contraTeclado, correoTeclado, telefonoTeclado);
+            t3.setToken(token);
             return true;
         }
         return false;
@@ -581,7 +585,7 @@ public class Tienda {
         return token;
     }
 
-    public boolean compruebaToken(Cliente clienteTemp, String tokenTeclado) {
+    public boolean compruebaTokenCliente(Cliente clienteTemp, String tokenTeclado) {
         if (clienteTemp.getToken().equals(tokenTeclado)) {
             clienteTemp.setValid(true);
             return true;
@@ -594,6 +598,14 @@ public class Tienda {
         if (t1 != null && !correoTeclado.equals(t1.getCorreo())) return true;
         if (t2 != null && !correoTeclado.equals(t2.getCorreo())) return true;
         if (t3 != null && !correoTeclado.equals(t3.getCorreo())) return true;
+        return false;
+    }
+
+    public boolean compruebaTokenTrabajador(Trabajador trabajadorTemp, String tokenTeclado) {
+        if (trabajadorTemp.getToken().equals(tokenTeclado)) {
+            trabajadorTemp.setValid(true);
+            return true;
+        } else trabajadorTemp.setValid(false);
         return false;
     }
 }

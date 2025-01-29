@@ -65,7 +65,7 @@ public class mainPractica {
             if (clienteTemp != null && clienteTemp.isInicioCorrecto() && !clienteTemp.isValid()) {
                 System.out.print("Introduce tu token para registrarte: ");
                 tokenTeclado = S.nextLine();
-                if (tienda.compruebaToken(clienteTemp, tokenTeclado)) System.out.println("Token correcto...");
+                if (tienda.compruebaTokenCliente(clienteTemp, tokenTeclado)) System.out.println("Token correcto...");
                 else System.out.println("Token incorrecto...");
                 Utils.pulsaContinuar();
                 Utils.limpiarpantalla();
@@ -101,7 +101,7 @@ public class mainPractica {
                             Utils.limpiarpantalla();
                             break;
                         case "5"://Modificar datos personales clientes
-                            System.out.print("MODIFICACIÓN DE DATOS:");
+                            System.out.println("MODIFICACIÓN DE DATOS:");
                             correoTeclado = compruebaCorreo(tienda);
                             System.out.print("Introduce una nueva contraseña para tu cuenta: ");
                             contraTeclado = S.nextLine();
@@ -135,7 +135,7 @@ public class mainPractica {
 
                             System.out.print("Introduce tu nuevo token para continuar: ");
                             tokenTeclado = S.nextLine();
-                            if (tienda.compruebaToken(clienteTemp, tokenTeclado)) {
+                            if (tienda.compruebaTokenCliente(clienteTemp, tokenTeclado)) {
                                 System.out.println("Token correcto...");
                                 clienteTemp.setValid(true);
                             } else {
@@ -162,7 +162,18 @@ public class mainPractica {
                 while (clienteTemp.isValid() && !op.equals("6"));
             } // Fin del menú del cliente
 
-            if (trabajadorTemp != null && trabajadorTemp.isInicioCorrecto()) { // Menú Trabajadores
+            //Metodo de que comprueba el token del Trabajador
+            if (trabajadorTemp != null && trabajadorTemp.isInicioCorrecto() && !trabajadorTemp.isValid()) {
+                System.out.print("Introduce tu token para registrarte: ");
+                tokenTeclado = S.nextLine();
+                if (tienda.compruebaTokenTrabajador(trabajadorTemp, tokenTeclado)) System.out.println("Token correcto...");
+                else System.out.println("Token incorrecto...");
+                Utils.pulsaContinuar();
+                Utils.limpiarpantalla();
+            }
+
+
+            if (trabajadorTemp != null && trabajadorTemp.isInicioCorrecto() && trabajadorTemp.isValid()) { // Menú Trabajadores
                 do {
                     System.out.print(Menus.menuTrabajador(trabajadorTemp));
                     op = S.nextLine();
@@ -199,9 +210,7 @@ public class mainPractica {
                             nombreTeclado = S.nextLine();
                             System.out.print("Introduce la nueva clave del trabajador: ");
                             contraTeclado = S.nextLine();
-
                             correoTeclado = compruebaCorreo(tienda);
-
                             do {
                                 System.out.print("Introduzca su nuevo teléfono (-1 para dejar mismos datos): ");
                                 try {
@@ -212,7 +221,27 @@ public class mainPractica {
                                     Utils.limpiarpantalla();
                                 }
                             } while (telefonoTeclado == -2);
-                            trabajadorTemp.modificarDatosTrabajador(nombreTeclado, contraTeclado, correoTeclado, telefonoTeclado);
+                            //Generamos el token después de la modificación de datos
+                            token = tienda.generaToken();
+                            // Le mandamos el correo con el token
+                            Comunicaciones.enviaCorreo(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado +
+                                    " tu token de verificación de la cuenta es " + token, "TU CÓDIGO DE VERIFICACIÓN DE CUENTA");
+
+                            trabajadorTemp.modificarDatosTrabajador(nombreTeclado, contraTeclado, correoTeclado, telefonoTeclado, token);
+                            Utils.pulsaContinuar();
+                            Utils.limpiarpantalla();
+
+                            System.out.print("Introduce tu nuevo token para continuar: ");
+                            tokenTeclado = S.nextLine();
+                            if (tienda.compruebaTokenTrabajador(trabajadorTemp, tokenTeclado)) {
+                                System.out.println("Token correcto...");
+                                trabajadorTemp.setValid(true);
+                            } else {
+                                System.out.println("Token incorrecto...");
+                                trabajadorTemp.apagadoInicioCorrecto();
+                                Utils.animacionFinSesion();
+                            }
+
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();
                             break;
@@ -228,7 +257,7 @@ public class mainPractica {
                             Utils.limpiarpantalla();
                             break;
                     }
-                } while (!op.equals("7"));
+                } while (trabajadorTemp.isValid() && !op.equals("7"));
             } // Fin del menú Trabajadores
 
             if (adminTemp != null && adminTemp.isInicioCorrecto()) { // Menú del administrador
@@ -254,19 +283,7 @@ public class mainPractica {
                                 nombreTeclado = S.nextLine();
                                 System.out.print("Introduce la clave del trabajador: ");
                                 contraTeclado = S.nextLine();
-                                //Bucle que comprobará que el correo nuevo no se repita con el de otra persona
-                                boolean correoDistinto = false;
-                                do {
-                                    System.out.print("Introduzca correo electrónico del trabajador: ");
-                                    correoTeclado = S.nextLine();
-                                    if (tienda.compruebaCorreosClientes(correoTeclado) && tienda.compruebaCorreosTrabajadores(correoTeclado))
-                                        correoDistinto = true;
-                                    else {
-                                        System.out.println("Este correo ya está en uso, introduzca uno nuevo...");
-                                        Utils.pulsaContinuar();
-                                        Utils.limpiarpantalla();
-                                    }
-                                } while (!correoDistinto);
+                                correoTeclado = compruebaCorreo(tienda);
                                 do {
                                     System.out.print("Introduce el teléfono del trabajador: ");
                                     try {
@@ -277,7 +294,14 @@ public class mainPractica {
                                         Utils.limpiarpantalla();
                                     }
                                 } while (telefonoTeclado == -2);
-                                System.out.println(((tienda.darAltaTrabajador(nombreTeclado, contraTeclado, correoTeclado, telefonoTeclado)
+                                //Generamos el token después del registro
+                                token = tienda.generaToken();
+                                // Le mandamos el correo con el token
+                                Comunicaciones.enviaCorreo(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado + " " +
+                                        "tu token de verificación de la cuenta es " + token, "TU CÓDIGO DE VERIFICACIÓN DE CUENTA");
+
+                                //Damos de alta al trabajador
+                                System.out.println(((tienda.darAltaTrabajador(nombreTeclado, contraTeclado, correoTeclado, telefonoTeclado, token)
                                         ? "Se ha registrado perfectamente" : "Ha ocurrido un error")));
                             }
                             Utils.pulsaContinuar();

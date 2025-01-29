@@ -10,6 +10,9 @@ public class Trabajador {
     Pedidos pedidoAsignado1;
     Pedidos pedidoAsignado2;
     private String idTelegram;
+    private String token;
+    private boolean isValid;
+
 
     //Constructor
     public Trabajador(String nombre, String clave, String correo, int telefono) {
@@ -21,6 +24,22 @@ public class Trabajador {
     }
 
     //Getter y Setter
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public boolean isValid() {
+        return isValid;
+    }
+
+    public void setValid(boolean valid) {
+        isValid = valid;
+    }
+
     public Pedidos getPedidoAsignado1() {
         return pedidoAsignado1;
     }
@@ -99,11 +118,12 @@ public class Trabajador {
     }
 
     //Metodo que modifica los datos del trabajador
-    public void modificarDatosTrabajador(String nombreTeclado, String contraTeclado, String correoTeclado, int telefonoTeclado) {
+    public void modificarDatosTrabajador(String nombreTeclado, String contraTeclado, String correoTeclado, int telefonoTeclado, String token) {
         nombre = nombreTeclado;
         clave = contraTeclado;
         correo = correoTeclado;
         if (telefonoTeclado != -1) telefono = telefonoTeclado;
+        setToken(token);
     }
 
     // Metodo que cuenta los pedidos que tiene asignado un trabajador
