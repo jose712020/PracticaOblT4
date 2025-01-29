@@ -125,6 +125,7 @@ public class Tienda {
     //metodo mock
     public void mock() {
         c1 = new Cliente("Jl", "hola@hola", "1234", "Avd Lopez", "Martos", "Jaen", 12345678);
+        c1.setValid(true);
         //c2 = new Cliente("Wiwi", "jl@hola", "1234", "Avd Lopez", "Martos", "Jaen", 12345678);
         t1 = new Trabajador("Manule", "1111", "manule@hola", 12354221);
     }
@@ -220,13 +221,15 @@ public class Tienda {
     }
 
     //Metodo que registra un usuario en el menu principal del programa
-    public boolean registro(String correoTeclado, String contraTeclado, String nombreTeclado, String direccionTeclado, String localidadTeclado, String provinciaTeclado, int telefonoTeclado) {
+    public boolean registro(String correoTeclado, String contraTeclado, String nombreTeclado, String direccionTeclado, String localidadTeclado, String provinciaTeclado, int telefonoTeclado, String token) {
         if (c1 == null) {
             c1 = new Cliente(nombreTeclado, correoTeclado, contraTeclado, direccionTeclado, localidadTeclado, provinciaTeclado, telefonoTeclado);
+            c1.setToken(token);
             return true;
         }
         if (c2 == null) {
             c2 = new Cliente(nombreTeclado, correoTeclado, contraTeclado, direccionTeclado, localidadTeclado, provinciaTeclado, telefonoTeclado);
+            c2.setToken(token);
             return true;
         }
         return false;
@@ -578,5 +581,13 @@ public class Tienda {
         String token = "";
         token = "JM-" + (int) (Math.random() * 99999999);
         return token;
+    }
+
+    public boolean compruebaToken(Cliente clienteTemp, String tokenTeclado) {
+        if (clienteTemp.getToken().equals(tokenTeclado)) {
+            clienteTemp.setValid(true);
+            return true;
+        } else clienteTemp.setValid(false);
+        return false;
     }
 }

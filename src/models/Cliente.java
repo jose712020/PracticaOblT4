@@ -12,6 +12,8 @@ public class Cliente {
     private Pedidos pedido1;
     private Pedidos pedido2;
     private boolean inicioCorrecto;
+    private String token;
+    private boolean isValid;
 
     //Constructor
     public Cliente(String nombre, String correo, String pass, String direccion, String localidad, String provincia, int telefono) {
@@ -28,6 +30,22 @@ public class Cliente {
     }
 
     //Getter y Setter
+    public boolean isValid() {
+        return isValid;
+    }
+
+    public void setValid(boolean valid) {
+        isValid = valid;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -139,7 +157,7 @@ public class Cliente {
 
     //Metodo que modifica los datos del cliente, si introduce -1 no se modifican y se dejan los que tenia
     public void modificarDatosCliente(String correoTeclado, String contraTeclado, String direccionTeclado, String localidadTeclado,
-                                      String provinciaTeclado, int telefonoTeclado, String nombreTeclado) {
+                                      String provinciaTeclado, int telefonoTeclado, String nombreTeclado, String token) {
         correo = correoTeclado;
         pass = contraTeclado;
         if (!direccionTeclado.equals("-1")) direccion = direccionTeclado;
@@ -147,6 +165,8 @@ public class Cliente {
         if (!provinciaTeclado.equals("-1")) provincia = provinciaTeclado;
         if (telefonoTeclado != -1) telefono = telefonoTeclado;
         if (!nombreTeclado.equals("-1")) nombre = nombreTeclado;
+        setToken(token);
+        setValid(false);
     }
 
 

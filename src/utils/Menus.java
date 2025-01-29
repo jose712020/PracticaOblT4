@@ -96,22 +96,19 @@ public class Menus {
                     Utils.limpiarpantalla();
                 }
             } while (telefonoTeclado == -1);
+            //Generamos el token despues del registro
             String token = tienda.generaToken();
+            System.out.println((tienda.registro(correoTeclado, contraTeclado, nombreTeclado, direccionTeclado,
+                    localidadTeclado, provinciaTeclado, telefonoTeclado, token) ? "Se ha registrado correctamente" : "No se ha podido registrar"));
+            // Le mandamos el correo con el token
             if (Comunicaciones.enviaCorreo(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado + " " +
-                    "tu token de verificación de la cuenta es " + token, "TU CÓDIGO DE VERIFICACIÓN DE CUENTA")) {
-                System.out.println((tienda.registro(correoTeclado, contraTeclado, nombreTeclado, direccionTeclado,
-                        localidadTeclado, provinciaTeclado, telefonoTeclado) ?
-                        "Se ha registrado correctamente" : "No se ha podido registrar"));
+                    "tu token de verificación de la cuenta es " + token, "TU CÓDIGO DE VERIFICACIÓN DE CUENTA"))
                 correoValido = true;
-            } else{
-                correoValido = false;
+            else {
                 Utils.pulsaContinuar();
                 Utils.limpiarpantalla();
             }
         } while (!correoValido);
-
-        //Generamos el token despues del registro
-
 
     }
 
