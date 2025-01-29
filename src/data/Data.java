@@ -4,6 +4,7 @@ import models.Productos;
 
 public class Data {
 
+    //TODO CAMBIAR LOS NOMBRES DE LOS PRODUCTOS
     public static Productos prod1 = new Productos("PlayStation 5", 469.99);
     public static Productos prod2 = new Productos("El Árbol de la ciencia - Pio Baroja", 10.40);
     public static Productos prod3 = new Productos("IPhone 16 Pro Max", 1550);

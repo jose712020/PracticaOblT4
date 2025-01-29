@@ -128,7 +128,7 @@ public class Tienda {
         c1 = new Cliente("Jl", "hola@hola", "1234", "Avd Lopez", "Martos", "Jaen", 12345678);
         c1.setValid(true);
         //c2 = new Cliente("Wiwi", "jl@hola", "1234", "Avd Lopez", "Martos", "Jaen", 12345678);
-        t1 = new Trabajador("Manule", "1111", "joseluissanchez0406@gmail.com", 12354221);
+        t1 = new Trabajador("Manule", "1111", "manule@hola", 12354221);
         t1.setValid(true);
     }
 

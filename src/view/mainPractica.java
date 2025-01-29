@@ -102,11 +102,16 @@ public class mainPractica {
                         case "5"://Modificar datos personales clientes
                             System.out.println("MODIFICACIÓN DE DATOS:");
                             correoTeclado = compruebaCorreo(tienda);
-                            contraTeclado = peticionDatosContra();
-                            nombreTeclado = peticionDatosNombre();
-                            direccionTeclado = peticionDatosDireccion();
-                            localidadTeclado = peticionDatosLocalidad();
-                            provinciaTeclado = peticionDatosProvincia();
+                            System.out.print("Introduce una nueva contraseña para tu cuenta: ");
+                            contraTeclado = S.nextLine();
+                            System.out.print("Introduce un nuevo nombre para tu cuenta: ");
+                            nombreTeclado = S.nextLine();
+                            System.out.print("Introduce tu nueva dirección (-1 para dejar mismos datos): ");
+                            direccionTeclado = S.nextLine();
+                            System.out.print("Introduce su nueva localidad (-1 para dejar mismos datos): ");
+                            localidadTeclado = S.nextLine();
+                            System.out.print("Introduce su nueva provincia (-1 para dejar mismos datos): ");
+                            provinciaTeclado = S.nextLine();
                             do {
                                 System.out.print("Introduzca su nuevo teléfono (-1 para dejar mismos datos): ");
                                 try {
@@ -160,7 +165,8 @@ public class mainPractica {
             if (trabajadorTemp != null && trabajadorTemp.isInicioCorrecto() && !trabajadorTemp.isValid()) {
                 System.out.print("Introduce tu token para registrarte: ");
                 tokenTeclado = S.nextLine();
-                if (tienda.compruebaTokenTrabajador(trabajadorTemp, tokenTeclado)) System.out.println("Token correcto...");
+                if (tienda.compruebaTokenTrabajador(trabajadorTemp, tokenTeclado))
+                    System.out.println("Token correcto...");
                 else System.out.println("Token incorrecto...");
                 Utils.pulsaContinuar();
                 Utils.limpiarpantalla();
@@ -333,31 +339,7 @@ public class mainPractica {
         } while (true); // Menú del programa principal
     }
 
-    private static String peticionDatosProvincia() {
-        System.out.print("Introduce su nueva provincia (-1 para dejar mismos datos): ");
-        return S.nextLine();
-    }
-
-    private static String peticionDatosLocalidad() {
-        System.out.print("Introduce su nueva localidad (-1 para dejar mismos datos): ");
-        return S.nextLine();
-    }
-
-    private static String peticionDatosDireccion() {
-        System.out.print("Introduce tu nueva dirección (-1 para dejar mismos datos): ");
-        return S.nextLine();
-    }
-
-    private static String peticionDatosNombre() {
-        System.out.print("Introduce un nuevo nombre para tu cuenta: ");
-        return S.nextLine();
-    }
-
-    private static String peticionDatosContra() {
-        System.out.print("Introduce una nueva contraseña para tu cuenta: ");
-        return S.nextLine();
-    }
-
+    // Funcion de registro
     private static void registro(Tienda tienda) {
         if (tienda.noHayHuecoClientes()) System.out.println("No hay hueco para registrar más clientes...");
         else Menus.menuRegistro(tienda);

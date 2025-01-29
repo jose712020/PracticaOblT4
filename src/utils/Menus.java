@@ -240,14 +240,21 @@ public class Menus {
 
     //Metodo que modifica el estado de un pedido el administrador
     public static void modificaEstadoPedido(Tienda tienda) {
+        Cliente cliente = null;
         Pedidos pedido;
         String comentarioTeclado, respuestaTeclado;
         int id = -1, estadoTeclado = -1, dia = -1, mes = -1, anio = -1;
 
         System.out.println("============ Modificación de pedidos ============");
         do {
-            if (tienda.existeCliente(tienda.getC1())) System.out.println(tienda.pintaPedidosModificar(tienda.getC1()));
-            if (tienda.existeCliente(tienda.getC2())) System.out.println(tienda.pintaPedidosModificar(tienda.getC2()));
+            if (tienda.existeCliente(tienda.getC1())) {
+                System.out.println(tienda.pintaPedidosModificar(tienda.getC1()));
+                cliente = tienda.getC1();
+            }
+            if (tienda.existeCliente(tienda.getC2())) {
+                System.out.println(tienda.pintaPedidosModificar(tienda.getC2()));
+                cliente = tienda.getC2();
+            }
             System.out.print("Introduce la ID del pedido a modificar (-1 en caso de que no haya pedidos): ");
             try {
                 id = Integer.parseInt(S.nextLine());
@@ -332,6 +339,7 @@ public class Menus {
                     pedido.modificaComentario(comentarioTeclado);
                     System.out.println("Comentario guardado correctamente.");
                 }
+                Comunicaciones.enviaCorreoPedidoEstado(cliente.getCorreo(), "PEDIDO MODIFICADO", pedido);
             } //LLave del else que ha modificado el estado de un pedido
         } //Llave del else que encuentra una ID de un pedido
 
