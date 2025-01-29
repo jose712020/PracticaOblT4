@@ -68,19 +68,27 @@ public class Menus {
         nombreTeclado = S.nextLine();
         System.out.print("Introduce la contraseña de tu cuenta: ");
         contraTeclado = S.nextLine();
+
         //Bucle que comprobará que el correo nuevo no se repita con el de otra persona
         boolean correoDistinto = false;
-        do {
-            System.out.print("Introduzca correo electrónico: ");
+        do {  //Bucle que comprobará que el correo nuevo no se repita con el de otra persona
+            System.out.print("Introduzca el correo electrónico:");
             correoTeclado = S.nextLine();
-            if (tienda.compruebaCorreosClientes(correoTeclado) && tienda.compruebaCorreosTrabajadores(correoTeclado))
+            if (tienda.compruebaCorreosClientes(correoTeclado) && tienda.compruebaCorreosTrabajadores(correoTeclado)) {
                 correoDistinto = true;
-            else {
+                if (!correoTeclado.contains("@") || (!correoTeclado.contains(".com") && !correoTeclado.contains(".es"))) {
+                    System.out.println("El correo esta mal introducido...");
+                    correoDistinto = false;
+                    Utils.pulsaContinuar();
+                    Utils.limpiarpantalla();
+                }
+            } else {
                 System.out.println("Este correo ya está en uso, introduzca uno nuevo...");
                 Utils.pulsaContinuar();
                 Utils.limpiarpantalla();
             }
         } while (!correoDistinto);
+
         System.out.print("Introduce tu direccion: ");
         direccionTeclado = S.nextLine();
         System.out.print("Introduce su localidad: ");
