@@ -1,6 +1,7 @@
 package models;
 
 import data.Data;
+import utils.Comunicaciones;
 
 public class Tienda {
     //Atributos
@@ -500,11 +501,13 @@ public class Tienda {
     public boolean aniadePedidoTrabajador(Trabajador trabajador, Pedidos pedido) {
         if (trabajador.getPedidoAsignado1() == null) {
             trabajador.setPedidoAsignado1(pedido);
+            Comunicaciones.enviaMensajeTelegram(trabajador.getNombre() + " se te ha asignado el pedido: " + pedido.getId());
             return true;
         }
         if (trabajador.getPedidoAsignado2() == null) {
             if (pedido != trabajador.pedidoAsignado1) {
                 trabajador.setPedidoAsignado2(pedido);
+                Comunicaciones.enviaMensajeTelegram(trabajador.getNombre() + " se te ha asignado el pedido: " + pedido.getId());
                 return true;
             }
         }
