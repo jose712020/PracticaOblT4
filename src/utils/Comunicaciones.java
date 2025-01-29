@@ -65,13 +65,12 @@ public class Comunicaciones {
                             <meta name='viewport' content='width=device-width, initial-scale=1'>
                             <style>
                                 #container h1{
-                                    border: 2px red solid;
                                     width: 115px;
+                                    text-align: center;
                                     background-color: skyblue;
                                 }
                     
                                 #container p{
-                                    border: 2px red solid;
                                     color: white;
                                     background-color: #242222;
                                     text-align: center;
