@@ -60,56 +60,50 @@ public class Menus {
     public static void menuRegistro(Tienda tienda) {
         String correoTeclado, contraTeclado, nombreTeclado, direccionTeclado, localidadTeclado, provinciaTeclado;
         int telefonoTeclado = -1;
-        boolean correoValido = false;
+
+
+        System.out.print("""
+                REGISTRO:
+                Introduce un nombre para su cuenta:\s""");
+        nombreTeclado = S.nextLine();
+        System.out.print("Introduce la contraseña de tu cuenta: ");
+        contraTeclado = S.nextLine();
+        //Bucle que comprobará que el correo nuevo no se repita con el de otra persona
+        boolean correoDistinto = false;
         do {
-            System.out.print("""
-                    REGISTRO:
-                    Introduce un nombre para su cuenta:\s""");
-            nombreTeclado = S.nextLine();
-            System.out.print("Introduce la contraseña de tu cuenta: ");
-            contraTeclado = S.nextLine();
-            //Bucle que comprobará que el correo nuevo no se repita con el de otra persona
-            boolean correoDistinto = false;
-            do {
-                System.out.print("Introduzca correo electrónico: ");
-                correoTeclado = S.nextLine();
-                if (tienda.compruebaCorreosClientes(correoTeclado) && tienda.compruebaCorreosTrabajadores(correoTeclado)) correoDistinto = true;
-                else {
-                    System.out.println("Este correo ya está en uso, introduzca uno nuevo...");
-                    Utils.pulsaContinuar();
-                    Utils.limpiarpantalla();
-                }
-            } while (!correoDistinto);
-            System.out.print("Introduce tu direccion: ");
-            direccionTeclado = S.nextLine();
-            System.out.print("Introduce su localidad: ");
-            localidadTeclado = S.nextLine();
-            System.out.print("Introduce su provincia: ");
-            provinciaTeclado = S.nextLine();
-            do {
-                System.out.print("Introduzca su teléfono: ");
-                try {
-                    telefonoTeclado = Integer.parseInt(S.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("Introduzca un valor numérico...");
-                    Utils.pulsaContinuar();
-                    Utils.limpiarpantalla();
-                }
-            } while (telefonoTeclado == -1);
-            //Generamos el token después del registro
-            String token = tienda.generaToken();
-            System.out.println((tienda.registro(correoTeclado, contraTeclado, nombreTeclado, direccionTeclado,
-                    localidadTeclado, provinciaTeclado, telefonoTeclado, token) ? "Se ha registrado correctamente" : "No se ha podido registrar"));
-            // Le mandamos el correo con el token
-            if (Comunicaciones.enviaCorreo(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado + " " +
-                    "tu token de verificación de la cuenta es " + token, "TU CÓDIGO DE VERIFICACIÓN DE CUENTA"))
-                correoValido = true;
+            System.out.print("Introduzca correo electrónico: ");
+            correoTeclado = S.nextLine();
+            if (tienda.compruebaCorreosClientes(correoTeclado) && tienda.compruebaCorreosTrabajadores(correoTeclado))
+                correoDistinto = true;
             else {
+                System.out.println("Este correo ya está en uso, introduzca uno nuevo...");
                 Utils.pulsaContinuar();
                 Utils.limpiarpantalla();
             }
-        } while (!correoValido);
-
+        } while (!correoDistinto);
+        System.out.print("Introduce tu direccion: ");
+        direccionTeclado = S.nextLine();
+        System.out.print("Introduce su localidad: ");
+        localidadTeclado = S.nextLine();
+        System.out.print("Introduce su provincia: ");
+        provinciaTeclado = S.nextLine();
+        do {
+            System.out.print("Introduzca su teléfono: ");
+            try {
+                telefonoTeclado = Integer.parseInt(S.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Introduzca un valor numérico...");
+                Utils.pulsaContinuar();
+                Utils.limpiarpantalla();
+            }
+        } while (telefonoTeclado == -1);
+        //Generamos el token después del registro
+        String token = tienda.generaToken();
+        System.out.println((tienda.registro(correoTeclado, contraTeclado, nombreTeclado, direccionTeclado,
+                localidadTeclado, provinciaTeclado, telefonoTeclado, token) ? "Se ha registrado correctamente" : "No se ha podido registrar"));
+        // Le mandamos el correo con el token
+        Comunicaciones.enviaCorreo(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado + " " +
+                "tu token de verificación de la cuenta es " + token, "TU CÓDIGO DE VERIFICACIÓN DE CUENTA");
     }
 
     //Menu del trabajador que modifica un producto del catálogo
@@ -388,7 +382,7 @@ public class Menus {
                 trabajador = tienda.eligeTrabajador(op);
             }
             if (trabajador != null)
-                if(tienda.aniadePedidoTrabajador(trabajador, pedido)){
+                if (tienda.aniadePedidoTrabajador(trabajador, pedido)) {
                     System.out.println("Operación realiza correctamente, pedido asignado a " + trabajador.getNombre());
                 } else System.out.println("Ha ocurrido un error...");
 

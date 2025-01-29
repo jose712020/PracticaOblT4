@@ -33,8 +33,7 @@ public class Comunicaciones {
         return dev;  // Devuelvo si ha tenido éxito o no
     }
 
-    public static boolean enviaCorreo(String destino, String mensaje, String asunto){
-        boolean resultado = false;
+    public static void enviaCorreo(String destino, String mensaje, String asunto){
         //Guardamos la dirección que va a remitir el mensaje
         String emisor = "fernanshopjlmanule@gmail.com";
         String usuario = "fernanshopjlmanule@gmail.com";//Usuario para el logueo en el server de correo
@@ -87,10 +86,9 @@ public class Comunicaciones {
             message.setContent(contenidoHTML, "text/html; charset=utf-8");
             //Intentamos mandar el mensaje
             Transport.send(message);
-            resultado = true;
         } catch (Exception e){
             System.out.println("El correo introducido no es válido");
         }
-        return resultado;
+
     }
 }

@@ -99,9 +99,10 @@ public class Trabajador {
     }
 
     //Metodo que modifica los datos del trabajador
-    public void modificarDatosTrabajador(String nombreTeclado, String contraTeclado, int telefonoTeclado) {
+    public void modificarDatosTrabajador(String nombreTeclado, String contraTeclado, String correoTeclado, int telefonoTeclado) {
         nombre = nombreTeclado;
         clave = contraTeclado;
+        correo = correoTeclado;
         if (telefonoTeclado != -1) telefono = telefonoTeclado;
     }
 
