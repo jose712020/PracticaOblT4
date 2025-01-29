@@ -164,7 +164,7 @@ public class Cliente {
         if (!localidadTeclado.equals("-1")) localidad = localidadTeclado;
         if (!provinciaTeclado.equals("-1")) provincia = provinciaTeclado;
         if (telefonoTeclado != -1) telefono = telefonoTeclado;
-        if (!nombreTeclado.equals("-1")) nombre = nombreTeclado;
+        nombre = nombreTeclado;
         setToken(token);
         setValid(false);
     }

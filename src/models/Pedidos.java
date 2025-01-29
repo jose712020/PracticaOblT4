@@ -99,9 +99,6 @@ public class Pedidos {
     }
 
     //Otros metodos
- /*   private int generaId() {
-        return id = (int) (Math.random() * 100001);
-    }*/
 
     //Metodo que pinta un producto del pedido
     public String pintarProducto(Productos producto) {

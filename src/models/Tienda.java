@@ -273,13 +273,11 @@ public class Tienda {
     }
 
     // Metodo que modifica un producto del catalogo
-    public void modificaProducto(String nombreTeclado, double precioTeclado, int cantidadTeclado, Productos producto) {
+    public void modificaProducto(String nombreTeclado, double precioTeclado, Productos producto) {
         if (nombreTeclado.equalsIgnoreCase("no")) nombreTeclado = producto.getNombre();
         else producto.setNombre(nombreTeclado);
         if (precioTeclado == -1) precioTeclado = producto.getPrecio();
         else producto.setPrecio(precioTeclado);
-        if (cantidadTeclado == -1) cantidadTeclado = producto.getCantidad();
-        else producto.setCantidad(cantidadTeclado);
     }
 
     //Metodo que setea el pedido 1 o el pedido 2 de un cliente
@@ -570,8 +568,8 @@ public class Tienda {
         return false;
     }
 
-    // Metodo que comprueba que los correos no se repitan
-    public boolean compruebaCorreos(String correoTeclado) {
+    // Metodo que comprueba que los correos no se repitan de los clientes
+    public boolean compruebaCorreosClientes(String correoTeclado) {
         if (c1 != null && !correoTeclado.equals(c1.getCorreo())) return true;
         if (c2 != null && !correoTeclado.equals(c2.getCorreo())) return true;
         return false;
@@ -588,6 +586,14 @@ public class Tienda {
             clienteTemp.setValid(true);
             return true;
         } else clienteTemp.setValid(false);
+        return false;
+    }
+
+    // Metodo que comprueba que los correos no se repitan de los trabajadores
+    public boolean compruebaCorreosTrabajadores(String correoTeclado) {
+        if (t1 != null && !correoTeclado.equals(t1.getCorreo())) return true;
+        if (t2 != null && !correoTeclado.equals(t2.getCorreo())) return true;
+        if (t3 != null && !correoTeclado.equals(t3.getCorreo())) return true;
         return false;
     }
 }

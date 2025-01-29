@@ -51,9 +51,7 @@ public class mainPractica {
                 case "2": //Registrarse
                     Utils.limpiarpantalla();
                     if (tienda.noHayHuecoClientes()) System.out.println("No hay hueco para registrar más clientes...");
-                    else {
-                        Menus.menuRegistro(tienda);
-                    }
+                    else Menus.menuRegistro(tienda);
                     Utils.pulsaContinuar();
                     Utils.limpiarpantalla();
                     break; //Registrarse
@@ -67,16 +65,10 @@ public class mainPractica {
             if (clienteTemp != null && clienteTemp.isInicioCorrecto() && !clienteTemp.isValid()) {
                 System.out.print("Introduce tu token para registrarte: ");
                 tokenTeclado = S.nextLine();
-                if (tienda.compruebaToken(clienteTemp, tokenTeclado)) {
-                    System.out.println("Token correcto...");
-                    Utils.pulsaContinuar();
-                    Utils.limpiarpantalla();
-                }
-                else {
-                    System.out.println("Token incorrecto...");
-                    Utils.pulsaContinuar();
-                    Utils.limpiarpantalla();
-                }
+                if (tienda.compruebaToken(clienteTemp, tokenTeclado)) System.out.println("Token correcto...");
+                else System.out.println("Token incorrecto...");
+                Utils.pulsaContinuar();
+                Utils.limpiarpantalla();
             }
 
 
@@ -87,9 +79,8 @@ public class mainPractica {
                     switch (op) {
                         case "1"://Consultar el catálogo de productos
                             System.out.println(tienda.pintaCatalogo());
-                            Utils.animacionEnvioCorreo();
+                            //Utils.animacionEnvioCorreo();
                             //Comunicaciones.enviaCorreo(clienteTemp.getCorreo(), "Hola, gracias por consultar nuestro productos", "BIENVENIDO AL CATÁLOGO");
-
                             Utils.pulsaContinuar();
                             Utils.limpiarpantalla();
                             break;
@@ -117,7 +108,7 @@ public class mainPractica {
                                         MODIFICACIÓN DE DATOS:
                                         Introduzca un nuevo correo electrónico:\s""");
                                     correoTeclado = S.nextLine();
-                                    if (tienda.compruebaCorreos(correoTeclado)) correoDistinto = true;
+                                    if (tienda.compruebaCorreosClientes(correoTeclado) && tienda.compruebaCorreosTrabajadores(correoTeclado)) correoDistinto = true;
                                     else {
                                         System.out.println("Este correo ya está en uso, introduzca uno nuevo...");
                                         Utils.pulsaContinuar();
@@ -126,7 +117,7 @@ public class mainPractica {
                                 } while (!correoDistinto);
                                 System.out.print("Introduce una nueva contraseña para tu cuenta: ");
                                 contraTeclado = S.nextLine();
-                                System.out.print("Introduce un nuevo nombre para tu cuenta (-1 para dejar mismos datos): ");
+                                System.out.print("Introduce un nuevo nombre para tu cuenta: ");
                                 nombreTeclado = S.nextLine();
                                 System.out.print("Introduce tu nueva dirección (-1 para dejar mismos datos): ");
                                 direccionTeclado = S.nextLine();
@@ -278,8 +269,18 @@ public class mainPractica {
                                 nombreTeclado = S.nextLine();
                                 System.out.print("Introduce la clave del trabajador: ");
                                 contraTeclado = S.nextLine();
-                                System.out.print("Introduce el correo del trabajador: ");
-                                correoTeclado = S.nextLine();
+                                //Bucle que comprobará que el correo nuevo no se repita con el de otra persona
+                                boolean correoDistinto = false;
+                                do {
+                                    System.out.print("Introduzca correo electrónico del trabajador: ");
+                                    correoTeclado = S.nextLine();
+                                    if (tienda.compruebaCorreosClientes(correoTeclado) && tienda.compruebaCorreosTrabajadores(correoTeclado)) correoDistinto = true;
+                                    else {
+                                        System.out.println("Este correo ya está en uso, introduzca uno nuevo...");
+                                        Utils.pulsaContinuar();
+                                        Utils.limpiarpantalla();
+                                    }
+                                } while (!correoDistinto);
                                 do {
                                     System.out.print("Introduce el teléfono del trabajador: ");
                                     try {
@@ -329,20 +330,9 @@ public class mainPractica {
         } while (true); // Menú del programa principal
     }
 
-    private static boolean compruebaToken(Cliente clienteTemp, Tienda tienda) {
-        String tokenTeclado;
-
-        if (clienteTemp != null && clienteTemp.isInicioCorrecto() && !clienteTemp.isValid()) {
-            System.out.print("Introduce tu token para registrarte: ");
-            tokenTeclado = S.nextLine();
-            return tienda.compruebaToken(clienteTemp, tokenTeclado);
-        }
-        return false;
-    }
-
     //Funcion que pinta el Menú principal y devuelve la respuesta del cliente
     private static String pintaMenu() {
-        String op = "";
+        String op;
         System.out.print("""
                 BIENVENIDO.
                 1. Iniciar sesión

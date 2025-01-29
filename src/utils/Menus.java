@@ -73,7 +73,7 @@ public class Menus {
             do {
                 System.out.print("Introduzca correo electrónico: ");
                 correoTeclado = S.nextLine();
-                if (tienda.compruebaCorreos(correoTeclado)) correoDistinto = true;
+                if (tienda.compruebaCorreosClientes(correoTeclado) && tienda.compruebaCorreosTrabajadores(correoTeclado)) correoDistinto = true;
                 else {
                     System.out.println("Este correo ya está en uso, introduzca uno nuevo...");
                     Utils.pulsaContinuar();
@@ -96,7 +96,7 @@ public class Menus {
                     Utils.limpiarpantalla();
                 }
             } while (telefonoTeclado == -1);
-            //Generamos el token despues del registro
+            //Generamos el token después del registro
             String token = tienda.generaToken();
             System.out.println((tienda.registro(correoTeclado, contraTeclado, nombreTeclado, direccionTeclado,
                     localidadTeclado, provinciaTeclado, telefonoTeclado, token) ? "Se ha registrado correctamente" : "No se ha podido registrar"));
@@ -112,12 +112,12 @@ public class Menus {
 
     }
 
-    //Menu del trabajador que modifica un producto del catalogo
+    //Menu del trabajador que modifica un producto del catálogo
     public static void modificaCatalogo(Tienda tienda) {
-        Productos temp = null;
+        Productos temp;
 
         String nombreTeclado;
-        int productoTeclado = -1, cantidadTeclado = -2;
+        int productoTeclado = -1;
         double precioTeclado = -2;
 
         System.out.println(tienda.pintaCatalogo());
@@ -145,17 +145,7 @@ public class Menus {
                     Utils.limpiarpantalla();
                 }
             } while (precioTeclado == -2);
-            do {
-                System.out.print("Introduzca una nueva cantidad (introduce '-1' para dejar el anterior): ");
-                try {
-                    cantidadTeclado = Integer.parseInt(S.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("Introduzca un valor numérico...");
-                    Utils.pulsaContinuar();
-                    Utils.limpiarpantalla();
-                }
-            } while (cantidadTeclado == -2);
-            tienda.modificaProducto(nombreTeclado, precioTeclado, cantidadTeclado, temp);
+            tienda.modificaProducto(nombreTeclado, precioTeclado, temp);
         } else System.out.println("Producto no encontrado...");
     }
 
@@ -166,8 +156,8 @@ public class Menus {
         boolean finalizado = false;
 
         cont = 0;
-        Productos producto1 = null, producto2 = null, producto3 = null;
-        Pedidos pedido = null;
+        Productos producto1, producto2 = null, producto3 = null;
+        Pedidos pedido;
 
 
         do {
@@ -236,7 +226,7 @@ public class Menus {
                 int id;
                 //Bucle que comprueba las ID de todos los pedidos, se saldrá si ninguna ID de otro pedido se repite
                 do {
-                    id = (int) (Math.random() * 5);
+                    id = (int) (Math.random() * 100001);
                     if (!tienda.generaIDiguales(id)) continuar = true;
                 } while (!continuar);
                 pedido.setId(id);
@@ -248,8 +238,8 @@ public class Menus {
 
     //Metodo que modifica el estado de un pedido el administrador
     public static void modificaEstadoPedido(Tienda tienda) {
-        Pedidos pedido = null;
-        String comentarioTeclado = "", fechaTeclado = "", respuestaTeclado = "";
+        Pedidos pedido;
+        String comentarioTeclado, respuestaTeclado;
         int id = -1, estadoTeclado = -1, dia = -1, mes = -1, anio = -1;
 
         System.out.println("============ Modificación de pedidos ============");
@@ -397,8 +387,10 @@ public class Menus {
                 } while (op == -2);
                 trabajador = tienda.eligeTrabajador(op);
             }
-            if (trabajador != null) System.out.println(tienda.aniadePedidoTrabajador(trabajador, pedido)
-                    ? "Operación realiza correctamente, pedido asignado a " + trabajador.getNombre() : "Ha ocurrido un error...");
+            if (trabajador != null)
+                if(tienda.aniadePedidoTrabajador(trabajador, pedido)){
+                    System.out.println("Operación realiza correctamente, pedido asignado a " + trabajador.getNombre());
+                } else System.out.println("Ha ocurrido un error...");
 
         } else System.out.println("Pedido no encontrado...");
 

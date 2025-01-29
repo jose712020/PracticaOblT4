@@ -55,6 +55,25 @@ public class Comunicaciones {
             }
         });
         try {
+            // Definir contenido en HTML con CSS
+            String contenidoHTML = "<html>"
+                    + "<head>"
+                    + "<style>"
+                    + "body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }"
+                    + ".container { background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }"
+                    + "h1 { color: #333366; }"
+                    + "p { color: #666666; font-size: 16px; }"
+                    + "</style>"
+                    + "</head>"
+                    + "<body>"
+                    + "<div class='container'>"
+                    + "<h1>¡Hola!</h1>"
+                    + "<p>" + mensaje + "</p>"
+                    + "<p>Gracias por tu atención.</p>"
+                    + "</div>"
+                    + "</body>"
+                    + "</html>";
+
             //Creamos un mensaje de correo por defecto
             Message message = new MimeMessage(session);
             //En el mensaje, establecemos el emisor con los datos pasado sa la función
@@ -65,7 +84,7 @@ public class Comunicaciones {
             message.setSubject(asunto);
             //Añadimos el contenido del mensaje
             //message.setText(mensaje); Si solo mandamos texto
-            message.setContent(mensaje, "text/html; charset=utf-8");
+            message.setContent(contenidoHTML, "text/html; charset=utf-8");
             //Intentamos mandar el mensaje
             Transport.send(message);
             resultado = true;

@@ -4,13 +4,11 @@ public class Productos {
     //Atributos
     private String nombre;
     private double precio;
-    private int cantidad;
 
     //Constructor
-    public Productos(String nombre, double precio, int cantidad) {
+    public Productos(String nombre, double precio) {
         this.nombre = nombre;
         this.precio = precio;
-        this.cantidad = cantidad;
     }
 
     //Getters y Setters
@@ -30,21 +28,12 @@ public class Productos {
         this.precio = precio;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
     //Métodos
     public String pintaDatos() {
         String salida = "";
         salida += "**************************************************\n";
         salida += "Nombre: " + nombre + "\n";
         salida += "Precio: " + precio + "\n";
-        salida += "Cantidad: " + cantidad + "\n\n";
         return salida;
     }
 
