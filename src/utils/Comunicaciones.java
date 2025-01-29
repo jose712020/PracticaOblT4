@@ -1,5 +1,8 @@
 package utils;
 
+import models.Pedidos;
+import models.Trabajador;
+
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
@@ -33,7 +36,7 @@ public class Comunicaciones {
         return dev;  // Devuelvo si ha tenido éxito o no
     }
 
-    public static void enviaCorreo(String destino, String mensaje, String asunto, String token) {
+    public static void enviaCorreoToken(String destino, String mensaje, String asunto, String token) {
         //Guardamos la dirección que va a remitir el mensaje
         String emisor = "fernanshopjlmanule@gmail.com";
         String usuario = "fernanshopjlmanule@gmail.com";//Usuario para el logueo en el server de correo
@@ -115,6 +118,103 @@ public class Comunicaciones {
             message.setFrom(new InternetAddress(emisor));
             //En el mensaje, establecemos el receptor
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destino));
+            //Establecemos el Asunto
+            message.setSubject(asunto);
+            //Añadimos el contenido del mensaje
+            //message.setText(mensaje); Si solo mandamos texto
+            message.setContent(contenidoHTML, "text/html; charset=utf-8");
+            //Intentamos mandar el mensaje
+            Transport.send(message);
+        } catch (Exception e) {
+            System.out.println("El correo introducido no es válido");
+        }
+    }
+
+
+    public static void enviaCorreoPedido(String receptor, String asunto, Pedidos pedido) {
+        //Guardamos la dirección que va a remitir el mensaje
+        String emisor = "fernanshopjlmanule@gmail.com";
+        String usuario = "fernanshopjlmanule@gmail.com";//Usuario para el logueo en el server de correo
+        String clave = "ceoeptmyuekuvbge";//Clave del usuario de correo
+        //Host del servidor de correo
+        String host = "smtp.gmail.com";
+        //Creamos nuestra variable de propiedades con los datos de nuestro servidor de correo
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", "587");
+        //Obtenemos la sesión en nuestro servidor de correo
+        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            @Override
+            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(usuario, clave);
+            }
+        });
+        try {
+            // Definir contenido en HTML con CSS
+            String contenidoHTML = String.format("""
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+                            <meta charset='utf-8'>
+                            <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+                            <title>CORREOFERNANSHOP</title>
+                            <meta name='viewport' content='width=device-width, initial-scale=1'>
+                            <style>
+                                #container h1{
+                                    width: 115px;
+                                    text-align: center;
+                                    background-color: skyblue;
+                                }
+                    
+                                #container p{
+                                    color: white;
+                                    background-color: #242222;
+                                    text-align: center;
+                                    margin: auto;
+                                    width: 550px;
+                                }
+                    
+                                #token{
+                                    font-weight: bold;
+                                    color: white;
+                                    background-color: darkblue;
+                                    text-align: center;
+                                    margin: auto;
+                                    width: 600px;
+                                }
+                    
+                                footer{
+                                    background-color: lightgreen;
+                                    border: 2px black dashed;
+                                }
+                            </style>
+                        </head>
+                        <body>
+                            <div id="container">
+                                <h1>¡HOLA!</h1>
+                                <p>
+                                ¡Se te ha asignado un pedido!
+                                 Detalles del pedido:</p>
+                                <h2 id="token">%s</h2>
+                            </div>
+                            <hr>
+                            <hr>
+                            <footer>
+                                <h2>GRACIAS POR SU COLABORACIÓN</h2>
+                                <h3>&copy;FERNANSHOP2025</h3>
+                            </footer>
+                        </body>
+                        </html>
+                    """, pedido.pintaPedido());
+
+            //Creamos un mensaje de correo por defecto
+            Message message = new MimeMessage(session);
+            //En el mensaje, establecemos el emisor con los datos pasado sa la función
+            message.setFrom(new InternetAddress(emisor));
+            //En el mensaje, establecemos el receptor
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receptor));
             //Establecemos el Asunto
             message.setSubject(asunto);
             //Añadimos el contenido del mensaje

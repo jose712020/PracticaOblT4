@@ -110,7 +110,7 @@ public class Menus {
         System.out.println((tienda.registro(correoTeclado, contraTeclado, nombreTeclado, direccionTeclado,
                 localidadTeclado, provinciaTeclado, telefonoTeclado, token) ? "Se ha registrado correctamente" : "No se ha podido registrar"));
         // Le mandamos el correo con el token
-        Comunicaciones.enviaCorreo(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado + " " +
+        Comunicaciones.enviaCorreoToken(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado + " " +
                 "tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token);
     }
 
@@ -372,7 +372,6 @@ public class Menus {
 
         if (pedido != null) {
             System.out.println("\n==== Asignación del pedido " + pedido.getId() + " ====");
-            System.out.println(tienda.pintaAsignacionPedidoTrabajadores());
             if (!tienda.eleccionAsignacionPedido()) {
                 trabajador = tienda.aniadePedidoTrabajadorAutomatico();
             } else {

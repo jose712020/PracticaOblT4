@@ -120,7 +120,7 @@ public class mainPractica {
                             } while (telefonoTeclado == -2);
                             //Generamos el token despues de la modificacion de datos
                             token = tienda.generaToken();
-                            Comunicaciones.enviaCorreo(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado +
+                            Comunicaciones.enviaCorreoToken(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado +
                                     " tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token);
 
                             clienteTemp.modificarDatosCliente(correoTeclado, contraTeclado, direccionTeclado, localidadTeclado, provinciaTeclado, telefonoTeclado, nombreTeclado, token);
@@ -218,7 +218,7 @@ public class mainPractica {
                             //Generamos el token después de la modificación de datos
                             token = tienda.generaToken();
                             // Le mandamos el correo con el token
-                            Comunicaciones.enviaCorreo(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado +
+                            Comunicaciones.enviaCorreoToken(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado +
                                     " tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token);
 
                             trabajadorTemp.modificarDatosTrabajador(nombreTeclado, contraTeclado, correoTeclado, telefonoTeclado, token);
@@ -291,7 +291,7 @@ public class mainPractica {
                                 //Generamos el token después del registro
                                 token = tienda.generaToken();
                                 // Le mandamos el correo con el token
-                                Comunicaciones.enviaCorreo(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado + " " +
+                                Comunicaciones.enviaCorreoToken(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado + " " +
                                         "tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token);
 
                                 //Damos de alta al trabajador
