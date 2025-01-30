@@ -472,12 +472,25 @@ Efectivamente muestra a sus trabajadores con sus respectivos datos.
 
 ## 6. **CAMBIOS Y FUNCIONALIDADES NUEVAS**
 
+## **PORTADA**
+
+Una de las cosas que hemos decidido mejorar es que no teniamos una presentación decente, ahora este es nuestra nueva portada:
+
+![image](https://github.com/user-attachments/assets/a5341e7e-acd8-4a27-b27c-9aaa7040932e)
+
+## **CATÁLOGO**
+
+Hemos decidido cambiar nuestra idología y ahora tenemos un nuevo catálogo que esperemos que os guste:
+![image](https://github.com/user-attachments/assets/50e4102b-3789-4da5-b9f2-4aa148e335f5)
+
+
 ## **IMPLANTACIÓN DE CORREOS ELECTRÓNICOS**
 
 Una de las funcionalidades más importantes es la implantación de correos electrónicos en el software, ocurrira en diferentes casos:
 - **Durante el registro para generar un token para activar la cuenta registrada**
 - **Cuando un trabajador o administrador modifique un pedido realizado**
 - **Cuando el administrador asigna a un trabajador un pedido, este lo recibirán solo los trabajadores**
+
 
 - ## **CORREO DE REGISTRO (TOKEN)**
 El correo tendra este aspecto:
