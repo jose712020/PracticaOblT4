@@ -9,7 +9,6 @@ public class Trabajador {
     private boolean inicioCorrecto;
     Pedidos pedidoAsignado1;
     Pedidos pedidoAsignado2;
-    private String idTelegram;
     private String token;
     private boolean isValid;
 

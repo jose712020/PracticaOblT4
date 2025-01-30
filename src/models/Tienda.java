@@ -126,7 +126,7 @@ public class Tienda {
 
     //metodo mock
     public void mock() {
-        c1 = new Cliente("Jl", "hola@hola", "1234", "Avd Lopez", "Martos", "Jaen", 12345678);
+        c1 = new Cliente("Jl", "manueljesus.peinado.1601@fernando3martos.com", "1234", "Avd Lopez", "Martos", "Jaen", 12345678);
         c1.setValid(true);
         //c2 = new Cliente("Wiwi", "jl@hola", "1234", "Avd Lopez", "Martos", "Jaen", 12345678);
         t1 = new Trabajador("Manule", "1111", "manule@hola", 12354221);
@@ -140,16 +140,6 @@ public class Tienda {
         return null;
     }
 
-    //En este metodo ponemos el boolean inicioCorrecto a true del administrador
-    public void inicioSesionAdminActivado() {
-        admin.setInicioCorrecto(true);
-    }
-
-    //En este metodo ponemos el boolean inicioCorrecto a false del administrador
-    public void apagadoInicioSesionAdmin() {
-        admin.setInicioCorrecto(false);
-    }
-
     //Comparamos si los datos que ha metido el usuario coincide con los del cliente que introduzcamos
     public Cliente inicioSesionCliente(String nombreTeclado, String contraTeclado) {
         if (c1 != null && c1.getCorreo().equals(nombreTeclado) && c1.getPass().equals(contraTeclado)) return c1;
@@ -157,15 +147,6 @@ public class Tienda {
         return null;
     }
 
-    //En este metodo ponemos el boolean inicioCorrecto a true del cliente que introduzcamos
-    public void inicioSesionClienteActivado(Cliente cliente) {
-        cliente.setInicioCorrecto(true);
-    }
-
-    //En este metodo ponemos el boolean inicioCorrecto a false del cliente
-    public void apagadoInicioSesionCliente(Cliente cliente) {
-        cliente.setInicioCorrecto(false);
-    }
 
     //Comparamos si los datos que ha metido el usuario coincide con los del cliente que introduzcamos
     public Trabajador inicioSesionTrabajador(String nombreTeclado, String contraTeclado) {
@@ -587,12 +568,14 @@ public class Tienda {
         return false;
     }
 
+    // Metodo que genera un Token aleatorio
     public String generaToken() {
         String token = "";
         token = "JM-" + (int) (Math.random() * 99999999);
         return token;
     }
 
+    // Metodo que comprueba el Token de un cliente
     public boolean compruebaTokenCliente(Cliente clienteTemp, String tokenTeclado) {
         if (clienteTemp.getToken().equals(tokenTeclado)) {
             clienteTemp.setValid(true);
@@ -609,6 +592,7 @@ public class Tienda {
         return false;
     }
 
+    // Metodo que comprueba el Token de un trabajador
     public boolean compruebaTokenTrabajador(Trabajador trabajadorTemp, String tokenTeclado) {
         if (trabajadorTemp.getToken().equals(tokenTeclado)) {
             trabajadorTemp.setValid(true);

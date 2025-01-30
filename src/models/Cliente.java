@@ -169,12 +169,6 @@ public class Cliente {
         setValid(false);
     }
 
-
-    //Metodo que nos dice si el cliente no tiene ningun pedido realizado
-    public boolean pedidoNoRealizado() {
-        return pedido1 == null && pedido2 == null;
-    }
-
     // Metodo que pintaa el pedido en la asignacion de pedidos del administrador
     public String pintaAsignacionPedido(Pedidos pedido) {
         String salida = "";
