@@ -58,6 +58,8 @@
   
 - **APAGAR EL SOFTWARE**
 
+6. **CAMBIOS Y FUNCIONALIDADES NUEVAS**
+
 
 
 
@@ -467,3 +469,30 @@ Efectivamente muestra a sus trabajadores con sus respectivos datos.
 - Aquí dijaremos la sesión cerrada en el administrador, para **volver a meternos** deberemos a volver a **iniciar sesión en el menú principal.**
 
 ![image](https://github.com/user-attachments/assets/4f3d36f3-6019-45d0-852d-cf0def41efe4)
+
+## 6. **CAMBIOS Y FUNCIONALIDADES NUEVAS**
+
+## **IMPLANTACIÓN DE CORREOS ELECTRÓNICOS**
+
+Una de las funcionalidades más importantes es la implantación de correos electrónicos en el software, ocurrira en diferentes casos:
+- **Durante el registro para generar un token para activar la cuenta registrada**
+- **Cuando un trabajador o administrador modifique un pedido realizado**
+- **Cuando el administrador asigna a un trabajador un pedido, este lo recibirán solo los trabajadores**
+
+- ## **CORREO DE REGISTRO (TOKEN)**
+El correo tendra este aspecto:
+  
+![image](https://github.com/user-attachments/assets/eab6b241-a338-46d0-923b-fe69d61d6264)
+
+Cuando nos registremos, esta vez en vez de poder acceder a nuestra cuenta directamente, se necesitará una validación con un token por correo electrónico para poder iniciar sesión, mientras tanto no se podrá realizar dicha acción:
+
+![image](https://github.com/user-attachments/assets/9a536c1f-670a-41ae-8da3-cc2736c9d9fd)
+
+Sin embargo si ponemos el token que nos aparece en el correo ya nos dejará acceder:
+
+
+
+
+
+
+
