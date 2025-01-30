@@ -104,7 +104,8 @@ daremos a **"Download ZIP"**
 -Al descargarlo, extraemos la carpeta en la ubicación donde más te convenga, al tenerla extraida nos meteros en la carpeta extraida y nos saldrá lo siguiente, donde ejecutaremos el **"PracticaOT3.bat"** haciendo doble click o dandole click derecho
 al ratón y dandole a la opción **"Abrir"**:
 
-![image](https://github.com/user-attachments/assets/35fb7eca-1b39-45a3-89bb-387caa1736aa)
+![image](https://github.com/user-attachments/assets/321fe0ed-b481-4d98-8578-f18dd15d38c9)
+
 
 (En caso de que nos salga un pantallazo azul de Windows le daremos a donde ponga más información y le daremos a ejectucar de todas maneras)
 
