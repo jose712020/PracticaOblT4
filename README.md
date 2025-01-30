@@ -471,6 +471,8 @@ Efectivamente muestra a sus trabajadores con sus respectivos datos.
 
 ![image](https://github.com/user-attachments/assets/4f3d36f3-6019-45d0-852d-cf0def41efe4)
 
+
+
 ## 6. **CAMBIOS Y FUNCIONALIDADES NUEVAS**
 
 ## **PORTADA**
@@ -491,6 +493,16 @@ Una de las funcionalidades más importantes es la implantación de correos elect
 - **Durante el registro para generar un token para activar la cuenta registrada**
 - **Cuando un trabajador o administrador modifique un pedido realizado**
 - **Cuando el administrador asigna a un trabajador un pedido, este lo recibirán solo los trabajadores**
+
+- ##**SEGURIDAD AL REGISTRARTE**
+
+Nos hemos fijado que cualquier cosa que metieras en el correo funcionaba, así que hemos mejorado la implementación de correos:
+
+![image](https://github.com/user-attachments/assets/c1168e46-937b-4a4c-b54c-797cba3fe36a)
+
+Lo mismo hemos aplicado con los números de teléfono, etc...
+
+![image](https://github.com/user-attachments/assets/0bbec500-5662-4629-9414-96f32a8e7ce5)
 
 
 - ## **CORREO DE REGISTRO (TOKEN)**
