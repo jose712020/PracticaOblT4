@@ -571,3 +571,24 @@ Y una vez introducido el token válido entraremos al menú con nuestro perfil ac
 ![image](https://github.com/user-attachments/assets/ef604681-ab6c-4ea3-a912-e4961be5185f)
 
 
+**CORREOS ASIGNADOS AL TRABAJADOR**
+
+Para comprobar este cambio vamos a realizar un pedido con Jose Luis:
+
+![image](https://github.com/user-attachments/assets/bff4b05f-08bd-4662-a002-96149d92fe78)
+
+Otra cosa que hemos mejorado es la asignación de pedidos,ahora es más efectiva al elegir un pedido, y aparte le hemos agregado una asignación automática del pedido al trabjador que menos pedidos tenga:
+
+![image](https://github.com/user-attachments/assets/0c8802ea-0a71-4388-bd94-fdf445b45cef)
+
+Ahora a carlos le habrá llegado una notificación al correo y en el telegram de que se le ha asignado un pedido con sus detalles:
+
+-Correo:
+
+![image](https://github.com/user-attachments/assets/5aeb948c-4681-40b5-92cf-000128dbfc0b)
+
+Telegram:
+
+![Uploading image.png…]()
+
+
