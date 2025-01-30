@@ -126,7 +126,7 @@ public class Tienda {
 
     //metodo mock
     public void mock() {
-        c1 = new Cliente("Jl", "manueljesus.peinado.1601@fernando3martos.com", "1234", "Avd Lopez", "Martos", "Jaen", 12345678);
+        c1 = new Cliente("Jl", "hola@hola", "1234", "Avd Lopez", "Martos", "Jaen", 12345678);
         c1.setValid(true);
         //c2 = new Cliente("Wiwi", "jl@hola", "1234", "Avd Lopez", "Martos", "Jaen", 12345678);
         t1 = new Trabajador("Manule", "1111", "manule@hola", 12354221);
