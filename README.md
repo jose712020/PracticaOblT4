@@ -589,6 +589,7 @@ Ahora a carlos le habrá llegado una notificación al correo y en el telegram de
 
 Telegram:
 
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/48e96f78-da1a-45af-beb6-efb095490207)
+
 
 
