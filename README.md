@@ -494,7 +494,7 @@ Una de las funcionalidades más importantes es la implantación de correos elect
 - **Cuando un trabajador o administrador modifique un pedido realizado**
 - **Cuando el administrador asigna a un trabajador un pedido, este lo recibirán solo los trabajadores**
 
-- ##**SEGURIDAD AL REGISTRARTE**
+## **SEGURIDAD AL REGISTRARTE**
 
 Nos hemos fijado que cualquier cosa que metieras en el correo funcionaba, así que hemos mejorado la implementación de correos:
 
@@ -505,20 +505,69 @@ Lo mismo hemos aplicado con los números de teléfono, etc...
 ![image](https://github.com/user-attachments/assets/0bbec500-5662-4629-9414-96f32a8e7ce5)
 
 
-- ## **CORREO DE REGISTRO (TOKEN)**
-El correo tendra este aspecto:
+- ## **CORREO DE REGISTRO (TOKEN) Y SEGURIDAD**
+
+Una vez nos hayamos registrado, miraremos nuestra bandeja del correo y veremos que nos ha llegado un correo:
   
-![image](https://github.com/user-attachments/assets/eab6b241-a338-46d0-923b-fe69d61d6264)
+![image](https://github.com/user-attachments/assets/888905c5-42ba-4936-abbd-6c52f1af21c2)
 
-Cuando nos registremos, esta vez en vez de poder acceder a nuestra cuenta directamente, se necesitará una validación con un token por correo electrónico para poder iniciar sesión, mientras tanto no se podrá realizar dicha acción:
 
-![image](https://github.com/user-attachments/assets/9a536c1f-670a-41ae-8da3-cc2736c9d9fd)
+Esta vez en vez de poder acceder a nuestra cuenta directamente, se necesitará una validación del token que nos ha llegado a nuestro correo electrónico para poder iniciar sesión:
+
+![image](https://github.com/user-attachments/assets/16e85e2e-475f-4419-b1f7-43dad198ee2d)
+
+
+Si introducimos un token incorrecto, nos lo hará saber y nos llevará de vuelta al inicio de nuestro software:
+
+![image](https://github.com/user-attachments/assets/2d0ecabd-03be-45fc-b923-c2bc0fcc11da)
+
+![image](https://github.com/user-attachments/assets/52761444-37e5-49f4-a08c-7173e527037a)
+
 
 Sin embargo si ponemos el token que nos aparece en el correo ya nos dejará acceder:
 
+![image](https://github.com/user-attachments/assets/4de765fc-7e45-4fd1-ada7-0acf6c853f4e)
+
+![image](https://github.com/user-attachments/assets/f993473a-21ad-4733-b959-e4edcd92dfa7)
 
 
+**MODIFICACIÓN DE DATOS**
+
+Por seguridad cuando modifiquemos nuestros datos, se nos enviará un nuevo token al correo:
+![image](https://github.com/user-attachments/assets/56fd21f2-0da6-473d-b3bf-160d5b12a382)
+
+![image](https://github.com/user-attachments/assets/45dcaf84-d72c-455f-b8ab-3bf7d1dc432b)
 
 
+Y volveremos a tener la petición del token, en caso de introducirlo mal, se nos cerrará la sesión y volveremos al programa principal:
+
+![image](https://github.com/user-attachments/assets/3938bc35-3a19-410f-9078-21aac58b54ae)
+
+![image](https://github.com/user-attachments/assets/9c3e65c6-ff6c-40df-a4f4-598f9178f214)
+
+Al introducir el token válido nos llevará al programa con nuestros datos modificados:
+
+![image](https://github.com/user-attachments/assets/7047764a-1e88-44cc-8034-f9be2a9283ee)
+
+![image](https://github.com/user-attachments/assets/53c6fe1e-e384-4d29-a956-01b6752afd99)
+
+Y ahora todos nuestros datos se han modificado:
+
+![image](https://github.com/user-attachments/assets/80bec104-aef6-4a1b-81fb-8c916020beb9)
+
+
+Lo mismo con el perfil de Trabajadores: 
+
+![image](https://github.com/user-attachments/assets/69634f7b-fff2-4834-854e-85a9bcc7ef3e)
+
+Miraremos el correo:
+
+![image](https://github.com/user-attachments/assets/e1608056-a936-44bd-b2ed-d4b732cc9867)
+
+![image](https://github.com/user-attachments/assets/5b833120-8f97-496f-b4dd-163dd3ef8788)
+
+Y una vez introducido el token válido entraremos al menú con nuestro perfil actualizado:
+
+![image](https://github.com/user-attachments/assets/ef604681-ab6c-4ea3-a912-e4961be5185f)
 
 
