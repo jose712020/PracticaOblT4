@@ -110,8 +110,9 @@ public class Menus {
         System.out.println((tienda.registro(correoTeclado, contraTeclado, nombreTeclado, direccionTeclado,
                 localidadTeclado, provinciaTeclado, telefonoTeclado, token) ? "Se ha registrado correctamente" : "No se ha podido registrar"));
         // Le mandamos el correo con el token
-        Comunicaciones.enviaCorreoToken(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado + " " +
-                "tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token);
+        Utils.esperePorFavor();
+        Comunicaciones.enviaCorreoToken(correoTeclado, "¡Hola! Bienvenido a FERNANSHOP " + nombreTeclado + ", " +
+                "tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token, nombreTeclado);
     }
 
     //Menu del trabajador que modifica un producto del catálogo
@@ -339,6 +340,7 @@ public class Menus {
                     pedido.modificaComentario(comentarioTeclado);
                     System.out.println("Comentario guardado correctamente.");
                 }
+                Utils.esperePorFavor();
                 Comunicaciones.enviaCorreoPedidoEstado(cliente.getCorreo(), "PEDIDO MODIFICADO", pedido);
             } //LLave del else que ha modificado el estado de un pedido
         } //Llave del else que encuentra una ID de un pedido
@@ -397,6 +399,7 @@ public class Menus {
                 trabajador = tienda.eligeTrabajador(op);
             }
             if (trabajador != null)
+                System.out.println("ESPERE POR FAVOR...");
                 if (tienda.aniadePedidoTrabajador(trabajador, pedido)) {
                     System.out.println("Operación realiza correctamente, pedido asignado a " + trabajador.getNombre());
                 } else System.out.println("Ha ocurrido un error...");

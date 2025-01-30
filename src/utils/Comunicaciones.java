@@ -36,7 +36,7 @@ public class Comunicaciones {
         return dev;  // Devuelvo si ha tenido éxito o no
     }
 
-    public static void enviaCorreoToken(String destino, String mensaje, String asunto, String token) {
+    public static void enviaCorreoToken(String destino, String mensaje, String asunto, String token, String nombreUsuario) {
         //Guardamos la dirección que va a remitir el mensaje
         String emisor = "fernanshopjlmanule@gmail.com";
         String usuario = "fernanshopjlmanule@gmail.com";//Usuario para el logueo en el server de correo
@@ -67,50 +67,73 @@ public class Comunicaciones {
                             <title>CORREOFERNANSHOP</title>
                             <meta name='viewport' content='width=device-width, initial-scale=1'>
                             <style>
-                                #container h1{
-                                    width: 115px;
-                                    text-align: center;
-                                    background-color: skyblue;
-                                }
+                                #container{
+                                     background-color: black;
+                                 }
                     
-                                #container p{
-                                    color: white;
-                                    background-color: #242222;
-                                    text-align: center;
-                                    margin: auto;
-                                    width: 550px;
-                                }
+                                 #comienzo{
+                                     height: 70px;
+                                     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                                     width: 550px;
+                                     margin: auto;
+                                     background-color: darkcyan;
+                                     text-align: center;
+                                 }
                     
-                                #token{
-                                    font-weight: bold;
-                                    color: white;
-                                    background-color: darkblue;
-                                    text-align: center;
-                                    margin: auto;
-                                    width: 600px;
-                                }
+                                 #info h1{
+                                     width: 115px;
+                                     background-color: skyblue;
+                                 }
                     
-                                footer{
-                                    background-color: lightgreen;
-                                    border: 2px black dashed;
-                                }
+                                 #info p{
+                                     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                                     font-size: 30px;
+                                     color: white;
+                                     background-color: black;
+                                     text-align: center;
+                                     margin: auto;
+                                     width: 550px;
+                                 }
+                    
+                                 #detalles{
+                                     font-weight: bold;
+                                     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                                     color: black;
+                                     background-color: white;
+                                     text-align: center;
+                                     margin: auto;
+                                     width: 550px;
+                                 }
+                    
+                                 footer{
+                                     background-color: darkcyan;
+                                     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                                     border: 2px black dashed;
+                                     text-align: center;
+                                     width: 550px;
+                                     margin: auto;
+                                 }
                             </style>
                         </head>
                         <body>
                             <div id="container">
-                                <h1>¡HOLA!</h1>
-                                <p>%s</p>
-                                <h2 id="token">%s</h2>
-                            </div>
-                            <hr>
-                            <hr>
-                            <footer>
-                                <h2>GRACIAS POR SU COLABORACIÓN</h2>
-                                <h3>&copy;FERNANSHOP2025</h3>
-                            </footer>
+                                    <div id="comienzo">
+                                        <h1>¡HOLA, BIENVENIDO %s !</h1>
+                                    </div>
+                                    <div id="info">
+                                        <p>%s</p>
+                                        <h2 id="detalles">%s</h2>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <footer>
+                                        <h2>GRACIAS POR SU COLABORACIÓN</h2>
+                                        <h3>&copy;FERNANSHOP2025</h3>
+                                    </footer>
+                                </div>
                         </body>
                         </html>
-                    """, mensaje, token);
+                    """, nombreUsuario, mensaje, token);
 
             //Creamos un mensaje de correo por defecto
             Message message = new MimeMessage(session);
@@ -162,52 +185,74 @@ public class Comunicaciones {
                             <title>CORREOFERNANSHOP</title>
                             <meta name='viewport' content='width=device-width, initial-scale=1'>
                             <style>
-                                #container h1{
-                                    width: 115px;
-                                    text-align: center;
-                                    background-color: skyblue;
-                                }
+                                #container{
+                                     background-color: black;
+                                 }
                     
-                                #container p{
-                                    color: white;
-                                    background-color: #242222;
-                                    text-align: center;
-                                    margin: auto;
-                                    width: 550px;
-                                }
+                                 #comienzo{
+                                     height: 70px;
+                                     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                                     width: 550px;
+                                     margin: auto;
+                                     background-color: darkcyan;
+                                     text-align: center;
+                                 }
                     
-                                #pedido{
-                                    font-weight: bold;
-                                    color: white;
-                                    background-color: darkblue;
-                                    text-align: center;
-                                    margin: auto;
-                                    width: 600px;
-                                }
+                                 #info h1{
+                                     width: 115px;
+                                     background-color: skyblue;
+                                 }
                     
-                                footer{
-                                    background-color: lightgreen;
-                                    border: 2px black dashed;
-                                }
+                                 #info p{
+                                     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                                     font-size: 30px;
+                                     color: white;
+                                     background-color: black;
+                                     text-align: center;
+                                     margin: auto;
+                                     width: 550px;
+                                 }
+                    
+                                 #detalles{
+                                     font-weight: bold;
+                                     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                                     color: black;
+                                     background-color: white;
+                                     text-align: center;
+                                     margin: auto;
+                                     width: 550px;
+                                 }
+                    
+                                 footer{
+                                     background-color: darkcyan;
+                                     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                                     border: 2px black dashed;
+                                     text-align: center;
+                                     width: 550px;
+                                     margin: auto;
+                                 }
                             </style>
                         </head>
                         <body>
                             <div id="container">
-                                <h1>¡HOLA!</h1>
-                                <p>
-                                ¡Se te ha asignado un pedido!
-                                 Detalles del pedido:</p>
-                                <h2 id="pedido">%s</h2>
-                            </div>
-                            <hr>
-                            <hr>
-                            <footer>
-                                <h2>GRACIAS POR SU COLABORACIÓN</h2>
-                                <h3>&copy;FERNANSHOP2025</h3>
-                            </footer>
+                                    <div id="comienzo">
+                                        <h1>¡HOLA!</h1>
+                                    </div>
+                                    <div id="info">
+                                        <p>¡Se te ha asignado un pedido!</p>
+                                        <p>Detalles del pedido:</p>
+                                        <h2 id="detalles">%s</h2>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <footer>
+                                        <h2>GRACIAS POR SU COLABORACIÓN</h2>
+                                        <h3>&copy;FERNANSHOP2025</h3>
+                                    </footer>
+                                </div>
                         </body>
                         </html>
-                    """, pedido.pintaPedido());
+                    """, pedido.pintaPedidoCorreo());
 
             //Creamos un mensaje de correo por defecto
             Message message = new MimeMessage(session);
@@ -259,52 +304,74 @@ public class Comunicaciones {
                             <title>CORREOFERNANSHOP</title>
                             <meta name='viewport' content='width=device-width, initial-scale=1'>
                             <style>
-                                #container h1{
-                                    width: 115px;
-                                    text-align: center;
-                                    background-color: skyblue;
-                                }
+                                #container{
+                                     background-color: black;
+                                 }
                     
-                                #container p{
-                                    color: white;
-                                    background-color: #242222;
-                                    text-align: center;
-                                    margin: auto;
-                                    width: 550px;
-                                }
+                                 #comienzo{
+                                     height: 70px;
+                                     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                                     width: 550px;
+                                     margin: auto;
+                                     background-color: darkcyan;
+                                     text-align: center;
+                                 }
                     
-                                #pedido{
-                                    font-weight: bold;
-                                    color: white;
-                                    background-color: darkblue;
-                                    text-align: center;
-                                    margin: auto;
-                                    width: 600px;
-                                }
+                                 #info h1{
+                                     width: 115px;
+                                     background-color: skyblue;
+                                 }
                     
-                                footer{
-                                    background-color: lightgreen;
-                                    border: 2px black dashed;
-                                }
+                                 #info p{
+                                     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                                     font-size: 30px;
+                                     color: white;
+                                     background-color: black;
+                                     text-align: center;
+                                     margin: auto;
+                                     width: 550px;
+                                 }
+                    
+                                 #detalles{
+                                     font-weight: bold;
+                                     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                                     color: black;
+                                     background-color: white;
+                                     text-align: center;
+                                     margin: auto;
+                                     width: 550px;
+                                 }
+                    
+                                 footer{
+                                     background-color: darkcyan;
+                                     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                                     border: 2px black dashed;
+                                     text-align: center;
+                                     width: 550px;
+                                     margin: auto;
+                                 }
                             </style>
                         </head>
                         <body>
                             <div id="container">
-                                <h1>¡HOLA!</h1>
-                                <p>
-                                ¡Su pedido ha sido modificado!
-                                 Detalles del pedido:</p>
-                                <h2 id="pedido">%s</h2>
-                            </div>
-                            <hr>
-                            <hr>
-                            <footer>
-                                <h2>GRACIAS POR SU COLABORACIÓN</h2>
-                                <h3>&copy;FERNANSHOP2025</h3>
-                            </footer>
+                                    <div id="comienzo">
+                                        <h1>¡HOLA!</h1>
+                                    </div>
+                                    <div id="info">
+                                        <p>¡Su pedido ha sido modificado!</p>
+                                        <p>Detalles del pedido:</p>
+                                        <h2 id="detalles">%s</h2>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <footer>
+                                        <h2>GRACIAS POR SU COLABORACIÓN</h2>
+                                        <h3>&copy;FERNANSHOP2025</h3>
+                                    </footer>
+                                </div>
                         </body>
                         </html>
-                    """, pedido.pintaPedido());
+                    """, pedido.pintaPedidoCorreo());
 
             //Creamos un mensaje de correo por defecto
             Message message = new MimeMessage(session);

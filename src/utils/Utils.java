@@ -40,4 +40,8 @@ public class Utils {
         }
         System.out.println();
     }
+
+    public static void esperePorFavor(){
+        System.out.println("ESPERE POR FAVOR...");
+    }
 }

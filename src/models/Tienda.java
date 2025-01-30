@@ -2,6 +2,7 @@ package models;
 
 import data.Data;
 import utils.Comunicaciones;
+import utils.Utils;
 
 public class Tienda {
     //Atributos
@@ -125,7 +126,7 @@ public class Tienda {
 
     //metodo mock
     public void mock() {
-        c1 = new Cliente("Jl", "hola@hola", "1234", "Avd Lopez", "Martos", "Jaen", 12345678);
+        c1 = new Cliente("Jl", "manueljesus.peinado.1601@fernando3martos.com", "1234", "Avd Lopez", "Martos", "Jaen", 12345678);
         c1.setValid(true);
         //c2 = new Cliente("Wiwi", "jl@hola", "1234", "Avd Lopez", "Martos", "Jaen", 12345678);
         t1 = new Trabajador("Manule", "1111", "manule@hola", 12354221);
@@ -501,6 +502,7 @@ public class Tienda {
     public boolean aniadePedidoTrabajador(Trabajador trabajador, Pedidos pedido) {
         if (trabajador.getPedidoAsignado1() == null) {
             trabajador.setPedidoAsignado1(pedido);
+            Utils.esperePorFavor();
             Comunicaciones.enviaMensajeTelegram(trabajador.getNombre() + " se te ha asignado el pedido: " + pedido.getId());
             Comunicaciones.enviaCorreoPedido(trabajador.getCorreo(), "ASIGNACIÓN DE PEDIDOS", pedido);
             return true;
@@ -508,6 +510,7 @@ public class Tienda {
         if (trabajador.getPedidoAsignado2() == null) {
             if (pedido != trabajador.pedidoAsignado1) {
                 trabajador.setPedidoAsignado2(pedido);
+                Utils.esperePorFavor();
                 Comunicaciones.enviaMensajeTelegram(trabajador.getNombre() + " se te ha asignado el pedido: " + pedido.getId());
                 Comunicaciones.enviaCorreoPedido(trabajador.getCorreo(), "ASIGNACIÓN DE PEDIDOS", pedido);
                 return true;

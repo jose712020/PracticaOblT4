@@ -173,20 +173,21 @@ public class Pedidos {
     }
 
     //Metodo que pinta los datos del pedido
-    public String pintaPedido() {
+    public String pintaPedidoCorreo() {
         String salida = "";
         salida += "\n\n";
-        salida += "==========\tPedido " + id + "\t===========\n";
-        salida += "Estado: " + estado + "\n";
-        salida += "Fecha del pedido: " + fechaPedido + "\n";
-        salida += "Fecha de entrega estimada: " + fechaEstimada + "\n";
-        salida += "Comentario del pedido: " + (comentario == null ? "No hay comentarios asignados" : comentario) + "\n";
-        salida += "Detalles del pedido:\n";
-        salida += (producto1 == null ? "" : "\t" + pintarProducto(producto1) + "\n");
-        salida += (producto2 == null ? "" : "\t" + pintarProducto(producto2) + "\n");
-        salida += (producto3 == null ? "" : "\t" + pintarProducto(producto3) + "\n");
-        salida += "Total pedido: " + sumarPrecioProductos() + "€\n";
-        salida += "\n\n";
+        salida += "==========\tPedido " + id + "\t===========<br>";
+        salida += "Estado: " + estado + "<br>";
+        salida += "Fecha del pedido: " + fechaPedido + "<br>";
+        salida += "Fecha de entrega estimada: " + fechaEstimada + "<br>";
+        salida += "Comentario del pedido: " + (comentario == null ? "No hay comentarios asignados" : comentario) + "<br>";
+        salida += "Detalles del pedido:<br>";
+        salida += (producto1 == null ? "" : "\t" + pintarProducto(producto1) + "<br>");
+        salida += (producto2 == null ? "" : "\t" + pintarProducto(producto2) + "<br>");
+        salida += (producto3 == null ? "" : "\t" + pintarProducto(producto3) + "<br>");
+        salida += "<hr>";
+        salida += "Total pedido: " + sumarPrecioProductos() + "€<br>";
+        salida += "<br>";
 
         return salida;
     }

@@ -125,8 +125,9 @@ public class mainPractica {
                             } while (telefonoTeclado == -2);
                             //Generamos el token despues de la modificacion de datos
                             token = tienda.generaToken();
-                            Comunicaciones.enviaCorreoToken(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado +
-                                    " tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token);
+                            Utils.esperePorFavor();
+                            Comunicaciones.enviaCorreoToken(correoTeclado, "¡Hola! Bienvenido a FERNANSHOP " + nombreTeclado +
+                                    ", tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token, nombreTeclado);
 
                             clienteTemp.modificarDatosCliente(correoTeclado, contraTeclado, direccionTeclado, localidadTeclado, provinciaTeclado, telefonoTeclado, nombreTeclado, token);
                             Utils.pulsaContinuar();
@@ -224,8 +225,9 @@ public class mainPractica {
                             //Generamos el token después de la modificación de datos
                             token = tienda.generaToken();
                             // Le mandamos el correo con el token
-                            Comunicaciones.enviaCorreoToken(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado +
-                                    " tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token);
+                            Utils.esperePorFavor();
+                            Comunicaciones.enviaCorreoToken(correoTeclado, "¡Hola! Bienvenido a FERNANSHOP " + nombreTeclado +
+                                    ", tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token, nombreTeclado);
 
                             trabajadorTemp.modificarDatosTrabajador(nombreTeclado, contraTeclado, correoTeclado, telefonoTeclado, token);
                             Utils.pulsaContinuar();
@@ -297,8 +299,9 @@ public class mainPractica {
                                 //Generamos el token después del registro
                                 token = tienda.generaToken();
                                 // Le mandamos el correo con el token
-                                Comunicaciones.enviaCorreoToken(correoTeclado, "¡Hola! Bienvenido a FERNANDSHOP " + nombreTeclado + " " +
-                                        "tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token);
+                                Utils.esperePorFavor();
+                                Comunicaciones.enviaCorreoToken(correoTeclado, "¡Hola! Bienvenido a FERNANSHOP " + nombreTeclado + ", " +
+                                        "tu token de verificación de la cuenta es", "TU CÓDIGO DE VERIFICACIÓN DE CUENTA", token, nombreTeclado);
 
                                 //Damos de alta al trabajador
                                 System.out.println(((tienda.darAltaTrabajador(nombreTeclado, contraTeclado, correoTeclado, telefonoTeclado, token)
