@@ -487,12 +487,16 @@ Hemos decidido cambiar nuestra idología y ahora tenemos un nuevo catálogo que 
 ![image](https://github.com/user-attachments/assets/50e4102b-3789-4da5-b9f2-4aa148e335f5)
 
 
-## **IMPLANTACIÓN DE CORREOS ELECTRÓNICOS**
+## **IMPLANTACIÓN DE CORREOS ELECTRÓNICOS Y MENSAJES DE TELEGRAM**
 
 Una de las funcionalidades más importantes es la implantación de correos electrónicos en el software, ocurrira en diferentes casos:
 - **Durante el registro para generar un token para activar la cuenta registrada**
 - **Cuando un trabajador o administrador modifique un pedido realizado**
-- **Cuando el administrador asigna a un trabajador un pedido, este lo recibirán solo los trabajadores**
+- **Cuando el administrador asigna un pedido a un trabajador, este lo recibirán solo los trabajadores**
+
+Y para el telegram ocurrirá cuando:
+- **Cuando el administrador asigna un pedido a un trabajador, este lo recibirán solo los trabajadores**
+
 
 ## **SEGURIDAD AL REGISTRARTE**
 
@@ -571,7 +575,7 @@ Y una vez introducido el token válido entraremos al menú con nuestro perfil ac
 ![image](https://github.com/user-attachments/assets/ef604681-ab6c-4ea3-a912-e4961be5185f)
 
 
-**CORREOS ASIGNADOS AL TRABAJADOR**
+**CORREOS CON PEDIDOS ASIGNADOS AL TRABAJADOR**
 
 Para comprobar este cambio vamos a realizar un pedido con Jose Luis:
 
@@ -583,13 +587,34 @@ Otra cosa que hemos mejorado es la asignación de pedidos,ahora es más efectiva
 
 Ahora a carlos le habrá llegado una notificación al correo y en el telegram de que se le ha asignado un pedido con sus detalles:
 
--Correo:
+**-Correo:**
 
 ![image](https://github.com/user-attachments/assets/5aeb948c-4681-40b5-92cf-000128dbfc0b)
 
-Telegram:
+**Telegram:**
 
 ![image](https://github.com/user-attachments/assets/48e96f78-da1a-45af-beb6-efb095490207)
 
 
+También hemos decido cambiar la opción "Consultar los pedidos que tengo asignados", para darle más claridad al programa:
 
+![image](https://github.com/user-attachments/assets/0ea0c6ed-b1b2-489c-93e9-1a47d6a02bd2)
+
+
+**MODIFICACIÓN DE UN PEDIDO**
+
+-Ahora cuando hagamos un cambio de un pedido se lo haremos saber al cliente, les llegará un correo con los detalles del cambio de pedido. 
+
+-Vamos a modificar un pedido, hemos mejorado la selección de modificar un pedido:
+
+![image](https://github.com/user-attachments/assets/ef9b92e4-324e-45e7-82f0-9b3ad91ee126)
+
+Ahora vamos hacer modificaciones en el pedido, hemos mejorado muchos aspectos de la modificación de un pedido:
+
+![image](https://github.com/user-attachments/assets/a1764e23-fa59-41da-bae6-2879ab322aef)
+
+Ahora vamos a decirle al cliente que mire su correo:
+
+![image](https://github.com/user-attachments/assets/7d554ee8-3bbb-4845-8019-206d4e3a1b95)
+
+Como podemos ver su correo ha sido actualizado correctamente con todos los detalles de los datos modificados.
